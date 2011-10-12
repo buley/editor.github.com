@@ -37,6 +37,13 @@
 					Neural.neurons.add( { 'type': 'input', 'slug': InDB.utilities.random( 12, 'string' ), 'display': InDB.utilities.random( 12, 'string' ) }, function( context ) {
 						console.log( 'Added', context );
 					} );
+
+					Neural.synapses.add( { 'type': InDB.utilities.random( 12, 'string' ), 'to': Math.floor( Math.rand( 0, 100 ) ), 'from': Math.floor( Math.rand( 0, 100 ) ), 'strength': Math.rand( 0, 1 ) }, function( context ) {
+						console.log( 'Added', context );
+					} );
+
+
+
 				}
 				//console.log( map );
 
