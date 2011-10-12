@@ -7,6 +7,30 @@ var Neural = Neural || {};
 Neural.neurons = Neural.neurons || {};
 Neural.synapses = Neural.synapses || {};
 
+/* Relationship helpers */
+
+/*
+Each takes an object w/attributes { options: obj, on_success: fn, on_error: fn }
+*/
+
+Neural.synapses.cursor = Neural.synapses.cursor || {};
+
+Neural.synapses.getStrength = function( request ) {
+	Neural.neurons.get( request.options, request.on_success, request.on_error );
+};
+Neural.synapses.cursor.getStrength = function( request ) {
+	Neural.neurons.cursor.get( request.options, request.on_success, request.on_error );
+};
+Neural.synapses.setStrength = function( request ) {
+	Neural.neurons.set( request.options, request.on_success, request.on_error );
+};
+Neural.synapses.cursor.setStrength = function( request ) {
+	Neural.neurons.cursor.set( request.options, request.on_success, request.on_error );
+};
+
+
+
+
 /* Database */
 
 /* Neurons */
@@ -23,7 +47,7 @@ Neural.neurons.shorthand_map = {
 Neural.neurons.install = function ( ) {
 
         var neurons = {
-                'neurons': { 'key': Neural.neurons.shorthand( 'id' ), 'incrementing_key': 'true', 'unique': 'true' }
+                'neurons': { 'key': Neural.neurons.shorthand( 'id' ), 'incrementing_key': true, 'unique': 'true' }
         };
 
         var neurons_idxs = {};
@@ -61,6 +85,7 @@ Neural.neurons.put = function ( data, on_success, on_error )  {
 
 /* Add */
 Neural.neurons.add = function ( data, on_success, on_error )  {
+	console.log( 'blahblah', data, Neural.neurons.shorthand_encode( data ) );
 	InDB.trigger( 'InDB_do_row_add', { 'store': 'neurons', 'data': Neural.neurons.shorthand_encode( data ), 'on_success': on_success, 'on_error': on_error } );
 }
 
@@ -273,10 +298,8 @@ Neural.neurons.shorthand_encode = function( object ) {
 }
 
 
-
-
-
 /* Synapses */
+
 
 Neural.synapses.shorthand_map = {
 	'id': 'i',
@@ -355,7 +378,6 @@ Neural.synapses.cursor.get = function( key, key_name, data, on_success, on_error
 
 	/* Defaults */
 
-	replace = ( true == replace ) ? true : false;
 	begin = ( 'undefined' !== typeof begin ) ? begin : null;
 	end = ( 'undefined' !== typeof end ) ? end : null;
 	left_inclusive = ( 'undefined' !== typeof left_inclusive ) ? left_inclusive : null;
@@ -364,7 +386,7 @@ Neural.synapses.cursor.get = function( key, key_name, data, on_success, on_error
 
 	/* Setup */
 
-	var keyRange = InDB.range.get( val, begin, end, left_inclusive, right_inclusive );
+	var keyRange = InDB.range.get( key, begin, end, left_inclusive, right_inclusive );
 
 	/* Callbacks */
 
