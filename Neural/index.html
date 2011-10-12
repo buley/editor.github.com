@@ -30,11 +30,15 @@
 				var count = 100;
 				var map = [];
 				for( var i = 0; i < 99; i++ ) {
-					map.push( {
-						'display': InDB.utilities.random( 12, 'string' )
-					} );	
+					/* map.push( {
+					
+					} ); */
+					
+					Neural.neurons.add( { 'type': 'input', 'slug': InDB.utilities.random( 12, 'string' ), 'display': InDB.utilities.random( 12, 'string' ) }, function( context ) {
+						console.log( 'Added', context );
+					} );
 				}
-				console.log( map );
+				//console.log( map );
 
 			} );
 		</script>
