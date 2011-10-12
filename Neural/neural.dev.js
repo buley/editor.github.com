@@ -23,7 +23,7 @@ Neural.neurons.shorthand_map = {
 Neural.neurons.install = function ( ) {
 
         var neurons = {
-                'neurons': { 'key': Neural.neurons.shorthand( 'id' ), 'incrementing_key': true, 'unique': true }
+                'neurons': { 'key': Neural.neurons.shorthand( 'id' ), 'incrementing_key': 'true', 'unique': 'true' }
         };
 
         var neurons_idxs = {};
@@ -50,8 +50,8 @@ Neural.neurons.install = function ( ) {
 }
 
 /* Get */
-Neural.neurons.get = function ( data, on_success, on_error )  {
-	InDB.trigger( 'InDB_do_row_get', { 'store': 'neurons', 'data': Neural.neurons.shorthand_encode( data ), 'on_success': on_success, 'on_error': on_error } );
+Neural.neurons.get = function ( key, on_success, on_error )  {
+	InDB.trigger( 'InDB_do_row_get', { 'store': 'neurons', 'key': Neural.neurons.shorthand( key ), 'on_success': on_success, 'on_error': on_error } );
 }
 
 /* Put */
@@ -69,10 +69,13 @@ Neural.neurons.remove = function ( key, on_success, on_error )  {
 	InDB.trigger( 'InDB_do_row_delete', { 'store': 'neurons', 'key': Neural.neurons.shorthand( key ), 'on_success': on_success, 'on_error': on_error } );
 }
 
-/* Cursor Get */
+/* Multi */
 
 Neural.neurons.cursor = Neural.neurons.cursor || {};
-Neural.neurons.cursor.get = function( key, key_name, data, on_success, on_error, begin, end, left_inclusive, right_inclusive ) {
+
+/* Cursor Get */
+
+Neural.neurons.cursor.get = function( key, key_name, on_success, on_error, begin, end, left_inclusive, right_inclusive ) {
 
         /* Action */
 
@@ -112,7 +115,7 @@ Neural.neurons.cursor.get = function( key, key_name, data, on_success, on_error,
 
 	InDB.trigger( 'InDB_do_cursor_get', { 'store': 'neurons', 'keyRange': InDB.range.only( key ), 'index': key_name, 'on_success': cursor_on_success, 'on_error': cursor_on_error } );
 
-}
+};
 
 /* Cursor Delete */
 Neural.neurons.cursor.delete = function( key, key_name, begin, end, on_success, on_error ) {
@@ -155,6 +158,8 @@ Neural.neurons.cursor.delete = function( key, key_name, begin, end, on_success, 
 
 	InDB.trigger( 'InDB_do_cursor_delete', { 'store': 'neurons', 'keyRange': InDB.range.only( key ), 'index': key_name, 'on_success': cursor_on_success, 'on_error': cursor_on_error } );
 
+};
+
 /* Cursor Update */
 Neural.neurons.cursor.update = function( key, key_name, data, on_success, on_error, begin, end, left_inclusive, right_inclusive ) {
 
@@ -196,7 +201,7 @@ Neural.neurons.cursor.update = function( key, key_name, data, on_success, on_err
 
 	InDB.trigger( 'InDB_do_cursor_update', { 'store': 'neurons', 'data': data, 'keyRange': InDB.range.only( key ), 'index': key_name, 'replace': replace,'on_success': cursor_on_success, 'on_error': cursor_on_error } );
 	
-}
+};
 
 Neural.neurons.shorthand = function ( key ) {
 	if( 'undefined' !== typeof Neural.neurons.shorthand_map[ key ] ) {
@@ -204,7 +209,7 @@ Neural.neurons.shorthand = function ( key ) {
 	} else {
 		return key;
 	}
-}
+};
 
 
 Neural.neurons.shorthand_reverse = function ( key ) {
@@ -220,7 +225,7 @@ Neural.neurons.shorthand_reverse = function ( key ) {
 	} else {
 		return k;
 	}
-}
+};
 
 //recursive
 Neural.neurons.shorthand_decode = function( object ) {
@@ -424,6 +429,8 @@ Neural.synapses.cursor.delete = function( key, key_name, begin, end, on_success,
 	/* Request */
 
 	InDB.trigger( 'InDB_do_cursor_delete', { 'store': 'synapses', 'keyRange': InDB.range.only( key ), 'index': key_name, 'on_success': cursor_on_success, 'on_error': cursor_on_error } );
+
+};
 
 /* Cursor Update */
 Neural.synapses.cursor.update = function( key, key_name, data, on_success, on_error, begin, end, left_inclusive, right_inclusive ) {

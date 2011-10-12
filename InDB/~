@@ -37,7 +37,6 @@ InDB.cursor = {};
 InDB.event = {};
 InDB.events = {};
 InDB.transaction = {};
-InDB.utilities = {};
 /* End Namespaces */
 
 
@@ -538,7 +537,7 @@ InDB.store.create = function ( name, key, autoinc_key, unique, on_success, on_er
 	
 	/* Debug */
 	
-	console.log('InDB.store.create!', name, key, autoinc_key, unique, on_success, on_error, on_abort );
+	console.log('InDB.store.create!@', name, key, autoinc_key, unique, on_success, on_error, on_abort );
 
 	if( !!InDB.debug ) {
 		console.log ( "InDB.store.create", name, key, autoinc_key, on_success, on_error, on_abort );
@@ -585,7 +584,7 @@ InDB.store.create = function ( name, key, autoinc_key, unique, on_success, on_er
 	}
 	
 	var context =  { "name": name, "keyPath": keyPath, "autoinc_key": autoinc_key };
-
+	
 	/* Debug */
 	
 	if( !!InDB.debug ) {
@@ -600,27 +599,13 @@ InDB.store.create = function ( name, key, autoinc_key, unique, on_success, on_er
 	console.log(setVersionRequest);
 	setVersionRequest.onsuccess = function ( event ) {
 		try {
-
-			/* Database options */
-
-			var options = {};
-			if( 'undefined' !== typeof keyPath && null !== keyPath ) {
-				options[ 'keyPath' ] = autoinc_key;
-			} 
-			if( 'undefined' !== typeof autoinc_key && null !== autoinc_key ) {
-				options[ 'autoIncrement' ] = autoinc_key;
-			}
-			
-			InDB.db.createObjectStore( name, options );
-
+			//missing autoinc_key as third arg
+			InDB.db.createObjectStore( name, keyPath );
+			// not reachable when createObjectStore throws an error
 			context[ 'event' ] = event;
-
 			on_success( context );
-
 			InDB.trigger( "InDB_store_created_success", context );
-
 		} catch( error ) {
-
 			// createdObject store threw an error 
 			context[ 'error' ] = error;
 			on_error( context );
@@ -2299,13 +2284,13 @@ InDB.cursor.update = function ( store, index, keyRange, data, replace, on_succes
 		} else {
 			update_data = InDB.cursor.value( event );
 			update_data = ( !!update_data ) ? update_data : {};
-			for( attr in data ) {
-				if( data.hasOwnProperty( attr ) ) {
-					update_data[ attr ] = data[ attr ];
-				}
+		}
+		for( attr in data ) {
+			if( data.hasOwnProperty( attr ) {
+				update_data[ attr ] = data[ attr ];
 			}
 		}
-
+		
 		/* Debug */
 
 		if ( !!InDB.debug ) {
@@ -2540,24 +2525,6 @@ InDB.cursor.delete = function ( store, index, keyRange, on_success, on_error, on
 
 	}
 
-}
-
-/* Utilities */
-
-InDB.utilities.random = function( length, type ) {
-        var set;
-        if( 'numbers' !== type ) {
-                set += 'ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
-        }
-        if( 'letters' !== type ) {
-                set += '0123456789';
-        }
-        var random = '';
-        for ( var i=0; i < length; i++ ) {
-                var random_pos = Math.floor( Math.random() * set.length );
-                random += random.substring( random_pos, random_pos + 1 );
-        }
-        return random;
 }
 
 /* End Functions */
