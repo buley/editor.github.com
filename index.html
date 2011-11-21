@@ -1,1 +1,5 @@
 Since 1984
+
+Bookmarklets:
+<a href="javascript:(window.hideBanner())">De-jimmy</a>
+<a href="javascript:(function(){var a=window,b=encodeURIComponent,c;a:{linkElements=document.getElementsByTagName("link");for(var d=0,d=0;d<linkElements.length;d++)if(linkElements[d].getAttribute("rel")==="canonical"){c=linkElements[d].getAttribute("href");break a}c=null}a.location="http://developers.facebook.com/tools/debug/og/object?q="+b(null===c?"undefined"!==typeof window.location?window.location.protocol+"//"+window.location.hostname+window.location.pathname:null:c);}())">Facebook Lint</a>
