@@ -7,7 +7,21 @@
 		<script src="https://github.com/Modernizr/Modernizr/raw/master/modernizr.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script type="text/javascript">
-	
+			var Mouse = { //make a globally available object with x,y attributes 
+				    x: 0,
+				           y: 0
+			}
+canvas.onmousemove = function (event) { // this  object refers to canvas object  
+Mouse = {
+x: event.pageX - this.offsetLeft,
+y: event.pageY - this.offsetTop
+}
+if( console.log ) { 
+	console.log( 'Mouse', Mouse );
+}
+}
+
+
 			window.addEventListener( 'load', eventWindowLoaded, false );
 			function eventWindowLoaded() {
 				canvasApp();
