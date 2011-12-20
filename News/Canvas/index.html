@@ -25,12 +25,12 @@
 				drawScreen();
 				
 				function drawScreen() {
-					context.StrokeStyle = '#236';
+					context.StrokeStyle = '#223366';
 					context.lineWidth = 10;
-					context.lineCap = 'square';
+					context.lineCap = 'circle';
 					context.beginPath();
-					context.moveTo( 20, 10 );
-					context.lineTo( 100, 0 );
+					context.moveTo( 0, 0 );
+					context.lineTo( 20, 0 );
 					context.stroke();
 					context.closePath();
 				}
