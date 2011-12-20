@@ -25,9 +25,14 @@
 				drawScreen();
 				
 				function drawScreen() {
-					context.font = '72px _sans';
-					context.textBaseline = 'top';
-					context.fillText( "Forbes", 0, 0 );
+					context.StrokeStyle = '#236';
+					context.lineWidth = 10;
+					context.lineCap = 'square';
+					context.beginPath();
+					context.moveTo( 20, 10 );
+					context.lineTo( 100, 0 );
+					context.stroke();
+					context.closePath();
 				}
 			}
 		</script>
