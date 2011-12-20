@@ -27,7 +27,7 @@
 	}
 
 	/* Wide (iPad) */
-	@media all and ( max-device-width: 1024px ) {
+	@media all and ( device-width: 768px ) {
 		#homepage {
 
 		}
@@ -60,7 +60,7 @@
 	}
 
 	/* Wide (iPad) */
-	@media all and ( max-device-width: 1024px ) {
+	@media all and ( device-width: 768px ) {
 
 		#homepage {
 
