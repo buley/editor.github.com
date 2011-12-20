@@ -107,6 +107,55 @@ article[ class ^= 'box-12' ] {
 	width: 95.84%;
 }
 
+article[ class ^= 'column-1' ] {
+	-webkit-column-count: 1;
+}
+
+article[ class ^= 'column-2' ] { 
+	-webkit-column-count: 2;
+}
+
+article[ class ^= 'column-3' ] {
+	-webkit-column-count: 3;
+}
+
+article[ class ^= 'column-4' ] {
+	-webkit-column-count: 4;
+}
+
+article[ class ^= 'column-5' ] {
+	-webkit-column-count: 5;
+}
+
+article[ class ^= 'column-6' ] {
+	-webkit-column-count: 6;
+}
+
+article[ class ^= 'column-7' ] {
+	-webkit-column-count: 7;
+}
+
+article[ class ^= 'column-8' ] {
+	-webkit-column-count: 8;
+}
+
+article[ class ^= 'column-9' ] {
+	-webkit-column-count: 9;
+}
+
+article[ class ^= 'column-10' ] {
+	-webkit-column-count: 10;
+}
+
+article[ class ^= 'column-11' ] {
+	-webkit-column-count: 11;
+}
+
+article[ class ^= 'column-12' ] {
+	-webkit-column-count: 12;
+}
+
+
 /* Flexible Box Layout */
 
 /* Layouts */
