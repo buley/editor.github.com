@@ -107,51 +107,51 @@ article[ class ^= 'box-12' ] {
 	width: 95.84%;
 }
 
-span[ class ^= 'column-1' ] {
+div[ class ^= 'column-1' ] {
 	-webkit-column-count: 1;
 }
 
-span[ class ^= 'column-2' ] { 
+div[ class ^= 'column-2' ] { 
 	-webkit-column-count: 2;
 }
 
-span[ class ^= 'column-3' ] {
+div[ class ^= 'column-3' ] {
 	-webkit-column-count: 3;
 }
 
-span[ class ^= 'column-4' ] {
+div[ class ^= 'column-4' ] {
 	-webkit-column-count: 4;
 }
 
-span[ class ^= 'column-5' ] {
+div[ class ^= 'column-5' ] {
 	-webkit-column-count: 5;
 }
 
-span[ class ^= 'column-6' ] {
+div[ class ^= 'column-6' ] {
 	-webkit-column-count: 6;
 }
 
-span[ class ^= 'column-7' ] {
+div[ class ^= 'column-7' ] {
 	-webkit-column-count: 7;
 }
 
-span[ class ^= 'column-8' ] {
+div[ class ^= 'column-8' ] {
 	-webkit-column-count: 8;
 }
 
-span[ class ^= 'column-9' ] {
+div[ class ^= 'column-9' ] {
 	-webkit-column-count: 9;
 }
 
-span[ class ^= 'column-10' ] {
+div[ class ^= 'column-10' ] {
 	-webkit-column-count: 10;
 }
 
-span[ class ^= 'column-11' ] {
+div[ class ^= 'column-11' ] {
 	-webkit-column-count: 11;
 }
 
-span[ class ^= 'column-12' ] {
+div[ class ^= 'column-12' ] {
 	-webkit-column-count: 12;
 }
 
