@@ -39,62 +39,62 @@ article[ class *= 'bottomruled' ] {
 	margin-bottom:-3px;
 }
 
-article.[ class ^= 'box-1' ] {
+article[ class ^= 'box-1' ] {
 	width: 8.33%;
 	-webkit-box-flex: 1;
 }
 
-article.[ class ^= 'box-2' ] { 
+article[ class ^= 'box-2' ] { 
 	width: 16.66%;
 	-webkit-box-flex: 2;
 }
 
-article.[ class ^= 'box-3' ] {
+article[ class ^= 'box-3' ] {
 	-webkit-box-flex: 3;
 	width: 25%;
 }
 
-article.[ class ^= 'box-4' ] {
+article[ class ^= 'box-4' ] {
 	-webkit-box-flex: 4;
 	width: 33.33%;
 }
 
-article.[ class ^= 'box-5' ] {
+article[ class ^= 'box-5' ] {
 	-webkit-box-flex: 5;
 	width: 41.66%;
 }
 
-article.[ class ^= 'box-6' ] {
+article[ class ^= 'box-6' ] {
 	-webkit-box-flex: 6;
 	width: 50%;
 }
 
-article.[ class ^= 'box-7' ] {
+article[ class ^= 'box-7' ] {
 	-webkit-box-flex: 7;
 	width: 58.33%;
 }
 
-article.[ class ^= 'box-8' ] {
+article[ class ^= 'box-8' ] {
 	-webkit-box-flex: 8;
 	width: 66.66%;
 }
 
-article.[ class ^= 'box-9' ] {
+article[ class ^= 'box-9' ] {
 	-webkit-box-flex: 9;
 	width: 75%;
 }
 
-article.[ class ^= 'box-10' ] {
+article[ class ^= 'box-10' ] {
 	-webkit-box-flex: 10;
 	width: 83.33%;
 }
 
-article.[ class ^= 'box-11' ] {
+article[ class ^= 'box-11' ] {
 	-webkit-box-flex: 11;
 	width: 91.66%;
 }
 
-article.[ class ^= 'box-12' ] {
+article[ class ^= 'box-12' ] {
 	-webkit-box-flex: 12;
 	width: 100%;
 }
