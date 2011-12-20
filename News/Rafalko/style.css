@@ -19,6 +19,7 @@
 
 article[ class ^= 'box-' ] {
 	float:left;
+	padding: 2.08%;
 }
 /*
 article[ class *= 'rightruled' ] {
@@ -46,63 +47,63 @@ article[ class *= 'bottomruled' ] {
 }
 */
 article[ class ^= 'box-1' ] {
-	width: 8.33%;
+	width: 4.17%;
 	-webkit-box-flex: 1;
 }
 
 article[ class ^= 'box-2' ] { 
-	width: 16.66%;
+	width: 12.5%;
 	-webkit-box-flex: 2;
 }
 
 article[ class ^= 'box-3' ] {
 	-webkit-box-flex: 3;
-	width: 25%;
+	width: 20.84%;
 }
 
 article[ class ^= 'box-4' ] {
 	-webkit-box-flex: 4;
-	width: 33.33%;
+	width: 25.01%;
 }
 
 article[ class ^= 'box-5' ] {
 	-webkit-box-flex: 5;
-	width: 41.66%;
+	width: 37.5%;
 }
 
 article[ class ^= 'box-6' ] {
 	-webkit-box-flex: 6;
-	width: 50%;
+	width: 545.84%;
 }
 
 article[ class ^= 'box-7' ] {
 	-webkit-box-flex: 7;
-	width: 58.33%;
+	width: 54.17%;
 }
 
 article[ class ^= 'box-8' ] {
 	-webkit-box-flex: 8;
-	width: 66.66%;
+	width: 62.5%;
 }
 
 article[ class ^= 'box-9' ] {
 	-webkit-box-flex: 9;
-	width: 75%;
+	width: 70.84%;
 }
 
 article[ class ^= 'box-10' ] {
 	-webkit-box-flex: 10;
-	width: 83.33%;
+	width: 79.17%;
 }
 
 article[ class ^= 'box-11' ] {
 	-webkit-box-flex: 11;
-	width: 91.66%;
+	width: 87.5%;
 }
 
 article[ class ^= 'box-12' ] {
 	-webkit-box-flex: 12;
-	width: 100%;
+	width: 95.84%;
 }
 
 /* Flexible Box Layout */
