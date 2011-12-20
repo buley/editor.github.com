@@ -10,33 +10,33 @@
 }
 
 
-/* Portrait */
+/* All Portrait */
 @media all and (orientation:portrait) {
 
 	#homepage {
 		border: 5px solid #006600;
 	}
 
-	/* Narrow (iPhone) */
-	@media all and ( max-device-width: 480px ) {
-		#homepage {
-		}
+}
 
-		#content {
-			background: #003300;
-		}
+/* Portrait - Narrow (iPhone) */
+@media all and ( orientation:portrait) and ( max-device-width: 480px ) {
+	#homepage {
 	}
 
-	/* Wide (iPad) */
-	@media all and ( device-width: 768px ) and ( device-height: 1024px ) {
-		#homepage {
-
-		}
-		#content {
-			background:#009900;
-		}
+	#content {
+		background: #003300;
 	}
+}
 
+/* Portrait Wide (iPad) */
+@media all and ( orientation:portrait) and ( max-device-width: 480px ) and ( device-width: 768px ) and ( device-height: 1024px ) {
+	#homepage {
+
+	}
+	#content {
+		background:#009900;
+	}
 }
 
 /* Landscape */
