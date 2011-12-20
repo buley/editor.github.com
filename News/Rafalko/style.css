@@ -18,6 +18,9 @@
 	/* Narrow (iPhone) */
 	@media all and (max-device-width: 480px) {
 		#homepage {
+		}
+
+		#content {
 			background: #003300;
 		}
 	}
@@ -25,9 +28,10 @@
 	/* Wide (iPad) */
 	@media all and ( max-device-width: 1024px ) {
 		#homepage {
-			background:#009900;
+
 		}
 		#content {
+			background:#009900;
 			width: 720px;
 		}
 	}
@@ -45,10 +49,11 @@
 	/* Narrow (iPhone) */
 	@media all and (max-device-width: 480px) {
 		#homepage {
-			background: #330000;
+
 		}
 
 		#content {
+			background: #330000;
 			width: 480px;
 		}
 	}
@@ -57,10 +62,11 @@
 	@media all and ( max-device-width: 1024px ) {
 
 		#homepage {
-			background:#000099;
+
 		}
 
 		#content {
+			background:#000099;
 			width: 720px;
 		}
 	}
