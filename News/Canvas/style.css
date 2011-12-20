@@ -2,4 +2,8 @@
 	background:url('http://images.forbes.com/media/assets/header_baked/forbes_logo_main.gif');
 	width:280px;
 	height:70px;
+	position: absolute;
+	top: 50px;
+	left: 50px
+
 }
