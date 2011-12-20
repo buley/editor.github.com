@@ -24,21 +24,6 @@
 				} else {
 					var theCanvas = document.getElementById("canvas");
 					var context = theCanvas.getContext("2d");
-
-			var Mouse = { //make a globally available object with x,y attributes 
-				    x: 0,
-				           y: 0
-			}
-theCanvas.onmousemove = function (event) { // this  object refers to canvas object  
-Mouse = {
-x: event.pageX - this.offsetLeft,
-y: event.pageY - this.offsetTop
-}
-if( console.log ) { 
-	console.log( 'Mouse', Mouse );
-}
-}
-
 				}
 				drawScreen();
 				
