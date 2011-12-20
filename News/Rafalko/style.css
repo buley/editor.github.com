@@ -17,7 +17,7 @@
 	}
 
 	/* Narrow (iPhone) */
-	@media all and (max-device-width: 480px) {
+	@media all and ( max-device-width: 480px ) {
 		#homepage {
 		}
 
@@ -27,13 +27,12 @@
 	}
 
 	/* Wide (iPad) */
-	@media all and ( device-width: 768px ) {
+	@media all and ( device-width: 768px ) and ( device-height: 1024px ) {
 		#homepage {
 
 		}
 		#content {
 			background:#009900;
-			width: 720px;
 		}
 	}
 
@@ -41,26 +40,25 @@
 
 /* Landscape */
 
-@media all and (orientation:landscape) {
+@media all and ( orientation:landscape ) {
 
 	#homepage {
 		border: 5px solid #660000;
 	}
 
 	/* Narrow (iPhone) */
-	@media all and (max-device-width: 480px) {
+	@media all and ( max-device-width: 480px) {
 		#homepage {
 
 		}
 
 		#content {
 			background: #330000;
-			width: 480px;
 		}
 	}
 
 	/* Wide (iPad) */
-	@media all and ( device-width: 768px ) {
+	@media all and ( device-width: 768px ) and ( device-height: 1024px ) {
 
 		#homepage {
 
@@ -68,7 +66,6 @@
 
 		#content {
 			background:#000099;
-			width: 720px;
 		}
 	}
 
