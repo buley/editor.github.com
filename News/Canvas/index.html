@@ -12,10 +12,13 @@
 			function eventWindowLoaded() {
 				canvasApp();
 			}
+
 			function canvasSupport () {
 				return Modernizr.canvas;
 			}
+
 			function canvasApp() {
+
 				if( !canvasSupport() ) {
 					return;
 				} else {
@@ -25,7 +28,10 @@
 				drawScreen();
 				
 				function drawScreen() {
-					context.StrokeStyle = '#223366';
+
+					/* _F_orbes */
+
+					context.strokeStyle = '#223366';
 					context.lineWidth = 1;
 					context.lineJoin = 'round';
 					context.beginPath();
@@ -33,6 +39,14 @@
 					context.lineTo( 60, 2 );
 					context.lineTo( 60, 45 );
 					context.lineTo( 56, 45 );
+					context.stroke();
+					context.closePath();
+
+					/* F_o_rbes */
+					context.beginPath();
+					context.strokeStyle = '#223366';
+					context.lineWidth = 1;
+					context.arc( 100, 100, 20, ( Math.PI/180)*0, (Math.PI/180)*360, false );
 					context.stroke();
 					context.closePath();
 				}
