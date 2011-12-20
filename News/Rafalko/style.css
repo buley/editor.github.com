@@ -2,45 +2,42 @@
 width: 100%;
 height: 100%;
 }
-/*
-@media screen and (orientation:landscape) {
-	#homepage {
-		background: #660000;
-	}
-}*/
-/*
-@media screen and (orientation:portrait) {
-	#homepage {
-		background: #006600;
-	}
-}*/
 
 /* Portrait */
-/*
-@media screen and (max-width: 320px) {
+@media all and (max-width: 320px) {
 	#homepage {
 		background: #006600;
 	}
-}*/
+}
 
+@media all and (orientation:portrait) {
+	#homepage {
+		border: 5px solid #006600;
+	}
+}
 
 /* Landscape */
-/*
-@media screen and (min-width: 321px) {
+
+@media all and (min-width: 321px) {
 	#homepage {
 		background: #660000;
 	}
-}*/
+}
+
+@media all and (orientation:landscape) {
+	#homepage {
+		border: 5px solid #660000;
+	}
+}
 
 #content {
 	width: 960px;
 	background:#009900;
 }
 
-@media only screen and ( max-device-width: 1024px ) and ( orientation:portrait ) {
+@media all and ( max-device-width: 1024px ) and ( orientation:portrait ) {
    #content {
 	width: 720px;
 	background:#000066;
    }
-
 }
