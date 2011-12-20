@@ -20,7 +20,7 @@
 }
 
 /* Portrait - Narrow (iPhone) */
-@media all and ( orientation:portrait) and ( max-device-width: 480px ) {
+@media all and ( orientation:portrait ) and ( max-device-width: 480px ) {
 	#homepage {
 	}
 
@@ -42,34 +42,31 @@
 /* Landscape */
 
 @media all and ( orientation:landscape ) {
-
 	#homepage {
 		border: 5px solid #660000;
 	}
-
-	/* Narrow (iPhone) */
-	@media all and ( max-device-width: 480px) {
-		#homepage {
-
-		}
-
-		#content {
-			background: #330000;
-		}
-	}
-
-	/* Wide (iPad) */
-	@media all and ( device-width: 768px ) and ( device-height: 1024px ) {
-
-		#homepage {
-
-		}
-
-		#content {
-			background:#000099;
-		}
-	}
-
-
 }
 
+
+/* Narrow (iPhone) */
+@media all and ( orientation:landscape ) and ( max-device-width: 480px) {
+	#homepage {
+
+	}
+
+	#content {
+		background: #330000;
+	}
+}
+
+/* Wide (iPad) */
+@media all and ( orientation:landscape ) and ( device-width: 768px ) and ( device-height: 1024px ) {
+
+	#homepage {
+
+	}
+
+	#content {
+		background:#000099;
+	}
+}
