@@ -9,6 +9,82 @@
 	background:#000099;
 }
 
+.container {
+	display:-moz-box;
+	display:-ms-box;
+	display:-webkit-box;
+}
+
+article[ class ^= 'box-' ] {
+	float:left;
+}
+
+article.box-1 {
+	width: 8.33%;
+	box-flex: 1;
+}
+
+article.box-2 { 
+	width: 16.66%;
+	box-flex: 2;
+}
+
+article.box-3 {
+	box-flex: 3;
+	width: 25%;
+}
+
+article.box-4 {
+	box-flex: 4;
+	width: 33.33%;
+}
+
+article.box-5 {
+	box-flex: 5;
+	width: 41.66%;
+}
+
+article.box-6 {
+	box-flex: 6;
+	width: 50%;
+}
+
+article.box-7 {
+	box-flex: 7;
+	width: 58.33%;
+}
+
+article.box-8 {
+	box-flex: 8;
+	width: 66.66%;
+}
+
+article.box-9 {
+	box-flex: 9;
+	width: 75%;
+}
+
+article.box-10 {
+	box-flex: 10;
+	width: 83.33%;
+}
+
+article.box-11 {
+	box-flex: 11;
+	width: 91.66%;
+}
+
+article.box-12 {
+	box-flex: 12;
+	width: 100%;
+}
+
+/* Flexible Box Layout */
+
+#home {
+}
+
+/* Layouts */
 
 /* All Portrait */
 @media all and (orientation:portrait) {
