@@ -4,8 +4,7 @@
 }
 
 #content {
-	width: 100%;
-	height: 100%;
+	width:960px;
 	background:#fff;
 }
 
@@ -120,9 +119,11 @@ article[ class ^= 'box-12' ] {
 /* Portrait Narrow (iPhone) */
 @media all and ( orientation:portrait ) and ( max-device-width: 480px ) {
 	#homepage {
+	
 	}
 
 	#content {
+		width:320px;
 		background: #ddd;
 	}
 }
@@ -133,6 +134,7 @@ article[ class ^= 'box-12' ] {
 
 	}
 	#content {
+		width:1024px;
 		background:#ccc;
 	}
 }
@@ -154,6 +156,7 @@ article[ class ^= 'box-12' ] {
 
 	#content {
 		background: #aaa;
+		width:480px;
 	}
 
 }
@@ -162,7 +165,7 @@ article[ class ^= 'box-12' ] {
 @media all and ( orientation: landscape ) and ( device-width: 768px ) and ( device-height: 1024px ) {
 
 	#homepage {
-
+		width:1024px;
 	}
 
 	#content {
