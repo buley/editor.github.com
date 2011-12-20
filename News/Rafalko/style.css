@@ -105,15 +105,11 @@ article[ class ^= 'box-12' ] {
 
 /* Flexible Box Layout */
 
-#home {
-}
-
 /* Layouts */
 
 /* All Portrait */
 @media all and (orientation:portrait) {
 	#homepage {
-		border: 5px solid #eee;
 	}
 }
 
@@ -141,7 +137,6 @@ article[ class ^= 'box-12' ] {
 
 @media all and ( orientation:landscape ) {
 	#homepage {
-		border: 5px solid #bbb;
 	}
 }
 
