@@ -1,12 +1,60 @@
 #container {
-	width:280px;
-	height:70px;
-	position: absolute;
-	top: 50px;
-	left: 50px
 }
 #canvas {
 	width:280px;
 	height:70px;
 	background:transparent;
+	margin:auto;
+	-webkit-animation-name: 'forbes';
 }
+
+@keyframes 'forbes' { 
+	from {
+		position:absolute;
+		top: 10%;
+		left:10%;
+		-webkit-transform:transformX(10%) transformY( 40%);
+	}
+	20% {
+		position:absolute;
+		top: 10%;
+		left:10%;
+	}
+	40% {
+		position:absolute;
+		top:10%;
+		right: 10%;
+	}
+	60% {
+		position:absolute;
+		bottom: 10%;
+		left: 10%;
+	}
+	80% {
+		position:absolute;
+		bottom:10%;
+		right:10%;
+	}
+}
+
+.topleft {
+	position:absolute;
+	top: 10%;
+	left:10%;
+}
+.topright {
+	position:absolute;
+	top:10%;
+	right: 10%;
+}
+.bottomleft {
+	position:absolute;
+	bottom: 10%;
+	left: 10%;
+}
+.bottomright {
+	position:absolute;
+	bottom:10%;
+	right:10%;
+}
+
