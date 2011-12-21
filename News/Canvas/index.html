@@ -4,9 +4,9 @@
 		<meta charset="UTF-8">
 		<title>Canvas</title>
 		<link href="style.css" type="text/css" rel="stylesheet"/>
-		<script src="https://github.com/Modernizr/Modernizr/raw/master/modernizr.js"></script>
+<!--		<script src="https://github.com/Modernizr/Modernizr/raw/master/modernizr.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script type="text/javascript">
+		-->		<script type="text/javascript">
 
 			window.addEventListener( 'load', eventWindowLoaded, false );
 			function eventWindowLoaded() {
@@ -14,7 +14,7 @@
 			}
 
 			function canvasSupport () {
-				return Modernizr.canvas;
+				return true; //Modernizr.canvas;
 			}
 
 			function canvasApp() {
@@ -30,27 +30,183 @@
 				function drawScreen() {
 
 					/* _F_orbes */
+					/*context.shadowOffsetX=4;
+					context.shadowOffsetY=4;
+					context.shadowColor='black';
+					context.shadowBlur=4;*/
 
-					context.strokeStyle = '#223366';
 					context.lineWidth = 1;
+					context.strokeStyle = '#223366';
 					context.lineJoin = 'round';
+					context.fillStyle='#223366';
 					context.beginPath();
 					context.moveTo( 0, 2 );
 					context.lineTo( 60, 2 );
 					context.lineTo( 60, 45 );
-					context.lineTo( 56, 45 );
-					context.quadraticCurveTo( 51, 36, 43, 13 );
+					context.lineTo( 57, 45 );
+					context.quadraticCurveTo( 58, 10, 28, 12 );
+					context.lineTo( 28, 73 );
 
+					context.quadraticCurveTo( 43, 75, 46, 53 );
+					context.lineTo( 47, 53 );
+					context.lineTo( 47, 102 );
+					context.lineTo( 45, 102 );
+					context.quadraticCurveTo( 45, 72, 28, 79 );
+					context.quadraticCurveTo( 26, 150, 39, 142 );
+
+					context.lineTo( 39, 142 );
+					context.lineTo( 39, 148 );
+					context.lineTo( 1, 148 );
+					context.lineTo( 1, 142 );
+					//context.quadraticCurveTo( 16, 152, 13, 75 );
+					//context.quadraticCurveTo( 16, 0, 2, 8 );
+					
+					context.bezierCurveTo( 19, 152, 16, 8, 1, 10 );
+					context.lineTo( 1, 2 );
 					context.stroke();
+
+					context.fill();
+
 					context.closePath();
 
 					/* F_o_rbes */
+					
+					context.strokeStyle = '#223366';
+					context.fillStyle = '#223366';
+					context.lineWidth = 1;
+					/* Outside O */
+					context.beginPath();
+					context.moveTo( 79, 40 );
+					context.bezierCurveTo( 44, 52, 44, 142, 79, 150 );
+					context.bezierCurveTo( 114, 142, 114, 44, 79, 40 );
+					context.fill();
+					context.stroke();
+					context.closePath();
+					/* Inside 0 */
+					context.fillStyle = '#fff';	
+					context.lineWidth = 1;
+					context.beginPath();
+					context.moveTo( 79, 48 );
+					context.bezierCurveTo( 65, 52, 65, 142, 79, 142 );
+					context.bezierCurveTo( 94, 142, 94, 52, 79, 48 );
+					context.closePath();
+					context.fill();
+					context.stroke();
+	
+					/* Fo_r_bes */	
+					context.lineWidth = 3;
+					context.strokeStyle = '#223366';
+					context.fillStyle = '#223366';
+					context.lineWidth = 1;
+					context.beginPath();
+					context.moveTo( 106, 51 );
+					context.lineTo( 129, 42 );
+					context.lineTo( 129, 63 );
+					context.quadraticCurveTo( 140, 32, 150, 45 );
+					context.lineTo( 144, 72 );
+					context.quadraticCurveTo( 135, 61, 129, 74 );
+					context.lineTo( 129, 130 );
+					context.quadraticCurveTo( 129, 144, 138, 142 );
+					context.lineTo( 138, 148 );
+					context.lineTo( 106, 148 );
+					context.lineTo( 106, 142 );
+					context.bezierCurveTo( 118, 158, 117, 40, 107, 55 );
+					context.lineTo( 106, 51 );
+					context.closePath();
+					context.fill();
+					context.stroke();
+					
+					/* For_b_es */
+					/* Outside b */
+					context.lineWidth = 3;
+					context.strokeStyle = '#223366';
+					context.fillStyle = '#223366';
+					context.lineWidth = 1;
+					context.beginPath();
+					context.moveTo( 147, 9 );
+					context.lineTo( 170, 1 );
+					context.lineTo( 170, 50 );
+					context.bezierCurveTo( 213, 15, 219, 177, 154, 145 );
+
+					context.quadraticCurveTo( 160, 0, 147, 12 );
+
+					context.lineTo( 147, 9 );
+					//context.fill();
+					context.lineWidth = 1;
+					context.stroke();
+					context.fill();
+					context.closePath();
+					/* Inside b */
+					context.strokeStyle = '#223366';
+					context.lineWidth = 3;
+					context.fillStyle = '#fff';
+					context.beginPath();
+					context.moveTo( 170, 56 );
+					context.bezierCurveTo( 199, 44, 185, 156, 170, 142 );
+					context.lineTo( 170, 56 );
+
+					context.stroke();
+					context.fill();
+					context.closePath();
+
+
+					/* Forb_e_s */
+					context.strokeStyle = '#223366';
+					context.lineWidth = 1;
+					context.fillStyle = '#223366';
+					context.beginPath();
+					context.moveTo( 232, 42 );
+
+					context.quadraticCurveTo( 209, 50, 207, 90 );
+					context.quadraticCurveTo( 209, 150, 232, 149 );
+					context.quadraticCurveTo( 248, 148, 254, 131 );
+					context.lineTo( 252, 126 );
+					context.quadraticCurveTo( 225, 157, 223, 91 );
+					context.lineTo( 255, 91 );	
+					context.quadraticCurveTo( 255, 45, 232, 42 );
+					context.fill();
+					context.stroke();
+					context.closePath();
+
+
+					context.strokeStyle = '#223366';
+					context.lineWidth = 1;
+					context.fillStyle = '#fff';
+					context.beginPath();
+					context.moveTo( 223, 83 );
+					context.bezierCurveTo( 225, 37, 239, 37, 239, 83 );
+					context.lineTo( 223, 83 );
+					context.fill();
+					context.stroke();
+					context.closePath();
+
+					/* Forbe_s_ */
 					context.beginPath();
 					context.strokeStyle = '#223366';
 					context.lineWidth = 1;
-					context.arc( 65, 95, 25, ( Math.PI/180)*0, (Math.PI/180)*360, false );
+					context.fillStyle = '#223366';
+
+					context.moveTo( 295, 49 );
+					context.quadraticCurveTo( 262,26, 259, 74 );
+					context.quadraticCurveTo( 258, 97, 277, 108 );
+					context.bezierCurveTo( 293, 126, 274, 169, 260, 112 );
+					context.lineTo( 257, 112 );
+					context.lineTo( 257, 144 );
+					context.quadraticCurveTo( 294, 160, 297, 120 );
+					context.quadraticCurveTo( 300, 90, 282, 82 );
+					context.bezierCurveTo( 255, 51, 292, 34, 293, 74 );
+					context.lineTo( 296, 74 );
+					context.lineTo( 296, 48 );
+					
+
 					context.stroke();
+					context.fill();
+
 					context.closePath();
+
+
+
+
 				}
 			}
 		</script>
