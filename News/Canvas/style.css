@@ -3,38 +3,790 @@
 #canvas {
 	width:280px;
 	height:70px;
-	margin:auto;
-	-webkit-animation-name: 'forbes';
+	-webkit-transition-property: all;
+	-webkit-transition-duration: 3s;
 }
 
-@keyframes 'forbes' { 
-	from {
-		position:absolute;
-		top: 10%;
-		left:10%;
-		-webkit-transform:transformX(10%) transformY( 40%);
-	}
-	20% {
-		position:absolute;
-		top: 10%;
-		left:10%;
-	}
-	40% {
-		position:absolute;
-		top:10%;
-		right: 10%;
-	}
-	60% {
-		position:absolute;
-		bottom: 10%;
-		left: 10%;
-	}
-	80% {
-		position:absolute;
-		bottom:10%;
-		right:10%;
-	}
+.transform3d {
+	transform-style: preserve-3d;
 }
+
+.transform2d {
+	transform-style: flat;
+}
+.transform15deg {
+	-webkit-transform: rotate( 15deg );
+}
+
+.transform30deg {
+	-webkit-transform: rotate( 30deg );
+}
+
+.transform45deg {
+	-webkit-transform: rotate( 45deg );
+}
+
+.transform60deg {
+	-webkit-transform: rotate( 60deg );
+}
+
+.transform75deg {
+	-webkit-transform: rotate( 75deg );
+}
+
+.transform90deg {
+	-webkit-transform: rotate( 90deg );
+}
+
+.transform105deg {
+	-webkit-transform: rotate( 105deg );
+}
+
+.transform120deg {
+	-webkit-transform: rotate( 120deg );
+}
+
+.transform135deg {
+	-webkit-transform: rotate( 135deg );
+}
+
+.transform150deg {
+	-webkit-transform: rotate( 150deg );
+}
+
+.transform165deg {
+	-webkit-transform: rotate( 165deg );
+}
+
+.transform180deg {
+	-webkit-transform: rotate( 180deg );
+}
+
+.transform195deg {
+	-webkit-transform: rotate( 195deg );
+}
+
+.transform210deg {
+	-webkit-transform: rotate( 210deg );
+}
+
+.transform225deg {
+	-webkit-transform: rotate( 225deg );
+}
+
+.transform240deg {
+	-webkit-transform: rotate( 240deg );
+}
+
+.transform255deg {
+	-webkit-transform: rotate( 255deg );
+}
+
+.transform270deg {
+	-webkit-transform: rotate( 270deg );
+}
+
+.transform285deg {
+	-webkit-transform: rotate( 285deg );
+}
+
+.transform300deg {
+	-webkit-transform: rotate( 300deg );
+}
+
+.transform315deg {
+	-webkit-transform: rotate( 315deg );
+}
+
+.transform330deg {
+	-webkit-transform: rotate( 330deg );
+}
+
+.transform345deg {
+	-webkit-transform: rotate( 345deg );
+}
+
+.transform360deg {
+	-webkit-transform: rotate( 360deg );
+}
+
+.transformNeg15deg {
+	-webkit-transform: rotate( -15deg );
+}
+
+.transformNeg30deg {
+	-webkit-transform: rotate( -30deg );
+}
+
+.transformNeg45deg {
+	-webkit-transform: rotate( -45deg );
+}
+
+.transformNeg60deg {
+	-webkit-transform: rotate( -60deg );
+}
+
+.transformNeg75deg {
+	-webkit-transform: rotate( -75deg );
+}
+
+.transformNeg90deg {
+	-webkit-transform: rotate( -90deg );
+}
+
+.transformNeg105deg {
+	-webkit-transform: rotate( -105deg );
+}
+
+.transformNeg120deg {
+	-webkit-transform: rotate( -120deg );
+}
+
+.transformNeg135deg {
+	-webkit-transform: rotate( -135deg );
+}
+
+.transformNeg150deg {
+	-webkit-transform: rotate( -150deg );
+}
+
+.transformNeg165deg {
+	-webkit-transform: rotate( -165deg );
+}
+
+.transformNeg180deg {
+	-webkit-transform: rotate( -180deg );
+}
+
+.transformNeg195deg {
+	-webkit-transform: rotate( -195deg );
+}
+
+.transformNeg210deg {
+	-webkit-transform: rotate( -210deg );
+}
+
+.transformNeg225deg {
+	-webkit-transform: rotate( -225deg );
+}
+
+.transformNeg240deg {
+	-webkit-transform: rotate( -240deg );
+}
+
+.transformNeg255deg {
+	-webkit-transform: rotate( -255deg );
+}
+
+.transformNeg270deg {
+	-webkit-transform: rotate( -270deg );
+}
+
+.transformNeg285deg {
+	-webkit-transform: rotate( -285deg );
+}
+
+.transformNeg300deg {
+	-webkit-transform: rotate( -300deg );
+}
+
+.transformNeg315deg {
+	-webkit-transform: rotate( -315deg );
+}
+
+.transformNeg330deg {
+	-webkit-transform: rotate( -330deg );
+}
+
+.transformNeg345deg {
+	-webkit-transform: rotate( -345deg );
+}
+
+.transformNeg360deg {
+	-webkit-transform: rotate( -360deg );
+}
+
+.transform15degX {
+	-webkit-transform: rotateX( 15deg );
+}
+
+.transform30degX {
+	-webkit-transform: rotateX( 30deg );
+}
+
+.transform45degX {
+	-webkit-transform: rotateX( 45deg );
+}
+
+.transform60degX {
+	-webkit-transform: rotateX( 60deg );
+}
+
+.transform75degX {
+	-webkit-transform: rotateX( 75deg );
+}
+
+.transform90degX {
+	-webkit-transform: rotateX( 90deg );
+}
+
+.transform105degX {
+	-webkit-transform: rotateX( 105deg );
+}
+
+.transform120degX {
+	-webkit-transform: rotateX( 120deg );
+}
+
+.transform135degX {
+	-webkit-transform: rotateX( 135deg );
+}
+
+.transform150degX {
+	-webkit-transform: rotateX( 150deg );
+}
+
+.transform165degX {
+	-webkit-transform: rotateX( 165deg );
+}
+
+.transform180degX {
+	-webkit-transform: rotateX( 180deg );
+}
+
+.transform195degX {
+	-webkit-transform: rotateX( 195deg );
+}
+
+.transform210degX {
+	-webkit-transform: rotateX( 210deg );
+}
+
+.transform225degX {
+	-webkit-transform: rotateX( 225deg );
+}
+
+.transform240degX {
+	-webkit-transform: rotateX( 240deg );
+}
+
+.transform255degX {
+	-webkit-transform: rotateX( 255deg );
+}
+
+.transform270degX {
+	-webkit-transform: rotateX( 270deg );
+}
+
+.transform285degX {
+	-webkit-transform: rotateX( 285deg );
+}
+
+.transform300degX {
+	-webkit-transform: rotateX( 300deg );
+}
+
+.transform315degX {
+	-webkit-transform: rotateX( 315deg );
+}
+
+.transform330degX {
+	-webkit-transform: rotateX( 330deg );
+}
+
+.transform345degX {
+	-webkit-transform: rotateX( 345deg );
+}
+
+.transform360degX {
+	-webkit-transform: rotateX( 360deg );
+}
+
+.transformNeg15degX {
+	-webkit-transform: rotateX( -15deg );
+}
+
+.transformNeg30degX {
+	-webkit-transform: rotateX( -30deg );
+}
+
+.transformNeg45degX {
+	-webkit-transform: rotateX( -45deg );
+}
+
+.transformNeg60degX {
+	-webkit-transform: rotateX( -60deg );
+}
+
+.transformNeg75degX {
+	-webkit-transform: rotateX( -75deg );
+}
+
+.transformNeg90degX {
+	-webkit-transform: rotateX( -90deg );
+}
+
+.transformNeg105degX {
+	-webkit-transform: rotateX( -105deg );
+}
+
+.transformNeg120degX {
+	-webkit-transform: rotateX( -120deg );
+}
+
+.transformNeg135degX {
+	-webkit-transform: rotateX( -135deg );
+}
+
+.transformNeg150degX {
+	-webkit-transform: rotateX( -150deg );
+}
+
+.transformNeg165degX {
+	-webkit-transform: rotateX( -165deg );
+}
+
+.transformNeg180degX {
+	-webkit-transform: rotateX( -180deg );
+}
+
+.transformNeg195degX {
+	-webkit-transform: rotateX( -195deg );
+}
+
+.transformNeg210degX {
+	-webkit-transform: rotateX( -210deg );
+}
+
+.transformNeg225degX {
+	-webkit-transform: rotateX( -225deg );
+}
+
+.transformNeg240degX {
+	-webkit-transform: rotateX( -240deg );
+}
+
+.transformNeg255degX {
+	-webkit-transform: rotateX( -255deg );
+}
+
+.transformNeg270degX {
+	-webkit-transform: rotateX( -270deg );
+}
+
+.transformNeg285degX {
+	-webkit-transform: rotateX( -285deg );
+}
+
+.transformNeg300degX {
+	-webkit-transform: rotateX( -300deg );
+}
+
+.transformNeg315degX {
+	-webkit-transform: rotateX( -315deg );
+}
+
+.transformNeg330degX {
+	-webkit-transform: rotateX( -330deg );
+}
+
+.transformNeg345degX {
+	-webkit-transform: rotateX( -345deg );
+}
+
+.transformNeg360degX {
+	-webkit-transform: rotateX( -360deg );
+}
+
+.transform15degY {
+	-webkit-transform: rotateY( 15deg );
+}
+
+.transform30degY {
+	-webkit-transform: rotateY( 30deg );
+}
+
+.transform45degY {
+	-webkit-transform: rotateY( 45deg );
+}
+
+.transform60degY {
+	-webkit-transform: rotateY( 60deg );
+}
+
+.transform75degY {
+	-webkit-transform: rotateY( 75deg );
+}
+
+.transform90degY {
+	-webkit-transform: rotateY( 90deg );
+}
+
+.transform105degY {
+	-webkit-transform: rotateY( 105deg );
+}
+
+.transform120degY {
+	-webkit-transform: rotateY( 120deg );
+}
+
+.transform135degY {
+	-webkit-transform: rotateY( 135deg );
+}
+
+.transform150degY {
+	-webkit-transform: rotateY( 150deg );
+}
+
+.transform165degY {
+	-webkit-transform: rotateY( 165deg );
+}
+
+.transform180degY {
+	-webkit-transform: rotateY( 180deg );
+}
+
+.transform195degY {
+	-webkit-transform: rotateY( 195deg );
+}
+
+.transform210degY {
+	-webkit-transform: rotateY( 210deg );
+}
+
+.transform225degY {
+	-webkit-transform: rotateY( 225deg );
+}
+
+.transform240degY {
+	-webkit-transform: rotateY( 240deg );
+}
+
+.transform255degY {
+	-webkit-transform: rotateY( 255deg );
+}
+
+.transform270degY {
+	-webkit-transform: rotateY( 270deg );
+}
+
+.transform285degY {
+	-webkit-transform: rotateY( 285deg );
+}
+
+.transform300degY {
+	-webkit-transform: rotateY( 300deg );
+}
+
+.transform315degY {
+	-webkit-transform: rotateY( 315deg );
+}
+
+.transform330degY {
+	-webkit-transform: rotateY( 330deg );
+}
+
+.transform345degY {
+	-webkit-transform: rotateY( 345deg );
+}
+
+.transform360degY {
+	-webkit-transform: rotateY( 360deg );
+}
+
+.transformNeg15degY {
+	-webkit-transform: rotateY( -15deg );
+}
+
+.transformNeg30degY {
+	-webkit-transform: rotateY( -30deg );
+}
+
+.transformNeg45degY {
+	-webkit-transform: rotateY( -45deg );
+}
+
+.transformNeg60degY {
+	-webkit-transform: rotateY( -60deg );
+}
+
+.transformNeg75degY {
+	-webkit-transform: rotateY( -75deg );
+}
+
+.transformNeg90degY {
+	-webkit-transform: rotateY( -90deg );
+}
+
+.transformNeg105degY {
+	-webkit-transform: rotateY( -105deg );
+}
+
+.transformNeg120degY {
+	-webkit-transform: rotateY( -120deg );
+}
+
+.transformNeg135degY {
+	-webkit-transform: rotateY( -135deg );
+}
+
+.transformNeg150degY {
+	-webkit-transform: rotateY( -150deg );
+}
+
+.transformNeg165degY {
+	-webkit-transform: rotateY( -165deg );
+}
+
+.transformNeg180degY {
+	-webkit-transform: rotateY( -180deg );
+}
+
+.transformNeg195degY {
+	-webkit-transform: rotateY( -195deg );
+}
+
+.transformNeg210degY {
+	-webkit-transform: rotateY( -210deg );
+}
+
+.transformNeg225degY {
+	-webkit-transform: rotateY( -225deg );
+}
+
+.transformNeg240degY {
+	-webkit-transform: rotateY( -240deg );
+}
+
+.transformNeg255degY {
+	-webkit-transform: rotateY( -255deg );
+}
+
+.transformNeg270degY {
+	-webkit-transform: rotateY( -270deg );
+}
+
+.transformNeg285degY {
+	-webkit-transform: rotateY( -285deg );
+}
+
+.transformNeg300degY {
+	-webkit-transform: rotateY( -300deg );
+}
+
+.transformNeg315degY {
+	-webkit-transform: rotateY( -315deg );
+}
+
+.transformNeg330degY {
+	-webkit-transform: rotateY( -330deg );
+}
+
+.transformNeg345degY {
+	-webkit-transform: rotateY( -345deg );
+}
+
+.transformNeg360degY {
+	-webkit-transform: rotateY( -360deg );
+}
+
+
+.transform15degZ {
+	-webkit-transform: rotateZ( 15deg );
+}
+
+.transform30degZ {
+	-webkit-transform: rotateZ( 30deg );
+}
+
+.transform45degZ {
+	-webkit-transform: rotateZ( 45deg );
+}
+
+.transform60degZ {
+	-webkit-transform: rotateZ( 60deg );
+}
+
+.transform75degZ {
+	-webkit-transform: rotateZ( 75deg );
+}
+
+.transform90degZ {
+	-webkit-transform: rotateZ( 90deg );
+}
+
+.transform105degZ {
+	-webkit-transform: rotateZ( 105deg );
+}
+
+.transform120degZ {
+	-webkit-transform: rotateZ( 120deg );
+}
+
+.transform135degZ {
+	-webkit-transform: rotateZ( 135deg );
+}
+
+.transform150degZ {
+	-webkit-transform: rotateZ( 150deg );
+}
+
+.transform165degZ {
+	-webkit-transform: rotateZ( 165deg );
+}
+
+.transform180degZ {
+	-webkit-transform: rotateZ( 180deg );
+}
+
+.transform195degZ {
+	-webkit-transform: rotateZ( 195deg );
+}
+
+.transform210degZ {
+	-webkit-transform: rotateZ( 210deg );
+}
+
+.transform225degZ {
+	-webkit-transform: rotateZ( 225deg );
+}
+
+.transform240degZ {
+	-webkit-transform: rotateZ( 240deg );
+}
+
+.transform255degZ {
+	-webkit-transform: rotateZ( 255deg );
+}
+
+.transform270degZ {
+	-webkit-transform: rotateZ( 270deg );
+}
+
+.transform285degZ {
+	-webkit-transform: rotateZ( 285deg );
+}
+
+.transform300degZ {
+	-webkit-transform: rotateZ( 300deg );
+}
+
+.transform315degZ {
+	-webkit-transform: rotateZ( 315deg );
+}
+
+.transform330degZ {
+	-webkit-transform: rotateZ( 330deg );
+}
+
+.transform345degZ {
+	-webkit-transform: rotateZ( 345deg );
+}
+
+.transform360degZ {
+	-webkit-transform: rotateZ( 360deg );
+}
+
+.transformNeg15degZ {
+	-webkit-transform: rotateZ( -15deg );
+}
+
+.transformNeg30degZ {
+	-webkit-transform: rotateZ( -30deg );
+}
+
+.transformNeg45degZ {
+	-webkit-transform: rotateZ( -45deg );
+}
+
+.transformNeg60degZ {
+	-webkit-transform: rotateZ( -60deg );
+}
+
+.transformNeg75degZ {
+	-webkit-transform: rotateZ( -75deg );
+}
+
+.transformNeg90degZ {
+	-webkit-transform: rotateZ( -90deg );
+}
+
+.transformNeg105degZ {
+	-webkit-transform: rotateZ( -105deg );
+}
+
+.transformNeg120degZ {
+	-webkit-transform: rotateZ( -120deg );
+}
+
+.transformNeg135degZ {
+	-webkit-transform: rotateZ( -135deg );
+}
+
+.transformNeg150degZ {
+	-webkit-transform: rotateZ( -150deg );
+}
+
+.transformNeg165degZ {
+	-webkit-transform: rotateZ( -165deg );
+}
+
+.transformNeg180degZ {
+	-webkit-transform: rotateZ( -180deg );
+}
+
+.transformNeg195degZ {
+	-webkit-transform: rotateZ( -195deg );
+}
+
+.transformNeg210degZ {
+	-webkit-transform: rotateZ( -210deg );
+}
+
+.transformNeg225degZ {
+	-webkit-transform: rotateZ( -225deg );
+}
+
+.transformNeg240degZ {
+	-webkit-transform: rotateZ( -240deg );
+}
+
+.transformNeg255degZ {
+	-webkit-transform: rotateZ( -255deg );
+}
+
+.transformNeg270degZ {
+	-webkit-transform: rotateZ( -270deg );
+}
+
+.transformNeg285degZ {
+	-webkit-transform: rotateZ( -285deg );
+}
+
+.transformNeg300degZ {
+	-webkit-transform: rotateZ( -300deg );
+}
+
+.transformNeg315degZ {
+	-webkit-transform: rotateZ( -315deg );
+}
+
+.transformNeg330degZ {
+	-webkit-transform: rotateZ( -330deg );
+}
+
+.transformNeg345degZ {
+	-webkit-transform: rotateZ( -345deg );
+}
+
+.transformNeg360degZ {
+	-webkit-transform: rotateZ( -360deg );
+}
+
+
+
+
+
 
 .topleft {
 	position:absolute;
@@ -45,30 +797,26 @@
 	position:absolute;
 	top: 10%;
 	left: 50%;
-	right: 50%;
 }
 .topright {
 	position:absolute;
 	top:10%;
-	right: 10%;
+	left: 90%;
 }
 .middleleft {
 	position:absolute;
-	bottom: 50%;
 	top:50%;
 	left: 10%;
 }
 .middlemiddle {
+	position:absolute;
 	left:50%;
-	right:50%;
-	bottom: 50%;
 	top:50%;	
 }
 .middleright {
 	position:absolute;
-	bottom:50%;
 	top:50%;
-	right:10%;
+	left:90%;
 }
 .bottomleft {
 	position:absolute;
@@ -76,13 +824,13 @@
 	left: 10%;
 }
 .bottommiddle {
+	position:absolute;
 	left:50%;
-	right:50%;
-	bottom: 10%;
+	top: 90%;
 }
 .bottomright {
 	position:absolute;
-	bottom:10%;
-	right:10%;
+	top:90%;
+	left:90%;
 }
 

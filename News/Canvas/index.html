@@ -26,7 +26,21 @@
 					var context = theCanvas.getContext("2d");
 				}
 				drawScreen();
-				
+
+				var el = document.getElementById("canvas");
+				el.addEventListener('click', function(e) {
+					var elm = document.getElementById("canvas"), cn = elm.className;
+					if( 'transformNeg360degY' === cn ) {
+						document.getElementById("canvas").className = '';//transform180degY';
+					} else {
+						el.className = 'transformNeg360degY';
+					}
+
+			
+				} );
+
+
+
 				function drawScreen() {
 
 					/* _F_orbes */
@@ -215,6 +229,23 @@
 
 				}
 			}
+			/*
+			var current = 0;
+			var changeUp = function() {
+				//var arr = [ 'topright', 'topleft', 'topmiddle', 'middleleft', 'middleright', 'middlemiddle', 'bottomleft', 'bottomright', 'bottommiddle' ];
+				
+				var el = document.getElementById("canvas"), cn = el.className;
+				if( 'transformNeg360degY' === cn ) {
+					document.getElementById("canvas").className = '';//transform180degY';
+				} else {
+					el.className = 'transformNeg360degY';
+				}
+
+				setTimeout( changeUp, 3000 );
+
+			};
+			setTimeout( changeUp, 3000 );
+			*/
 		</script>
 	</head>
 	<body>
