@@ -44,30 +44,22 @@
 
 				function drawScreen() {
 
-					var gr = context.createLinearGradient( 0, 0, 0, 150 );
-					gr.addColorStop( 0, 'rgba(34,51,102, .9)' );
-					gr.addColorStop( .4, 'rgba(34,51,102, 1)' );
-					gr.addColorStop( .6, 'rgba(34,51,102, 1)' );
-					gr.addColorStop( 1, 'rgba(34,51,102, .9)' );
-	
-					var lineStyle = 'transparent';
-					var fillStyle = '#223366';;
-					var backgroundColor = '#fff';
-					var lineWidth = 1;
-					var lineJoin = 'round';
-					fillStyle = gr;
-
 					/* _F_orbes */
 					/*context.shadowOffsetX=4;
 					context.shadowOffsetY=4;
 					context.shadowColor='black';
 					context.shadowBlur=4;*/
 
-					context.lineWidth = lineWidth;
-					context.strokeStyle = lineStyle;
-					context.lineJoin = lineJoin;
-					context.fillStyle=gr;//fillStyle;
+					context.lineWidth = 1;
+					context.strokeStyle = '#000';223366';
+					context.lineJoin = 'round';
 
+
+					var gr = context.createLinearGradient( 0, 0, 0, 100 );
+					gr.addColorStop( 0, 'rgba(255,255,255,.5)' );
+					gr.addColorStop( .99, 'rgba(34,51,102, 1)' );
+
+					context.fillStyle=gr;//'#223366';
 					context.beginPath();
 					context.moveTo( 0, 2 );
 					context.lineTo( 60, 2 );
@@ -87,6 +79,8 @@
 					context.lineTo( 39, 148 );
 					context.lineTo( 1, 148 );
 					context.lineTo( 1, 142 );
+					//context.quadraticCurveTo( 16, 152, 13, 75 );
+					//context.quadraticCurveTo( 16, 0, 2, 8 );
 					
 					context.bezierCurveTo( 19, 152, 16, 8, 1, 10 );
 					context.lineTo( 1, 2 );
@@ -98,7 +92,9 @@
 
 					/* F_o_rbes */
 					
-					context.fillStyle = fillStyle;
+					context.strokeStyle = '#223366';
+					context.fillStyle = '#223366';
+					context.lineWidth = 1;
 					/* Outside O */
 					context.beginPath();
 					context.moveTo( 79, 40 );
@@ -108,8 +104,9 @@
 					context.stroke();
 					context.closePath();
 					/* Inside 0 */
-					context.globalCompositeOperation = 'destination-out';
-					context.fillStyle = backgroundColor;	
+					context.globalCompositeOperation = 'xor';
+					context.fillStyle = '#fff';	
+					context.lineWidth = 1;
 					context.beginPath();
 					context.moveTo( 79, 48 );
 					context.bezierCurveTo( 65, 52, 65, 142, 79, 142 );
@@ -120,10 +117,10 @@
 	
 					/* Fo_r_bes */	
 					context.globalCompositeOperation = 'source-over';
-					context.lineWidth = lineWidth;
-					context.strokeStyle = lineStyle;
-					context.fillStyle = fillStyle;
-					context.lineWidth = lineWidth;
+					context.lineWidth = 3;
+					context.strokeStyle = '#223366';
+					context.fillStyle = '#223366';
+					context.lineWidth = 1;
 					context.beginPath();
 					context.moveTo( 106, 51 );
 					context.lineTo( 129, 42 );
@@ -144,20 +141,29 @@
 					
 					/* For_b_es */
 					/* Outside b */
-					context.fillStyle = fillStyle;
+					context.lineWidth = 3;
+					context.strokeStyle = '#223366';
+					context.fillStyle = '#223366';
+					context.lineWidth = 1;
 					context.beginPath();
 					context.moveTo( 147, 9 );
 					context.lineTo( 170, 1 );
 					context.lineTo( 170, 50 );
 					context.bezierCurveTo( 213, 15, 219, 177, 154, 145 );
+
 					context.quadraticCurveTo( 160, 0, 147, 12 );
+
 					context.lineTo( 147, 9 );
+					//context.fill();
+					context.lineWidth = 1;
 					context.stroke();
 					context.fill();
 					context.closePath();
 					/* Inside b */
-					context.globalCompositeOperation = 'destination-out';
-					context.fillStyle = backgroundColor;
+					context.globalCompositeOperation = 'xor';
+					context.strokeStyle = '#223366';
+					context.lineWidth = 1;
+					context.fillStyle = '#223366';
 					context.beginPath();
 					context.moveTo( 170, 56 );
 					context.bezierCurveTo( 199, 44, 185, 156, 170, 142 );
@@ -170,7 +176,9 @@
 
 					/* Forb_e_s */
 					context.globalCompositeOperation = 'source-over';
-					context.fillStyle = fillStyle;
+					context.strokeStyle = '#223366';
+					context.lineWidth = 1;
+					context.fillStyle = '#223366';
 					context.beginPath();
 					context.moveTo( 232, 42 );
 
@@ -186,9 +194,10 @@
 					context.closePath();
 
 
-					context.globalCompositeOperation = 'destination-out';
-
-					context.fillStyle = backgroundColor;
+					context.globalCompositeOperation = 'xor';
+					context.strokeStyle = '#223366';
+					context.lineWidth = 1;
+					context.fillStyle = '#fff';
 					context.beginPath();
 					context.moveTo( 223, 83 );
 					context.bezierCurveTo( 225, 37, 239, 37, 239, 83 );
@@ -200,7 +209,9 @@
 					/* Forbe_s_ */
 					context.beginPath();
 					context.globalCompositeOperation = 'source-over';
-					context.fillStyle = fillStyle;
+					context.strokeStyle = '#223366';
+					context.lineWidth = 1;
+					context.fillStyle = '#223366';
 
 					context.moveTo( 295, 49 );
 					context.quadraticCurveTo( 262,26, 259, 74 );
