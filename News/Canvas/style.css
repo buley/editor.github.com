@@ -3,7 +3,6 @@
 #canvas {
 	width:280px;
 	height:70px;
-	background:transparent;
 	margin:auto;
 	-webkit-animation-name: 'forbes';
 }
@@ -42,15 +41,44 @@
 	top: 10%;
 	left:10%;
 }
+.topmiddle {
+	position:absolute;
+	top: 10%;
+	left: auto;
+	right: auto;
+}
 .topright {
 	position:absolute;
 	top:10%;
 	right: 10%;
 }
+.middleleft {
+	position:absolute;
+	bottom: auto;
+	top:auto;
+	left: 10%;
+}
+.middlemiddle {
+	left:auto;
+	right:auto;
+	bottom: auto;
+	top:auto;	
+}
+.middleright {
+	position:absolute;
+	bottom:auto;
+	top:auto;
+	right:10%;
+}
 .bottomleft {
 	position:absolute;
 	bottom: 10%;
 	left: 10%;
+}
+.bottommiddle {
+	left:auto;
+	right:auto;
+	bottom: 10%;
 }
 .bottomright {
 	position:absolute;

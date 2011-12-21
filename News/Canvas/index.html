@@ -83,6 +83,7 @@
 					context.stroke();
 					context.closePath();
 					/* Inside 0 */
+					context.globalCompositeOperation = 'xor';
 					context.fillStyle = '#fff';	
 					context.lineWidth = 1;
 					context.beginPath();
@@ -94,6 +95,7 @@
 					context.stroke();
 	
 					/* Fo_r_bes */	
+					context.globalCompositeOperation = 'source-over';
 					context.lineWidth = 3;
 					context.strokeStyle = '#223366';
 					context.fillStyle = '#223366';
@@ -137,9 +139,10 @@
 					context.fill();
 					context.closePath();
 					/* Inside b */
+					context.globalCompositeOperation = 'xor';
 					context.strokeStyle = '#223366';
-					context.lineWidth = 3;
-					context.fillStyle = '#fff';
+					context.lineWidth = 1;
+					context.fillStyle = '#223366';
 					context.beginPath();
 					context.moveTo( 170, 56 );
 					context.bezierCurveTo( 199, 44, 185, 156, 170, 142 );
@@ -151,6 +154,7 @@
 
 
 					/* Forb_e_s */
+					context.globalCompositeOperation = 'source-over';
 					context.strokeStyle = '#223366';
 					context.lineWidth = 1;
 					context.fillStyle = '#223366';
@@ -169,6 +173,7 @@
 					context.closePath();
 
 
+					context.globalCompositeOperation = 'xor';
 					context.strokeStyle = '#223366';
 					context.lineWidth = 1;
 					context.fillStyle = '#fff';
@@ -182,6 +187,7 @@
 
 					/* Forbe_s_ */
 					context.beginPath();
+					context.globalCompositeOperation = 'source-over';
 					context.strokeStyle = '#223366';
 					context.lineWidth = 1;
 					context.fillStyle = '#223366';
