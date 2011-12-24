@@ -11,8 +11,39 @@
 
 		var Buleys = Buleys || {};
 		Buleys.video = Buleys.video || {};
+
+		Buleys.video.extension = function( video ) {
+
+			var extension = "";
+
+			if ( video.canPlayType( "video/webm" ) === "probably" || video.canPlayType( "video/webm" ) === "maybe") {
+				extension = "webm";
+			} else if( video.canPlayType("video/mp4") === "probably" || video.canPlayType( "video/mp4" ) === "maybe" ) {
+				extension = "mp4";
+			} else if( video.canPlayType("video/ogg") === "probably" || video.canPlayType( "video/ogg" ) === "maybe" ) {
+				extension = "ogg";
+			}
+
+			return extension;
+
+		};
+
 		Buleys.video.loaded = function() {
-			Buleys.video.player = document.getElementById( 'videoplayer' );
+
+			/* */
+			var videoname = 'muirbeach';
+
+			Buleys.video.player = document.createElement( 'video' );
+			Buleys.video.container = document.createElement( 'div' );
+			Buleys.video.container.appendChild( Buleys.video.player );
+			Buleys.video.container.setAttribute( 'style', 'display:none;' );
+
+			Buleys.video.type = Buleys.video.supported( Buleys.video.player );
+
+			Buleys.video.player.setAttribute( 'src', videoname + '.' + Buleys.video.extension() );
+
+			/* */
+
 			Buleys.video.player.addEventListener( 'loadstart', Buleys.video.loadstart, false );
 			Buleys.video.player.addEventListener( 'progress', Buleys.video.progress, false );
 			Buleys.video.player.addEventListener( 'suspend', Buleys.video.suspend, false );
@@ -139,7 +170,7 @@
 	<body>
 
 		<!--<canvas id="canvas">Not supported.</canvas>-->
-		<div id='videoplayer_container'>
+		<div id='videoplayer_container' style='display:none;'>
 			<video id="videoplayer" preload="auto" width="320" height="240">
 				<source src="http://editor.github.com/News/Video/muirbeach.mp4" type='video/mp4'>
 				<source src="http://editor.github.com/News/Video/muirbeach.webm" type='video/webm'>
