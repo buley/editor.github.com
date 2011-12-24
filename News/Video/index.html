@@ -70,7 +70,7 @@
 			Buleys.video.container.appendChild( Buleys.video.player );
 			Buleys.video.container.setAttribute( 'style', 'display:none;' );
 
-			Buleys.video.type = Buleys.video.supported( Buleys.video.player );
+			Buleys.video.type = Buleys.video.extension( Buleys.video.player );
 
 			Buleys.video.player.setAttribute( 'src', videoname + '.' + Buleys.video.extension() );
 
