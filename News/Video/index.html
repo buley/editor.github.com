@@ -14,7 +14,8 @@
 			this.player = document.getElementById( 'videoplayer' );
 		};
 		Buleys.video.loaded = function() {
-			console.log( 'Buleys.loaded()' );
+			console.log( 'Buleys.loaded()', this.player );
+			this.player = document.getElementById( 'videoplayer' );
 			this.player.addEventListener( 'progress', Buleys.video.loadStatus, false );
 			this.player.addEventListener( 'canplaythrough', Buleys.video.play, false );
 		};
