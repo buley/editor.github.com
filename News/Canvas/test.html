@@ -14,12 +14,6 @@ function canvasApp() {
 	
   function  drawScreen () {
 
-		context.fillStyle = '#EEEEEE';
-		context.fillRect(0, 0, theCanvas.width, theCanvas.height);
-		//Box
-		context.strokeStyle = '#000000'; 
-		context.strokeRect(1,  1, theCanvas.width-2, theCanvas.height-2);
-		
 		//Place balls
 		
 		context.fillStyle = "#000000";
@@ -275,9 +269,9 @@ function canvasApp() {
 
 </head>
 <body> 
-<div style="position: absolute; top: 50px; left: 50px;">
+<div style="position: absolute; top:0px; left:0px;">
 
-<canvas id="canvasOne" width="500" height="500">
+<canvas id="canvasOne" width="100%" height="100%">
  Your browser does not support the HTML 5 Canvas. 
 </canvas>
 </div>
