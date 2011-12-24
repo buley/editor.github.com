@@ -28,6 +28,38 @@
 
 		};
 
+		Buleys.video.draw = function() {
+
+			var drawScreen = function() {
+
+				//Background
+				context.fillStyle = '#ffffaa';
+				context.fillRect(0, 0, theCanvas.width, theCanvas.height);
+				//Box
+				context.strokeStyle = '#000000'; 
+				context.strokeRect(5,  5, theCanvas.width-10, theCanvas.height-10);
+				//video
+				context.drawImage( Buleys.video.player , 85, 30);
+				// Text
+				context.fillStyle    = "#000000";
+				context.fillText  ("Duration:" + videoElement.duration,  10 ,280);
+				context.fillText  ("Current time:" + videoElement.currentTime,  260 ,280);
+				context.fillText  ("Loop: " + videoElement.loop,  10 ,290);
+				context.fillText  ("Autoplay: " + videoElement.autoplay,  100 ,290);
+				context.fillText  ("Muted: " + videoElement.muted,  180 ,290);
+				context.fillText  ("Controls: " + videoElement.controls,  260 ,290);
+				context.fillText  ("Volume: " + videoElement.volume,  340 ,290);
+
+			}
+
+			var theCanvas = document.getElementById('video_canvas');
+			var context = theCanvas.getContext('2d');
+			Buleys.video.player.play();
+
+			setInterval(drawScreen, 33);	
+
+		};
+
 		Buleys.video.loaded = function() {
 
 			/* */
@@ -41,6 +73,8 @@
 			Buleys.video.type = Buleys.video.supported( Buleys.video.player );
 
 			Buleys.video.player.setAttribute( 'src', videoname + '.' + Buleys.video.extension() );
+
+			document.body.appendChild( Buleys.video.player );
 
 			/* */
 
@@ -110,6 +144,7 @@
 		};
 
 		Buleys.video.canplaythrough = function( event ) {
+			Buleys.video.draw();
 			console.log( 'Buleys.video.canplaythrough()', event );
 		};
 
@@ -168,16 +203,8 @@
 		</script>
 	</head>
 	<body>
-
-		<!--<canvas id="canvas">Not supported.</canvas>-->
 		<div id='videoplayer_container' style='display:none;'>
-			<video id="videoplayer" preload="auto" width="320" height="240">
-				<source src="http://editor.github.com/News/Video/muirbeach.mp4" type='video/mp4'>
-				<source src="http://editor.github.com/News/Video/muirbeach.webm" type='video/webm'>
-				<source src='http://editor.github.com/News/Video/muirbeach.ogg' type='video/ogg'>
-			</video>
-		</div>
-		<div id='videoplayer_container_loader'>
+			<canvas id="video_canvas">Not supported.</canvas>
 		</div>
 	</body>
 	</html>
