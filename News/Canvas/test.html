@@ -14,8 +14,9 @@ function canvasApp() {
 	
   function  drawScreen () {
 
+	  	var ratio = context.canvas.width / context.canvas.height;
 		context.canvas.width  = window.innerWidth;
-		context.canvas.height = window.innerHeight;
+		context.canvas.height = window.innerHeight / ratio;
 
 		context.fillStyle = "#000000";
 		var ball;
@@ -209,7 +210,7 @@ function canvasApp() {
 
 			context.closePath();
 		
-			if (ball.x + 296 > theCanvas.width || ball.x < 0 ) {
+			if (ball.x + 300 > theCanvas.width || ball.x < 0 ) {
 				ball.angle = 180 - ball.angle;
 				updateBall(ball);
 			} else if (ball.y + 150 > theCanvas.height || ball.y < 0) {
