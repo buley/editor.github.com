@@ -12,16 +12,16 @@
 		var Buleys = Buleys || {};
 		Buleys.video = Buleys.video || {};
 		Buleys.video.loaded = function() {
-			this.player = document.getElementById( 'videoplayer' );
-			this.player.addEventListener( 'progress', Buleys.video.loadStatus, false );
-			this.player.addEventListener( 'canplaythrough', Buleys.video.play, false );
+			Buleys.video.player = document.getElementById( 'videoplayer' );
+			Buleys.video.player.addEventListener( 'progress', Buleys.video.loadStatus, false );
+			player.addEventListener( 'canplaythrough', Buleys.video.play, false );
 		};
 		Buleys.video.loadStatus = function() {
 			console.log( 'Buleys.video.loadStatus()', Buleys.video.percentLoaded() );
 		};
 
 		Buleys.video.percentLoaded = function() {
-			return parseInt( ( ( this.player.buffered.end( 0 ) / videoElement.duration ) * 100 ), 10 );
+			return parseInt( ( ( Buleys.video.player.buffered.end( 0 ) / Buleys.video.player.duration ) * 100 ), 10 );
 		};
 
 		Buleys.video.play = function() {
