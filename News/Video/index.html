@@ -10,25 +10,42 @@
 		<script type="text/javascript">
 
 		var Buleys = Buleys || {};
-		Buleys.loaded = function() {
+		Buleys.video = function() {
+			this.player = document.getElementById( 'videoplayer' );
+		};
+		Buleys.video.loaded = function() {
 			console.log( 'Buleys.loaded()' );
-			var vp = document.getElementById( 'videoplayer' );
-			var ratio = vp.width / vp.height;
-			vp.width = document.width;
-			vp.height = document.width / ratio;
-		}
-		
+			this.player.addEventListener( 'progress', Buleys.video.loadStatus, false );
+			this.player.addEventListener( 'canplaythrough', Buleys.video.play, false );
+		};
+		Buleys.video.loadStatus = function() {
+			console.log( 'Buleys.video.loadStatus()', this.percentLoaded() );
+		};
+
+		Buleys.video.percentLoaded = function() {
+			return parseInt( ( ( this.player.buffered.end( 0 ) / videoElement.duration ) * 100 ), 10 );
+		};
+
+		Buleys.video.play = function() {
+			console.log( 'Buleys.video.play()' );
+			this.player.play();
+		};
 		window.addEventListener( 'load', Buleys.loaded, false );
 
 		</script>
 	</head>
 	<body>
+
 		<!--<canvas id="canvas">Not supported.</canvas>-->
-		<video id="videoplayer" width="320" height="240" autoplay loop controls>
-			<source src="http://editor.github.com/News/Video/muirbeach.mp4" type='video/mp4'>
-			<source src="http://editor.github.com/News/Video/muirbeach.webm" type='video/webm'>
-			<source src='http://editor.github.com/News/Video/muirbeach.ogg' type='video/ogg'>
-		</video>
+		<div id='videoplayer_container'>
+			<video id="videoplayer" width="320" height="240" autoplay loop controls>
+				<source src="http://editor.github.com/News/Video/muirbeach.mp4" type='video/mp4'>
+				<source src="http://editor.github.com/News/Video/muirbeach.webm" type='video/webm'>
+				<source src='http://editor.github.com/News/Video/muirbeach.ogg' type='video/ogg'>
+			</video>
+		</div>
+		<div id='videoplayer_container_loader'>
+		</div>
 	</body>
 	</html>
 
