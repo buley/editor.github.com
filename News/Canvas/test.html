@@ -207,7 +207,6 @@ function canvasApp() {
 
 					context.closePath();
 
-
 		
 			if (ball.x > theCanvas.width || ball.x < 0 ) {
 				ball.angle = 180 - ball.angle;
@@ -256,7 +255,7 @@ function canvasApp() {
 		tempXunits = Math.cos(tempRadians) * tempSpeed;
 		tempYunits = Math.sin(tempRadians) * tempSpeed;
 		
-		tempBall = {x:tempX,y:tempY,radius:tempRadius, speed:tempSpeed, angle:tempAngle, xunits:tempXunits, yunits:tempYunits}
+		tempBall = {x:tempX, y:tempY, radius:tempRadius, speed:tempSpeed, angle:tempAngle, xunits:tempXunits, yunits:tempYunits};
 		balls.push(tempBall);
 	}
 	
@@ -271,7 +270,7 @@ function canvasApp() {
 <body> 
 <div style="position: absolute; top:0px; left:0px;">
 
-<canvas id="canvasOne" width="1250px" height="850px">
+<canvas id="canvasOne" width="1250px" height="650px">
  Your browser does not support the HTML 5 Canvas. 
 </canvas>
 </div>
