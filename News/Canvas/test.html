@@ -19,17 +19,14 @@ function canvasApp() {
 		var ball;
 		
 		for (var i =0; i <balls.length; i++) {
+	
 			ball = balls[i];
 			ball.x += ball.xunits;
 			ball.y += ball.yunits;
 			
-/*			context.beginPath();
-			context.arc(ball.x,ball.y,ball.radius,0,Math.PI*2,true);
-			context.closePath();
-			context.fill();
-*/
-		context.fillStyle = '#FFFFFF';
-		context.fillRect(0, 0, theCanvas.width, theCanvas.height);
+			//Blank
+			context.fillStyle = '#FFFFFF';
+			context.fillRect(0, 0, theCanvas.width, theCanvas.height);
 
 			var gr = context.createLinearGradient( 0, 0, 0, 150 );
 			gr.addColorStop( 0, 'rgba(34,51,102, .9)' );
@@ -227,8 +224,8 @@ function canvasApp() {
 	}
 	
 	var numBalls = 25;
-	var maxSize = 8;
-	var minSize = 3;
+	var maxSize = 500;
+	var minSize = 300;
 	var maxSpeed = maxSize+5;
 	var balls = new Array();
 	var tempBall;
