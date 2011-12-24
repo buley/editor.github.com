@@ -14,7 +14,7 @@
 		Buleys.video.loaded = function() {
 			Buleys.video.player = document.getElementById( 'videoplayer' );
 			Buleys.video.player.addEventListener( 'progress', Buleys.video.loadStatus, false );
-			player.addEventListener( 'canplaythrough', Buleys.video.play, false );
+			Buleys.video.player.addEventListener( 'canplaythrough', Buleys.video.play, false );
 		};
 		Buleys.video.loadStatus = function() {
 			console.log( 'Buleys.video.loadStatus()', Buleys.video.percentLoaded() );
