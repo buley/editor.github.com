@@ -29,7 +29,9 @@ function canvasApp() {
 			context.closePath();
 			context.fill();
 */
-					
+		context.fillStyle = '#FFFFFF';
+		context.fillRect(0, 0, theCanvas.width, theCanvas.height);
+
 					var gr = context.createLinearGradient( 0, 0, 0, 150 );
 					gr.addColorStop( 0, 'rgba(34,51,102, .9)' );
 					gr.addColorStop( .4, 'rgba(34,51,102, 1)' );
