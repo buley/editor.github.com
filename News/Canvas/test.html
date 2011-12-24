@@ -4,23 +4,14 @@
 <head>
 <meta charset="UTF-8">
 <title>CH5EX5: Multiple Ball Bounce</title>
-<script src="modernizr-1.6.min.js"></script>
 <script type="text/javascript">
 window.addEventListener('load', eventWindowLoaded, false);	
 function eventWindowLoaded() {
 	canvasApp();	
 }
 
-function canvasSupport () {
-  	return Modernizr.canvas;
-}
-
 function canvasApp() {
 	
-  if (!canvasSupport()) {
-			 return;
-  		}
-  
   function  drawScreen () {
 
 		context.fillStyle = '#EEEEEE';
