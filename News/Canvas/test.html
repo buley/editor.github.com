@@ -1,0 +1,296 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CH5EX5: Multiple Ball Bounce</title>
+<script src="modernizr-1.6.min.js"></script>
+<script type="text/javascript">
+window.addEventListener('load', eventWindowLoaded, false);	
+function eventWindowLoaded() {
+	canvasApp();	
+}
+
+function canvasSupport () {
+  	return Modernizr.canvas;
+}
+
+function canvasApp() {
+	
+  if (!canvasSupport()) {
+			 return;
+  		}
+  
+  function  drawScreen () {
+
+		context.fillStyle = '#EEEEEE';
+		context.fillRect(0, 0, theCanvas.width, theCanvas.height);
+		//Box
+		context.strokeStyle = '#000000'; 
+		context.strokeRect(1,  1, theCanvas.width-2, theCanvas.height-2);
+		
+		//Place balls
+		
+		context.fillStyle = "#000000";
+		var ball;
+		
+		for (var i =0; i <balls.length; i++) {
+			ball = balls[i];
+			ball.x += ball.xunits;
+			ball.y += ball.yunits;
+			
+/*			context.beginPath();
+			context.arc(ball.x,ball.y,ball.radius,0,Math.PI*2,true);
+			context.closePath();
+			context.fill();
+*/
+					
+					var gr = context.createLinearGradient( 0, 0, 0, 150 );
+					gr.addColorStop( 0, 'rgba(34,51,102, .9)' );
+					gr.addColorStop( .4, 'rgba(34,51,102, 1)' );
+					gr.addColorStop( .6, 'rgba(34,51,102, 1)' );
+					gr.addColorStop( 1, 'rgba(34,51,102, .9)' );
+	
+					var lineStyle = 'transparent';
+					var fillStyle = '#223366';;
+					var backgroundColor = '#fff';
+					var lineWidth = 1;
+					var lineJoin = 'round';
+					fillStyle = gr;
+
+					/* _F_orbes */
+					/*
+					context.shadowOffsetX=-1;
+					context.shadowOffsetY=1;
+					context.shadowColor='#ddd';
+					context.shadowBlur=0;
+					*/
+					context.lineWidth = lineWidth;
+					context.strokeStyle = lineStyle;
+					context.lineJoin = lineJoin;
+					context.fillStyle=gr;//fillStyle;
+
+					context.beginPath();
+					context.moveTo( ball.x + 0, ball.y + 2 );
+					context.lineTo( ball.x + 60,  ball.y + 2 );
+					context.lineTo( ball.x + 60,  ball.y + 45 );
+					context.lineTo( ball.x + 57,  ball.y + 45 );
+					context.quadraticCurveTo( ball.x + 58,  ball.y + 10,  ball.x + 28,  ball.y + 12 );
+					context.lineTo( ball.x + 28,  ball.y + 73 );
+
+					context.quadraticCurveTo(  ball.x + 43,  ball.y + 75,  ball.x + 46,  ball.y + 53 );
+					context.lineTo(  ball.x + 47,  ball.y + 53 );
+					context.lineTo(  ball.x + 47,  ball.y + 102 );
+					context.lineTo(  ball.x + 45,  ball.y + 102 );
+					context.quadraticCurveTo(  ball.x + 45,  ball.y + 72,  ball.x + 28,  ball.y + 79 );
+					context.quadraticCurveTo(  ball.x + 26,  ball.y + 150,  ball.x + 39,  ball.y + 142 );
+
+					context.lineTo(  ball.x + 39,  ball.y + 142 );
+					context.lineTo(  ball.x + 39,  ball.y + 148 );
+					context.lineTo(  ball.x + 1,  ball.y + 148 );
+					context.lineTo(  ball.x + 1,  ball.y + 142 );
+					
+					context.bezierCurveTo(  ball.x + 19,  ball.y + 152,  ball.x + 16,  ball.y + 8,  ball.x + 1,  ball.y + 10 );
+					context.lineTo(  ball.x + 1,  ball.y + 2 );
+					context.stroke();
+
+					context.fill();
+
+					context.closePath();
+
+					/* F_o_rbes */
+					
+					context.fillStyle = fillStyle;
+					/* Outside O */
+					context.beginPath();
+					context.moveTo(  ball.x + 79,  ball.y + 40 );
+					context.bezierCurveTo(  ball.x + 44,  ball.y + 52,  ball.x + 44,  ball.y + 142,  ball.x + 79,  ball.y + 150 );
+					context.bezierCurveTo(  ball.x + 114,  ball.y + 142,  ball.x + 114,  ball.y + 44,  ball.x + 79,  ball.y + 40 );
+					context.fill();
+					context.stroke();
+					context.closePath();
+					/* Inside 0 */
+					context.globalCompositeOperation = 'destination-out';
+					context.fillStyle = backgroundColor;	
+					context.beginPath();
+					context.moveTo(  ball.x + 79,  ball.y + 48 );
+					context.bezierCurveTo(  ball.x + 65,  ball.y + 52,  ball.x + 65,  ball.y + 142,  ball.x + 79,  ball.y + 142 );
+					context.bezierCurveTo(  ball.x + 94,  ball.y + 142,  ball.x + 94,  ball.y + 52,  ball.x + 79,  ball.y + 48 );
+					context.closePath();
+					context.fill();
+					context.stroke();
+	
+					/* Fo_r_bes */	
+					context.globalCompositeOperation = 'source-over';
+					context.lineWidth = lineWidth;
+					context.strokeStyle = lineStyle;
+					context.fillStyle = fillStyle;
+					context.lineWidth = lineWidth;
+					context.beginPath();
+					context.moveTo(  ball.x + 106,  ball.y + 51 );
+					context.lineTo(  ball.x + 129,  ball.y + 42 );
+					context.lineTo(  ball.x + 129,  ball.y + 63 );
+					context.quadraticCurveTo(  ball.x + 140, 32,  ball.x + 150,  ball.y + 45 );
+					context.lineTo(  ball.x + 144,  ball.y + 72 );
+					context.quadraticCurveTo(  ball.x + 135,  ball.y + 61,  ball.x + 129,  ball.y + 74 );
+					context.lineTo(  ball.x + 129,  ball.y + 130 );
+					context.quadraticCurveTo(  ball.x + 129,  ball.y + 144,  ball.x + 138,  ball.y + 142 );
+					context.lineTo(  ball.x + 138,  ball.y + 148 );
+					context.lineTo(  ball.x + 106,  ball.y + 148 );
+					context.lineTo(  ball.x + 106,  ball.y + 142 );
+					context.bezierCurveTo(  ball.x + 118,  ball.y + 158,  ball.x + 117, 40,  ball.x + 107,  ball.y + 55 );
+					context.lineTo(  ball.x + 106,  ball.y + 51 );
+					context.closePath();
+					context.fill();
+					context.stroke();
+					
+					/* For_b_es */
+					/* Outside b */
+					context.fillStyle = fillStyle;
+					context.beginPath();
+					context.moveTo(  ball.x + 147,  ball.y + 9 );
+					context.lineTo(  ball.x + 170,  ball.y + 1 );
+					context.lineTo(  ball.x + 170,  ball.y + 50 );
+					context.bezierCurveTo(  ball.x + 213,  ball.y + 15,  ball.x + 219,  ball.y + 177,  ball.x + 154,  ball.y + 145 );
+					context.quadraticCurveTo(  ball.x + 160,  ball.y + 0,  ball.x + 147,  ball.y + 12 );
+					context.lineTo(  ball.x + 147,  ball.y + 9 );
+					context.stroke();
+					context.fill();
+					context.closePath();
+					/* Inside b */
+					context.globalCompositeOperation = 'destination-out';
+					context.fillStyle = backgroundColor;
+					context.beginPath();
+					context.moveTo(  ball.x + 170,  ball.y + 56 );
+					context.bezierCurveTo(  ball.x + 199,  ball.y + 44,  ball.x + 185,  ball.y + 156,  ball.x + 170,  ball.y + 142 );
+					context.lineTo(  ball.x + 170,  ball.y + 56 );
+
+					context.stroke();
+					context.fill();
+					context.closePath();
+
+
+					/* Forb_e_s */
+					context.globalCompositeOperation = 'source-over';
+					context.fillStyle = fillStyle;
+					context.beginPath();
+					context.moveTo(  ball.x + 232,  ball.y + 42 );
+
+					context.quadraticCurveTo(  ball.x + 209,  ball.y + 50,  ball.x + 207,  ball.y + 90 );
+					context.quadraticCurveTo(  ball.x + 209,  ball.y + 150,  ball.x + 232,  ball.y + 149 );
+					context.quadraticCurveTo(  ball.x + 248,  ball.y + 148,  ball.x + 254,  ball.y + 131 );
+					context.lineTo(  ball.x + 252,  ball.y + 126 );
+					context.quadraticCurveTo(  ball.x + 225,  ball.y + 157,  ball.x + 223,  ball.y + 91 );
+					context.lineTo(  ball.x + 255,  ball.y + 91 );	
+					context.quadraticCurveTo(  ball.x + 255, 45,  ball.x + 232,  ball.y + 42 );
+					context.fill();
+					context.stroke();
+					context.closePath();
+
+
+					context.globalCompositeOperation = 'destination-out';
+
+					context.fillStyle = backgroundColor;
+					context.beginPath();
+					context.moveTo( ball.x +  223,  ball.y + 83 );
+					context.bezierCurveTo(  ball.x + 225,  ball.y + 37,  ball.x + 239,  ball.y + 37,  ball.x + 239,  ball.y + 83 );
+					context.lineTo(  ball.x + 223,  ball.y + 83 );
+					context.fill();
+					context.stroke();
+					context.closePath();
+
+					/* Forbe_s_ */
+					context.beginPath();
+					context.globalCompositeOperation = 'source-over';
+					context.fillStyle = fillStyle;
+
+					context.moveTo(  ball.x + 295,  ball.y + 49 );
+					context.quadraticCurveTo(  ball.x + 262, ball.y + 26,  ball.x + 259,  ball.y + 74 );
+					context.quadraticCurveTo(  ball.x + 258,  ball.y + 97,  ball.x + 277,  ball.y + 108 );
+					context.bezierCurveTo(  ball.x + 293,  ball.y + 126,  ball.x + 274,  ball.y + 169,  ball.x + 260,  ball.y + 112 );
+					context.lineTo(  ball.x + 257,  ball.y + 112 );
+					context.lineTo(  ball.x + 257,  ball.y + 144 );
+					context.quadraticCurveTo(  ball.x + 294,  ball.y + 160,  ball.x + 297,  ball.y + 120 );
+					context.quadraticCurveTo(  ball.x + 300,  ball.y + 90,  ball.x + 282,  ball.y + 82 );
+					context.bezierCurveTo(  ball.x + 255,  ball.y + 51,  ball.x + 292,  ball.y + 34,  ball.x + 293,  ball.y + 74 );
+					context.lineTo(  ball.x + 296,  ball.y + 74 );
+					context.lineTo(  ball.x + 296,  ball.y + 48 );
+					
+
+					context.stroke();
+					context.fill();
+
+					context.closePath();
+
+
+		
+			if (ball.x > theCanvas.width || ball.x < 0 ) {
+				ball.angle = 180 - ball.angle;
+				updateBall(ball);
+			} else if (ball.y > theCanvas.height || ball.y < 0) {
+				ball.angle = 360 - ball.angle;
+				updateBall(ball); 
+			}
+		}
+  			
+	}
+	
+	function updateBall(ball) {
+		
+		ball.radians = ball.angle * Math.PI/ 180;
+		ball.xunits = Math.cos(ball.radians) * ball.speed;
+		ball.yunits = Math.sin(ball.radians) * ball.speed;
+	
+	}
+	
+	var numBalls = 100 ;
+	var maxSize = 8;
+	var minSize = 5;
+	var maxSpeed = maxSize+5;
+	var balls = new Array();
+	var tempBall;
+	var tempX;
+	var tempY;
+	var tempSpeed;
+	var tempAngle;
+	var tempRadius;
+	var tempRadians;
+	var tempXunits;
+	var tempYunits;
+	
+	theCanvas = document.getElementById('canvasOne');
+	context = theCanvas.getContext('2d');
+	
+	for (var i = 0; i < numBalls; i++) {
+		tempRadius = Math.floor(Math.random()*maxSize)+minSize;
+		tempX = tempRadius*2 + (Math.floor(Math.random()*theCanvas.width)-tempRadius*2);
+		tempY = tempRadius*2 + (Math.floor(Math.random()*theCanvas.height)-tempRadius*2);
+		tempSpeed = maxSpeed-tempRadius;
+		tempAngle =  Math.floor(Math.random()*360);
+		tempRadians = tempAngle * Math.PI/ 180;
+		tempXunits = Math.cos(tempRadians) * tempSpeed;
+		tempYunits = Math.sin(tempRadians) * tempSpeed;
+		
+		tempBall = {x:tempX,y:tempY,radius:tempRadius, speed:tempSpeed, angle:tempAngle, xunits:tempXunits, yunits:tempYunits}
+		balls.push(tempBall);
+	}
+	
+	setInterval(drawScreen, 33);	
+	
+}
+
+
+</script>
+
+</head>
+<body> 
+<div style="position: absolute; top: 50px; left: 50px;">
+
+<canvas id="canvasOne" width="500" height="500">
+ Your browser does not support the HTML 5 Canvas. 
+</canvas>
+</div>
+
+</body>
+</html>
+
