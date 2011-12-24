@@ -67,14 +67,17 @@
 
 			Buleys.video.player = document.createElement( 'video' );
 			Buleys.video.container = document.createElement( 'div' );
+
 			Buleys.video.container.appendChild( Buleys.video.player );
 			Buleys.video.container.setAttribute( 'style', 'display:none;' );
+
 
 			Buleys.video.type = Buleys.video.extension( Buleys.video.player );
 
 			Buleys.video.player.setAttribute( 'src', videoname + '.' + Buleys.video.type );
+			document.body.appendChild( Buleys.video.container );
 
-			document.body.appendChild( Buleys.video.player );
+
 
 			/* */
 
