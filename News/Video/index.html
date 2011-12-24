@@ -13,20 +13,123 @@
 		Buleys.video = Buleys.video || {};
 		Buleys.video.loaded = function() {
 			Buleys.video.player = document.getElementById( 'videoplayer' );
+			Buleys.video.player.addEventListener( 'loadstart', Buleys.video.loadstart, false );
 			Buleys.video.player.addEventListener( 'progress', Buleys.video.progress, false );
+			Buleys.video.player.addEventListener( 'suspend', Buleys.video.suspend, false );
+			Buleys.video.player.addEventListener( 'abort', Buleys.video.abort, false );
+			Buleys.video.player.addEventListener( 'error', Buleys.video.error, false );
+			Buleys.video.player.addEventListener( 'emptied', Buleys.video.emptied, false );
+			Buleys.video.player.addEventListener( 'stalled', Buleys.video.stalled, false );
+			Buleys.video.player.addEventListener( 'loadedmetadata', Buleys.video.loadedmetadata, false );
+			Buleys.video.player.addEventListener( 'loadeddata', Buleys.video.loadeddata, false );
+			Buleys.video.player.addEventListener( 'canplay', Buleys.video.canplay, false );
 			Buleys.video.player.addEventListener( 'canplaythrough', Buleys.video.canplaythrough, false );
+			Buleys.video.player.addEventListener( 'playing', Buleys.video.playing, false );
+			Buleys.video.player.addEventListener( 'waiting', Buleys.video.waiting, false );
+			Buleys.video.player.addEventListener( 'seeking', Buleys.video.seeking, false );
+			Buleys.video.player.addEventListener( 'seeked', Buleys.video.seeked, false );
+			Buleys.video.player.addEventListener( 'ended', Buleys.video.ended, false );
+			Buleys.video.player.addEventListener( 'durationchange', Buleys.video.durationchange, false );
+			Buleys.video.player.addEventListener( 'timeupdate', Buleys.video.timeupdate, false );
+			Buleys.video.player.addEventListener( 'play', Buleys.video.play, false );
+			Buleys.video.player.addEventListener( 'pause', Buleys.video.pause, false );
+			Buleys.video.player.addEventListener( 'ratechange', Buleys.video.ratechange, false );
+			Buleys.video.player.addEventListener( 'volumechange', Buleys.video.volumechange, false );
 
 		};
+
+		Buleys.video.loadstart = function( event ) {
+			console.log( 'Buleys.video.loadstart()', event );
+		};
+
 		Buleys.video.progress = function( event ) {
-			console.log( 'Buleys.video.progress()', event, Buleys.video.percentLoaded() );
+			console.log( 'Buleys.video.progress()', event );
+		};
+
+		Buleys.video.suspend = function( event ) {
+			console.log( 'Buleys.video.suspend()', event );
+		};
+
+		Buleys.video.abort = function( event ) {
+			console.log( 'Buleys.video.abort()', event );
+		};
+
+		Buleys.video.error = function( event ) {
+			console.log( 'Buleys.video.error()', event );
+		};
+
+		Buleys.video.emptied = function( event ) {
+			console.log( 'Buleys.video.emptied()', event );
+		};
+
+		Buleys.video.stalled = function( event ) {
+			console.log( 'Buleys.video.stalled()', event );
+		};
+
+		Buleys.video.loadedmetadata = function( event ) {
+			console.log( 'Buleys.video.loadedmetadata()', event );
+		};
+
+		Buleys.video.loadeddata = function( event ) {
+			console.log( 'Buleys.video.loadeddata()', event );
+		};
+
+		Buleys.video.canplay = function( event ) {
+			console.log( 'Buleys.video.canplay()', event );
+		};
+
+		Buleys.video.canplaythrough = function( event ) {
+			console.log( 'Buleys.video.canplaythrough()', event );
+		};
+
+
+		Buleys.video.playing = function( event ) {
+			console.log( 'Buleys.video.playing()', event );
+		};
+
+
+		Buleys.video.waiting = function( event ) {
+			console.log( 'Buleys.video.waiting()', event );
+		};
+
+		Buleys.video.seeking = function( event ) {
+			console.log( 'Buleys.video.seeking()', event );
+		};
+
+		Buleys.video.seeked = function( event ) {
+			console.log( 'Buleys.video.seeked()', event );
+		};
+
+		Buleys.video.ended = function( event ) {
+			console.log( 'Buleys.video.ended()', event );
+		};
+
+		Buleys.video.durationchange = function( event ) {
+			console.log( 'Buleys.video.durationchange()', event );
+		};
+
+		Buleys.video.timeupdate = function( event ) {
+			console.log( 'Buleys.video.timeupdate()', event );
+		};
+
+		Buleys.video.play = function( event ) {
+			console.log( 'Buleys.video.play()', event );
+		};
+
+		Buleys.video.pause = function( event ) {
+			console.log( 'Buleys.video.pause()', event );
+		};
+
+		Buleys.video.ratechange = function( event ) {
+			console.log( 'Buleys.video.ratechange()', event );
+		};
+
+		Buleys.video.ratechange = function( event ) {
+			console.log( 'Buleys.video.volumechange()', event );
 		};
 
 		Buleys.video.percentLoaded = function() {
 			return parseInt( ( ( Buleys.video.player.buffered.end( 0 ) / Buleys.video.player.duration ) * 100 ), 10 );
-		};
-
-		Buleys.video.canplaythrough = function() {
-			Buleys.video.player.play();
 		};
 
 		window.addEventListener( 'load', Buleys.video.loaded, false );
