@@ -64,15 +64,15 @@
 		Buleys.video.draw.coords.play = Buleys.video.draw.coords.play || {};
 		Buleys.video.draw.coords.play.x = 0;
 		Buleys.video.draw.coords.play.y = 0;
-		Buleys.video.draw.coords.play.width = 32;
-		Buleys.video.draw.coords.play.height = 32;
+		Buleys.video.draw.coords.play.width = 64;
+		Buleys.video.draw.coords.play.height = 64;
 
 		Buleys.video.draw.play = function( context, x, y, color ) {
 			console.log('play button',x,y);
 			if( 'white' === color ) {
-				context.drawImage(Buleys.video.whiteButtonSheet, 32, 64, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height, x, y, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height );
+				context.drawImage(Buleys.video.whiteButtonSheet, 0, 0, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height, x, y, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height );
 			} else {
-				context.drawImage(Buleys.video.blackButtonSheet, 32, 64, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height, x, y, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height );
+				context.drawImage(Buleys.video.blackButtonSheet, 0, 0, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height, x, y, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height );
 			}
 		};
 
