@@ -86,16 +86,16 @@
 				currentcount++;
 				if( currentcount === assetcount ) {
 					//Ready
-					console.log('images ready', whiteButtonSheet, blackButtonSheet );
+					console.log('images ready' );
 				}
 			};
 			Buleys.video.whiteButtonSheet = new Image();
-			whiteButtonSheet.onload = incLoaded;
-			whiteButtonSheet.src = "dots2.png";
+			Buleys.video.whiteButtonSheet.onload = incLoaded;
+			Buleys.video.whiteButtonSheet.src = "dots2.png";
 
 			Buleys.video.blackButtonSheet = new Image();
-			blackButtonSheet.onload = incLoaded;
-			blackButtonSheet.src = "dots2black.png";
+			Buleys.video.blackButtonSheet.onload = incLoaded;
+			Buleys.video.blackButtonSheet.src = "dots2black.png";
 
 			Buleys.video.player = document.createElement( 'video' );
 			Buleys.video.container = document.createElement( 'div' );
