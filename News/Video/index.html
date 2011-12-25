@@ -40,9 +40,9 @@
 
 				context.drawImage( Buleys.video.player, 50, 50 );
 
-				Buleys.video.draw.play( context, 0 + 20, theCanvas.height - Buleys.video.draw.coords.play.height - 20, 'white' );1
-				Buleys.video.draw.pause( context, 75 + 20,  theCanvas.height - Buleys.video.draw.coords.pause.height - 20, 'white' );1
-				Buleys.video.draw.sound( context, theCanvas.width - Buleys.video.draw.coords.sound.width - 50, theCanvas.height - Buleys.video.draw.coords.sound.height, 'white' );
+				Buleys.video.draw.play( context, 0 + 20, theCanvas.height - Buleys.video.draw.coords.play.height - 20, 'white' );
+				Buleys.video.draw.pause( context, 75 + 20,  theCanvas.height - Buleys.video.draw.coords.pause.height - 20, 'white' );
+				Buleys.video.draw.oneBar( context, theCanvas.width - Buleys.video.draw.coords.sound.width - 50, theCanvas.height - Buleys.video.draw.coords.sound.height, 'white' );
 			
 				
 				// Text
@@ -99,8 +99,6 @@
 			}
 		};
 
-
-
 		Buleys.video.draw.coords.sound = Buleys.video.draw.coords.sound || {};
 		Buleys.video.draw.coords.sound.x = 280;
 		Buleys.video.draw.coords.sound.y = 280;
@@ -110,11 +108,46 @@
 		Buleys.video.draw.sound = function( context, x, y, color ) {
 			console.log('sound button',x,y);
 			if( 'white' === color ) {
-				context.drawImage( Buleys.video.whiteButtonSheet, Buleys.video.draw.coords.sound.x, Buleys.video.draw.coords.sound.y, Buleys.video.draw.coords.sound.width, Buleys.video.draw.coords.sound.height, x, y, Buleys.video.draw.coords.pause.width, Buleys.video.draw.coords.pause.height );
+				context.drawImage( Buleys.video.whiteButtonSheet, Buleys.video.draw.coords.sound.x, Buleys.video.draw.coords.sound.y, Buleys.video.draw.coords.sound.width, Buleys.video.draw.coords.sound.height, x, y, Buleys.video.draw.coords.sound.width, Buleys.video.draw.coords.sound.height );
 			} else {
-				context.drawImage( Buleys.video.blackButtonSheet, Buleys.video.draw.coords.sound.x, Buleys.video.draw.coords.sound.y, Buleys.video.draw.coords.sound.width, Buleys.video.draw.coords.sound.height, x, y, Buleys.video.draw.coords.pause.width, Buleys.video.draw.coords.pause.height );
+				context.drawImage( Buleys.video.blackButtonSheet, Buleys.video.draw.coords.sound.x, Buleys.video.draw.coords.sound.y, Buleys.video.draw.coords.sound.width, Buleys.video.draw.coords.sound.height, x, y, Buleys.video.draw.coords.sound.width, Buleys.video.draw.coords.sound.height );
 			}
 		};
+
+
+
+		Buleys.video.draw.coords.twoBar = Buleys.video.draw.coords.twoBar || {};
+		Buleys.video.draw.coords.twoBar.x = 280;
+		Buleys.video.draw.coords.twoBar.y = 280;
+		Buleys.video.draw.coords.twoBar.width = 40;
+		Buleys.video.draw.coords.twoBar.height = 75;
+
+		Buleys.video.draw.twoBar = function( context, x, y, color ) {
+			console.log('twoBar button',x,y);
+			if( 'white' === color ) {
+				context.drawImage( Buleys.video.whiteButtonSheet, Buleys.video.draw.coords.twoBar.x, Buleys.video.draw.coords.twoBar.y, Buleys.video.draw.coords.twoBar.width, Buleys.video.draw.coords.twoBar.height, x, y, Buleys.video.draw.coords.twoBar.width, Buleys.video.draw.coords.twoBar.height );
+			} else {
+				context.drawImage( Buleys.video.blackButtonSheet, Buleys.video.draw.coords.twoBar.x, Buleys.video.draw.coords.twoBar.y, Buleys.video.draw.coords.twoBar.width, Buleys.video.draw.coords.twoBar.height, x, y, Buleys.video.draw.coords.twoBar.width, Buleys.video.draw.coords.twoBar.height );
+			}
+		};
+
+
+		Buleys.video.draw.coords.oneBar = Buleys.video.draw.coords.oneBar || {};
+		Buleys.video.draw.coords.oneBar.x = 280;
+		Buleys.video.draw.coords.oneBar.y = 280;
+		Buleys.video.draw.coords.oneBar.width = 20;
+		Buleys.video.draw.coords.oneBar.height = 75;
+
+		Buleys.video.draw.oneBar = function( context, x, y, color ) {
+			console.log('oneBar button',x,y);
+			if( 'white' === color ) {
+				context.drawImage( Buleys.video.whiteButtonSheet, Buleys.video.draw.coords.oneBar.x, Buleys.video.draw.coords.oneBar.y, Buleys.video.draw.coords.oneBar.width, Buleys.video.draw.coords.oneBar.height, x, y, Buleys.video.draw.coords.oneBar.width, Buleys.video.draw.coords.oneBar.height );
+			} else {
+				context.drawImage( Buleys.video.blackButtonSheet, Buleys.video.draw.coords.oneBar.x, Buleys.video.draw.coords.oneBar.y, Buleys.video.draw.coords.oneBar.width, Buleys.video.draw.coords.oneBar.height, x, y, Buleys.video.draw.coords.oneBar.width, Buleys.video.draw.coords.oneBar.height );
+			}
+		};
+
+
 
 
 
