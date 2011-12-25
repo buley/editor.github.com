@@ -70,9 +70,9 @@
 		Buleys.video.draw.play = function( context, x, y, color ) {
 			console.log('play button',x,y);
 			if( 'white' === color ) {
-				context.drawImage(Buleys.video.whiteButtonSheet, 0, 32, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height, x, y, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height );
+				context.drawImage(Buleys.video.whiteButtonSheet, 32, 64, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height, x, y, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height );
 			} else {
-				context.drawImage(Buleys.video.blackButtonSheet, 0, 32, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height, x, y, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height );
+				context.drawImage(Buleys.video.blackButtonSheet, 32, 64, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height, x, y, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height );
 			}
 		};
 
