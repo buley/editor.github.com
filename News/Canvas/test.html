@@ -211,7 +211,7 @@ function canvasApp() {
 			if ( ( ball.x + 300 ) >= theCanvas.width || ball.x <= 0 ) {
 				ball.angle = 180 - ball.angle;
 				updateBall(ball);
-			} else if ( ( ball.y + 150 ) >= theCanvas.height || ball.y <= 0) {
+			} else if ( ( ball.y ) >= theCanvas.height || ball.y <= 0) {
 				ball.angle = 360 - ball.angle;
 				updateBall(ball); 
 			}
@@ -228,7 +228,7 @@ function canvasApp() {
 	}
 	
 	var numBalls = 1;
-	var maxSize = 10;
+	var maxSize = 7;
 	var minSize = 3;
 	var maxSpeed = maxSize+5;
 	var things = new Array();
