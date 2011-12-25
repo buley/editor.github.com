@@ -242,8 +242,8 @@ function canvasApp() {
 	
 	theCanvas = document.getElementById('canvasOne');
 	context = theCanvas.getContext('2d');
-	context.canvas.width = window.innerWidth;
-	context.canvas.height = window.innerHeight;
+	context.canvas.width = window.outerWidth;
+	context.canvas.height = window.outerHeight;
 	for (var i = 0; i < numBalls; i++) {
 		tempRadius = Math.floor(Math.random()*maxSize)+minSize;
 		tempX = tempRadius*2 + (Math.floor(Math.random()*theCanvas.width)-tempRadius*2);
