@@ -15,12 +15,15 @@ function canvasApp() {
   function  drawScreen () {
 
 	  	var ratio = context.canvas.width / context.canvas.height;
+
 		context.fillStyle = "#000000";
+		context.width = document.width;
+		context.height = document.height;
 		var ball;
 		
-		for (var i =0; i <balls.length; i++) {
+		for (var i =0; i <things.length; i++) {
 	
-			ball = balls[i];
+			ball = things[i];
 			ball.x += ball.xunits;
 			ball.y += ball.yunits;
 			
@@ -227,7 +230,7 @@ function canvasApp() {
 	var maxSize = 10;
 	var minSize = 3;
 	var maxSpeed = maxSize+5;
-	var balls = new Array();
+	var things = new Array();
 	var tempBall;
 	var tempX;
 	var tempY;
@@ -251,7 +254,7 @@ function canvasApp() {
 		tempXunits = Math.cos(tempRadians) * tempSpeed;
 		tempYunits = Math.sin(tempRadians) * tempSpeed;
 		tempBall = {x:tempX, y:tempY, radius:tempRadius, speed:tempSpeed, angle:tempAngle, xunits:tempXunits, yunits:tempYunits};
-		balls.push(tempBall);
+		things.push(tempBall);
 	}
 	
 	setInterval(drawScreen, 33);
