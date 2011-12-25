@@ -17,10 +17,10 @@ function canvasApp() {
 	  	var ratio = context.canvas.width / context.canvas.height;
 
 		context.fillStyle = "#000000";
-		theCanvas.width = window.innerWidth;
-		theCanvas.height = window.innerHeight;	
-		theCanvas.style.height = window.innerHeight;	
-		theCanvas.style.width = window.innerWidth;
+		theCanvas.width = window.innerWidth * .9;
+		theCanvas.height = window.innerHeight * .9;	
+		theCanvas.style.height = window.innerHeight * .9;	
+		theCanvas.style.width = window.innerWidth * .9;
 		var ball;
 		
 		for (var i =0; i <things.length; i++) {
