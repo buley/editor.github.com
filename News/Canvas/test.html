@@ -261,12 +261,16 @@ function canvasApp() {
 	
 }
 
+function full() {
+	document.getElementById('canvasOne').requestFullScreen();
+};
 
 </script>
 
 </head>
 <body> 
 	<canvas id="canvasOne">Your browser does not support the HTML 5 Canvas. </canvas>
+	<button onclick='full()'>Go Fullscreen</button>
 </body>
 </html>
 
