@@ -12,6 +12,7 @@
 		var Buleys = Buleys || {};
 		Buleys.video = Buleys.video || {};
 
+
 		Buleys.video.extension = function( video ) {
 
 			var extension = "";
@@ -58,10 +59,31 @@
 
 		};
 
+		Buleys.video.draw = Buleys.video.draw || {};
+		Buleys.video.draw.play = function( x, y ) {
+			console.log('play button',x,y);
+		};
+
 		Buleys.video.loaded = function() {
 
 			/* */
 			var videoname = 'muirbeach';
+			var assetcount = 2;
+			var currentcount = 0;
+			var incLoaded = function() {
+				currentcount++;
+				if( currentcount === assetcount ) {
+					//Ready
+					console.log('images ready', whiteButtonSheet, blackButtonSheet );
+				}
+			};
+			var whiteButtonSheet = new Image();
+			whiteButtonSheet.onload = incLoaded;
+			whiteButtonSheet.src = "dots2.png";
+
+			var blackButtonSheet = new Image();
+			blackButtonSheet.onload = incLoaded;
+			blackButtonSheet.src = "dots2black.png";
 
 			Buleys.video.player = document.createElement( 'video' );
 			Buleys.video.container = document.createElement( 'div' );
