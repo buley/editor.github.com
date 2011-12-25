@@ -37,6 +37,7 @@
 				context.fillStyle = '#000000';
 				context.fillRect( 0, 0, theCanvas.width, theCanvas.height );
 				// Video
+				Buleys.video.draw.play( context, 50, 50, 'white' );
 				context.drawImage( Buleys.video.player, 0, 0 );
 
 				// Text
@@ -48,7 +49,7 @@
 				context.fillText( "Muted: " + Buleys.video.player.muted, 180, 290);
 				context.fillText( "Controls: " + Buleys.video.player.controls, 260, 290);
 				context.fillText( "Volume: " + Buleys.video.player.volume, 340, 290);
-				Buleys.video.draw.play( context, 50, 50, 'white' );
+
 
 			}
 
