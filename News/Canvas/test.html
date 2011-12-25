@@ -15,9 +15,7 @@ function canvasApp() {
   function  drawScreen () {
 
 	  	var ratio = context.canvas.width / context.canvas.height;
-		theCanvas.width = document.width;
-		theCanvas.height = document.height;
-	
+
 		context.fillStyle = "#000000";
 
 		var ball;
@@ -244,8 +242,8 @@ function canvasApp() {
 	
 	theCanvas = document.getElementById('canvasOne');
 	context = theCanvas.getContext('2d');
-	context.canvas.width = document.width;
-	context.canvas.height = document.height;
+	context.canvas.width = window.innerWidth;
+	context.canvas.height = window.innerHeight;
 	for (var i = 0; i < numBalls; i++) {
 		tempRadius = Math.floor(Math.random()*maxSize)+minSize;
 		tempX = tempRadius*2 + (Math.floor(Math.random()*theCanvas.width)-tempRadius*2);
