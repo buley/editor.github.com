@@ -19,8 +19,6 @@ function canvasApp() {
 		context.fillStyle = "#000000";
 		theCanvas.width = window.outerWidth;
 		theCanvas.height = window.outerHeight;	
-		context.canvas.width = window.outerWidth;
-		context.canvas.height = window.outerHeight;
 		var ball;
 		
 		for (var i =0; i <things.length; i++) {
@@ -258,7 +256,7 @@ function canvasApp() {
 		things.push(tempBall);
 	}
 	
-	//setInterval(drawScreen, 33);
+	setInterval(drawScreen, 33);
 	
 }
 
