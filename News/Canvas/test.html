@@ -208,10 +208,10 @@ function canvasApp() {
 
 			context.closePath();
 		
-			if (ball.x + 300 >= theCanvas.width || ball.x <= 0 ) {
+			if ( ( ball.x + 300 ) >= theCanvas.width || ball.x <= 0 ) {
 				ball.angle = 180 - ball.angle;
 				updateBall(ball);
-			} else if (ball.y + 150 >= theCanvas.height || ball.y <= 0) {
+			} else if ( ( ball.y + 150 ) >= theCanvas.height || ball.y <= 0) {
 				ball.angle = 360 - ball.angle;
 				updateBall(ball); 
 			}
