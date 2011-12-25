@@ -17,7 +17,9 @@ function canvasApp() {
 	  	var ratio = context.canvas.width / context.canvas.height;
 
 		context.fillStyle = "#000000";
-
+		context.canvas.width = document.width;
+		context.canvas.height = document.height;
+	
 		var ball;
 		
 		for (var i =0; i <things.length; i++) {
