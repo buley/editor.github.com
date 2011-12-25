@@ -264,7 +264,12 @@ function canvasApp() {
 }
 
 function full() {
-	document.getElementById('canvasOne').requestFullScreen();
+	var el = document.getElementById('canvasOne');
+	if(el.webkitRequestFullScreen) {
+		el.webkitRequestFullScreen();
+	} else {
+		el.mozRequestFullScreen();
+	}
 };
 
 </script>
