@@ -38,7 +38,7 @@
 				context.fillRect( 0, 0, theCanvas.width, theCanvas.height );
 				// Video
 				context.drawImage( Buleys.video.player, 0, 0 );
-
+				Buleys.video.draw.play( context, 0, 0, 'black' );
 				// Text
 				context.fillStyle = "#ffffff";
 				context.fillText( "Duration:" + Buleys.video.player.duration, 10, 280);
@@ -60,8 +60,20 @@
 		};
 
 		Buleys.video.draw = Buleys.video.draw || {};
-		Buleys.video.draw.play = function( x, y ) {
+		Buleys.video.draw.coords = Buleys.video.draw.coords || {};
+		Buleys.video.draw.coords.play = Buleys.video.draw.coords.play || {};
+		Buleys.video.draw.coords.play.x = 0;
+		Buleys.video.draw.coords.play.y = 0;
+		Buleys.video.draw.coords.play.width = 32;
+		Buleys.video.draw.coords.play.height = 32;
+
+		Buleys.video.draw.play = function( context, x, y, color ) {
 			console.log('play button',x,y);
+			if( 'white' === color ) {
+				context.drawImage(Buleys.video.whiteButtonSheet, 0, 32, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height, x, y, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height );
+			} else {
+				context.drawImage(Buleys.video.blackButtonSheet, 0, 32, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height, x, y, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height );
+			}
 		};
 
 		Buleys.video.loaded = function() {
@@ -77,11 +89,11 @@
 					console.log('images ready', whiteButtonSheet, blackButtonSheet );
 				}
 			};
-			var whiteButtonSheet = new Image();
+			Buleys.video.whiteButtonSheet = new Image();
 			whiteButtonSheet.onload = incLoaded;
 			whiteButtonSheet.src = "dots2.png";
 
-			var blackButtonSheet = new Image();
+			Buleys.video.blackButtonSheet = new Image();
 			blackButtonSheet.onload = incLoaded;
 			blackButtonSheet.src = "dots2black.png";
 
