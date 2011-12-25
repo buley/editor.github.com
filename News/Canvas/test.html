@@ -17,9 +17,7 @@ function canvasApp() {
 	  	var ratio = context.canvas.width / context.canvas.height;
 
 		context.fillStyle = "#000000";
-		context.canvas.width = document.width;
-		context.canvas.height = document.height;
-	
+
 		var ball;
 		
 		for (var i =0; i <things.length; i++) {
@@ -31,7 +29,9 @@ function canvasApp() {
 			//Blank
 			context.fillStyle = '#FFFFFF';
 			context.fillRect(0, 0, theCanvas.width, theCanvas.height);
-
+		context.canvas.width = document.width;
+		context.canvas.height = document.height;
+	
 			var gr = context.createLinearGradient( 0, 0, 0, 150 );
 			gr.addColorStop( 0, 'rgba(34,51,102, .9)' );
 			gr.addColorStop( .4, 'rgba(34,51,102, 1)' );
