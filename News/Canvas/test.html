@@ -17,8 +17,7 @@ function canvasApp() {
 	  	var ratio = context.canvas.width / context.canvas.height;
 
 		context.fillStyle = "#000000";
-		context.width = document.width;
-		context.height = document.height;
+
 		var ball;
 		
 		for (var i =0; i <things.length; i++) {
@@ -243,7 +242,8 @@ function canvasApp() {
 	
 	theCanvas = document.getElementById('canvasOne');
 	context = theCanvas.getContext('2d');
-	
+	context.canvas.width = document.width;
+	context.canvas.height = document.height;
 	for (var i = 0; i < numBalls; i++) {
 		tempRadius = Math.floor(Math.random()*maxSize)+minSize;
 		tempX = tempRadius*2 + (Math.floor(Math.random()*theCanvas.width)-tempRadius*2);
