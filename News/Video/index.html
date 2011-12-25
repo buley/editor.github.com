@@ -40,10 +40,10 @@
 
 				context.drawImage( Buleys.video.player, 50, 50 );
 
-				Buleys.video.draw.play( context, 0, 0, 'white' );1
-				Buleys.video.draw.pause( context, 75, 0, 'white' );1
-				Buleys.video.draw.sound( context, 125, 0, 'white' );1
-			
+				Buleys.video.draw.play( context, 0, theCanvas.height - Buleys.video.draw.coords.play.width, 'white' );1
+				Buleys.video.draw.pause( context, 75,  theCanvas.height - Buleys.video.draw.coords.pause.width, 'white' );1
+				Buleys.video.draw.sound( context, theCanvas.height - Buleys.video.draw.coords.sound.width, theCanvas.width - Buleys.video.draw.coords.sound.width, 'white' );
+
 				
 				// Text
 				context.fillStyle = "#ffffff";
