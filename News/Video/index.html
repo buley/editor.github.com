@@ -42,6 +42,8 @@
 
 				Buleys.video.draw.play( context, 0, 0, 'white' );1
 				Buleys.video.draw.pause( context, 75, 0, 'white' );1
+				Buleys.video.draw.sound( context, 125, 0, 'white' );1
+			
 				
 				// Text
 				context.fillStyle = "#ffffff";
@@ -96,6 +98,24 @@
 				context.drawImage( Buleys.video.blackButtonSheet, Buleys.video.draw.coords.pause.x, Buleys.video.draw.coords.pause.y, Buleys.video.draw.coords.pause.width, Buleys.video.draw.coords.pause.height, x, y, Buleys.video.draw.coords.pause.width, Buleys.video.draw.coords.pause.height );
 			}
 		};
+
+
+
+		Buleys.video.draw.coords.sound = Buleys.video.draw.coords.sound || {};
+		Buleys.video.draw.coords.sound.x = 280;
+		Buleys.video.draw.coords.sound.y = 280;
+		Buleys.video.draw.coords.sound.width = 50;
+		Buleys.video.draw.coords.sound.height = 75;
+
+		Buleys.video.draw.sound = function( context, x, y, color ) {
+			console.log('sound button',x,y);
+			if( 'white' === color ) {
+				context.drawImage( Buleys.video.whiteButtonSheet, Buleys.video.draw.coords.sound.x, Buleys.video.draw.coords.sound.y, Buleys.video.draw.coords.sound.width, Buleys.video.draw.coords.sound.height, x, y, Buleys.video.draw.coords.pause.width, Buleys.video.draw.coords.pause.height );
+			} else {
+				context.drawImage( Buleys.video.blackButtonSheet, Buleys.video.draw.coords.sound.x, Buleys.video.draw.coords.sound.y, Buleys.video.draw.coords.sound.width, Buleys.video.draw.coords.sound.height, x, y, Buleys.video.draw.coords.pause.width, Buleys.video.draw.coords.pause.height );
+			}
+		};
+
 
 
 		Buleys.video.loaded = function() {
