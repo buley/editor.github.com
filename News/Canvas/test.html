@@ -18,8 +18,7 @@ function canvasApp() {
 
 		context.fillStyle = "#000000";
 		theCanvas.width = window.outerWidth;
-		theCanvas.height = window.outerHeight;
-	
+		theCanvas.height = window.outerHeight;	
 		context.canvas.width = window.outerWidth;
 		context.canvas.height = window.outerHeight;
 		var ball;
@@ -213,7 +212,7 @@ function canvasApp() {
 			if ( ( ball.x + 300 ) >= theCanvas.width || ball.x <= 0 ) {
 				ball.angle = 180 - ball.angle;
 				updateBall(ball);
-			} else if ( ( ball.y ) >= theCanvas.height || ball.y <= 0) {
+			} else if ( ( ball.y + 150 ) >= theCanvas.height || ball.y <= 0) {
 				ball.angle = 360 - ball.angle;
 				updateBall(ball); 
 			}
