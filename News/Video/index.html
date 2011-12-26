@@ -47,13 +47,11 @@
 				}
 
 				if( Buleys.video.globalAlpha > 1 ) {
-						Buleys.video.globalAlpha = 1;
-					} else if( Buleys.video.globalAlpha < 0 ) {
-						Buleys.video.globalAlpha = 0;
-					}
+					Buleys.video.globalAlpha = 1;
+				} else if( Buleys.video.globalAlpha < 0 ) {
+					Buleys.video.globalAlpha = 0;
+				}
 
-
-			
 				// Background
 				context.fillStyle = '#000000';
 				context.fillRect( 0, 0, theCanvas.width, theCanvas.height );
@@ -68,27 +66,44 @@
 						Buleys.video.draw.stop( context, 8,  theCanvas.height - 48, 'white', .5 );
 						//Buleys.video.draw.pause( context, 75 + 20,  theCanvas.height - Buleys.video.draw.coords.pause.height - 20, 'white' );
 					} else {
-						Buleys.video.draw.play( context, 10, theCanvas.height - 49, 'white', .5 );
+						Buleys.video.draw.play( context, 10, theCanvas.height - 48, 'white', .5 );
 					}
 
 					var complete_percent = Buleys.video.player.currentTime / Buleys.video.player.duration
 
 					var volume_percent = Buleys.video.player.volume / 1;
-					if( Buleys.video.player.muted ) {
-						Buleys.video.draw.sound( context, theCanvas.width - 40, 2.2*theCanvas.height/3, 'red', .5 );
-					} else if( volume_percent >= .66 ) {
-						Buleys.video.draw.sound( context, theCanvas.width - 40, 2.2*theCanvas.height/3, 'white', .5 );
-					} else if( volume_percent > .33 && volume_percent < .66 ) {
-						Buleys.video.draw.twoBar( context, theCanvas.width - 40, 2.2*theCanvas.height/3, 'white', .5 );
+					Buleys.video.player.invertedAudio = true;
+					if( true === Buleys.video.player.invertedAudio ) {
+						volume_percent = 1 - volume_percent;
+					}
+					if( false === Buleys.video.player.invertedAudio ) {
+						if( Buleys.video.player.muted ) {
+							Buleys.video.draw.sound( context, theCanvas.width - 40, 2.2*theCanvas.height/3, 'red', .5 );
+						} else if( volume_percent >= .66 ) {
+							Buleys.video.draw.sound( context, theCanvas.width - 40, 2.2*theCanvas.height/3, 'white', .5 );
+						} else if( volume_percent > .33 && volume_percent < .66 ) {
+							Buleys.video.draw.twoBar( context, theCanvas.width - 40, 2.2*theCanvas.height/3, 'white', .5 );
+						} else {
+							Buleys.video.draw.oneBar( context, theCanvas.width - 40, 2.2*theCanvas.height/3, 'white', .5 );
+						}
 					} else {
-						Buleys.video.draw.oneBar( context, theCanvas.width - 40, 2.2*theCanvas.height/3, 'white', .5 );
+						if( Buleys.video.player.muted ) {
+							Buleys.video.draw.sound( context, theCanvas.width - 40, 2.2*theCanvas.height/3, 'red', .5 );
+						} else if( volume_percent >= .66 ) {
+							Buleys.video.draw.oneBar( context, theCanvas.width - 40, 2.2*theCanvas.height/3, 'white', .5 );
+						} else if( volume_percent > .33 && volume_percent < .66 ) {
+							Buleys.video.draw.twoBar( context, theCanvas.width - 40, 2.2*theCanvas.height/3, 'white', .5 );
+						} else {
+							Buleys.video.draw.sound( context, theCanvas.width - 40, 2.2*theCanvas.height/3, 'white', .5 );
+
+						}
 					}
 					Buleys.video.draw =  Buleys.video.draw || {};
 					Buleys.video.draw.videoProgressXOffset = 50;
 					Buleys.video.draw.videoProgressYOffset = 25;
 					Buleys.video.draw.videoProgressWidth = 10;
 
-					Buleys.video.draw.progress( context, Buleys.video.draw.videoProgressXOffset, ( theCanvas.height - ( Buleys.video.draw.videoProgressXOffset / 2 ) ), complete_percent, 0, 1, ( theCanvas.width - Buleys.video.draw.videoProgressXOffset ), Buleys.video.draw.videoProgressWidth, 'horizontal', 'white', true );
+					Buleys.video.draw.progress( context, Buleys.video.draw.videoProgressXOffset, ( theCanvas.height - ( Buleys.video.draw.videoProgressXOffset / 2 ) ), complete_percent, 0, 1, ( theCanvas.width - Buleys.video.draw.videoProgressXOffset ), Buleys.video.draw.videoProgressWidth, 'horizontal', 'white', false );
 
 					Buleys.video.draw =  Buleys.video.draw || {};
 					Buleys.video.draw.audioProgressXOffset = 20;
@@ -96,8 +111,7 @@
 					Buleys.video.draw.audioProgressWidth = 10;
 					Buleys.video.draw.audioProgressHeight = 2.2*theCanvas.height/3;
 
-
-					Buleys.video.draw.progress( context, theCanvas.width - Buleys.video.draw.audioProgressXOffset, Buleys.video.draw.audioProgressYOffset, volume_percent, 0, 1, Buleys.video.draw.audioProgressHeight, Buleys.video.draw.audioProgressWidth, 'vertical', 'white', false );	
+					Buleys.video.draw.progress( context, theCanvas.width - Buleys.video.draw.audioProgressXOffset, Buleys.video.draw.audioProgressYOffset, volume_percent, 0, 1, Buleys.video.draw.audioProgressHeight, Buleys.video.draw.audioProgressWidth, 'vertical', 'white', Buleys.video.player.invertedAudio );	
 
 					if( Buleys.video.player.title.length > 0 && Buleys.video.player.title.split !== '' ) {
 
@@ -115,7 +129,7 @@
 							while( pieces.length > 0 ) {
 
 								var num = 5;
-								while( num > 0 && ( context.measureText( pieces.slice( 0, num ).join(' ') ).width ) > theCanvas.width - 40 ) {
+								while( num > 0 && ( 80 + context.measureText( pieces.slice( 0, num ).join(' ') ).width ) > ( theCanvas.width - Buleys.video.draw.third.offsetX ) ) {
 									num = num - 1;
 								}
 								var current = pieces.splice( 0, num );
@@ -129,7 +143,7 @@
 						}
 						
 						Buleys.video.draw.third.offsetY = 0;
-						Buleys.video.draw.third.offsetX = 40;
+						Buleys.video.draw.third.offsetX = ( theCanvas.width / 5 );
 						Buleys.video.draw.third.lineHeight = 40;
 						Buleys.video.draw.third.lineWidth =  theCanvas.width - Buleys.video.draw.third.offsetX;
 						Buleys.video.draw.third( context, 0, Buleys.video.draw.third.offsetY, theCanvas.width - Buleys.video.draw.third.offsetX, 20 + ( ( Buleys.video.draw.third.lineHeight + 50 ) * ctr ), 'horizontal', 'white');
@@ -479,7 +493,12 @@
 		// Volume
 		if (  -1 !== collisions.indexOf( 'progress-vertical' ) && !!Buleys.video.mouse.drag.volume ) {
 			var ratio = ( ( Buleys.video.mouse.y - Buleys.video.draw.audioProgressYOffset ) / ( Buleys.video.boxes[ 'progress-vertical' ][ 'y' ] + Buleys.video.boxes[ 'progress-vertical' ][ 'height' ]  - Buleys.video.draw.audioProgressYOffset ) );
-			Buleys.video.player.volume = ratio * 1;
+			console.log( Buleys.video.mouse.y - Buleys.video.draw.audioProgressYOffset,  ( Buleys.video.boxes[ 'progress-vertical' ][ 'y' ] + Buleys.video.boxes[ 'progress-vertical' ][ 'height' ]  - Buleys.video.draw.audioProgressYOffset ) );
+			if( true === Buleys.video.player.invertedAudio ) {
+				Buleys.video.player.volume = 1 - ratio;
+			} else {
+				Buleys.video.player.volume = ratio;
+			}
 			Buleys.video.mouse.drag.volume = false;
 		}
 		
@@ -608,7 +627,7 @@
 			Buleys.video.type = Buleys.video.extension( Buleys.video.player );
 
 			Buleys.video.player.setAttribute( 'src', videoname + '.' + Buleys.video.type );
-			Buleys.video.player.setAttribute( 'title', 'Lorem ipsum et dolorum neste.');
+			Buleys.video.player.setAttribute( 'title', 'Lorem ipsum et dolorum neste is the nocte.')
 			document.body.appendChild( Buleys.video.container );
 
 
