@@ -29,60 +29,309 @@
 
 		};
 
+		Buleys.video.globalAlpha = 0;
+
 		Buleys.video.draw = function() {
 
 			var drawScreen = function() {
 
+				var hover = ( Buleys.video.hover ) ? Buleys.video.hover : false;
+				if( false !== Buleys.video.hover ) {
+					if( hover > new Date().getTime() - 1000 ) {
+						Buleys.video.globalAlpha += .1;
+					} else {
+						Buleys.video.globalAlpha -= .1;
+					}
+				} else {
+					Buleys.video.globalAlpha -= .1;
+				}
+
+				if( Buleys.video.globalAlpha > 1 ) {
+						Buleys.video.globalAlpha = 1;
+					} else if( Buleys.video.globalAlpha < 0 ) {
+						Buleys.video.globalAlpha = 0;
+					}
+
+
+			
 				// Background
 				context.fillStyle = '#000000';
 				context.fillRect( 0, 0, theCanvas.width, theCanvas.height );
 				// Video
 
-				context.drawImage( Buleys.video.player, 50, 50 );
+				context.drawImage( Buleys.video.player, 0, 0, theCanvas.width, theCanvas.height );
 
-				Buleys.video.draw.play( context, 0 + 20, theCanvas.height - Buleys.video.draw.coords.play.height - 20, 'white' );
-				Buleys.video.draw.pause( context, 75 + 20,  theCanvas.height - Buleys.video.draw.coords.pause.height - 20, 'white' );
-				Buleys.video.draw.oneBar( context, theCanvas.width - Buleys.video.draw.coords.sound.width - 50, theCanvas.height - Buleys.video.draw.coords.sound.height, 'white' );
-			
-				
-				// Text
-				context.fillStyle = "#ffffff";
-				context.fillText( "Duration:" + Buleys.video.player.duration, 10, 280);
-				context.fillText( "Current time:" + Buleys.video.player.currentTime, 260 ,280);
-				context.fillText( "Loop: " + Buleys.video.player.loop, 10, 290);
-				context.fillText( "Autoplay: " + Buleys.video.player.autoplay, 100, 290);
-				context.fillText( "Muted: " + Buleys.video.player.muted, 180, 290);
-				context.fillText( "Controls: " + Buleys.video.player.controls, 260, 290);
-				context.fillText( "Volume: " + Buleys.video.player.volume, 340, 290);
+				if( Buleys.video.globalAlpha >= .1 ) {
+					context.save();
+					context.globalAlpha = Buleys.video.globalAlpha;	
+					if( !Buleys.video.player.paused ) {
+						Buleys.video.draw.stop( context, 8,  theCanvas.height - 48, 'white', .5 );
+						//Buleys.video.draw.pause( context, 75 + 20,  theCanvas.height - Buleys.video.draw.coords.pause.height - 20, 'white' );
+					} else {
+						Buleys.video.draw.play( context, 10, theCanvas.height - 49, 'white', .5 );
+					}
 
+					var complete_percent = Buleys.video.player.currentTime / Buleys.video.player.duration
+
+					var volume_percent = Buleys.video.player.volume / 1;
+					if( Buleys.video.player.muted ) {
+						Buleys.video.draw.sound( context, theCanvas.width - 40, 2.2*theCanvas.height/3, 'red', .5 );
+					} else if( volume_percent >= .66 ) {
+						Buleys.video.draw.sound( context, theCanvas.width - 40, 2.2*theCanvas.height/3, 'white', .5 );
+					} else if( volume_percent > .33 && volume_percent < .66 ) {
+						Buleys.video.draw.twoBar( context, theCanvas.width - 40, 2.2*theCanvas.height/3, 'white', .5 );
+					} else {
+						Buleys.video.draw.oneBar( context, theCanvas.width - 40, 2.2*theCanvas.height/3, 'white', .5 );
+					}
+					Buleys.video.draw =  Buleys.video.draw || {};
+					Buleys.video.draw.videoProgressXOffset = 50;
+					Buleys.video.draw.videoProgressYOffset = 25;
+					Buleys.video.draw.videoProgressWidth = 10;
+
+					Buleys.video.draw.progress( context, Buleys.video.draw.videoProgressXOffset, ( theCanvas.height - ( Buleys.video.draw.videoProgressXOffset / 2 ) ), complete_percent, 0, 1, ( theCanvas.width - Buleys.video.draw.videoProgressXOffset ), Buleys.video.draw.videoProgressWidth, 'horizontal', 'white', true );
+
+					Buleys.video.draw =  Buleys.video.draw || {};
+					Buleys.video.draw.audioProgressXOffset = 20;
+					Buleys.video.draw.audioProgressYOffset = 0;
+					Buleys.video.draw.audioProgressWidth = 10;
+					Buleys.video.draw.audioProgressHeight = 2.2*theCanvas.height/3;
+
+
+					Buleys.video.draw.progress( context, theCanvas.width - Buleys.video.draw.audioProgressXOffset, Buleys.video.draw.audioProgressYOffset, volume_percent, 0, 1, Buleys.video.draw.audioProgressHeight, Buleys.video.draw.audioProgressWidth, 'vertical', 'white', false );	
+
+					if( Buleys.video.player.title.length > 0 && Buleys.video.player.title.split !== '' ) {
+
+						context.save();
+						context.fillStyle='Black';
+						context.textBaseline = 'top';
+						context.font = "32px Georgia";
+						
+						pieces = Buleys.video.player.title.split(' ');
+						var ctr = 0;
+						var lines = [];
+						if( pieces.length > 5 ) {
+							var pc = pieces.length;
+
+							while( pieces.length > 0 ) {
+
+								var num = 5;
+								while( num > 0 && ( context.measureText( pieces.slice( 0, num ).join(' ') ).width ) > theCanvas.width - 40 ) {
+									num = num - 1;
+								}
+								var current = pieces.splice( 0, num );
+
+								lines.push( current );
+								ctr++;
+							}
+						} else {
+							ctr++;
+							lines.push( pieces );
+						}
+						
+						Buleys.video.draw.third.offsetY = 0;
+						Buleys.video.draw.third.offsetX = 40;
+						Buleys.video.draw.third.lineHeight = 40;
+						Buleys.video.draw.third.lineWidth =  theCanvas.width - Buleys.video.draw.third.offsetX;
+						Buleys.video.draw.third( context, 0, Buleys.video.draw.third.offsetY, theCanvas.width - Buleys.video.draw.third.offsetX, 20 + ( ( Buleys.video.draw.third.lineHeight + 50 ) * ctr ), 'horizontal', 'white');
+						context.shadowOffsetX=-1;
+						context.shadowOffsetY=3;
+						context.shadowColor='#ddd';
+						context.shadowBlur=1;
+
+						for( var z = 0; z < lines.length; z += 1 ) {
+							context.fillText( lines[z].join(' '), 20, 10 + ( Buleys.video.draw.third.lineHeight * z ) );
+						} 
+						context.restore();
+					}
+
+					/*	
+					context.fillStyle = "#ffffff";
+					context.fillText( "Duration:" + Buleys.video.player.duration, 10, 280);
+					context.fillText( "Current time:" + Buleys.video.player.currentTime, 260 ,280);
+					context.fillText( "Loop: " + Buleys.video.player.loop, 10, 290);
+					context.fillText( "Autoplay: " + Buleys.video.player.autoplay, 100, 290);
+					context.fillText( "Muted: " + Buleys.video.player.muted, 180, 290);
+					context.fillText( "Controls: " + Buleys.video.player.controls, 260, 290);
+					context.fillText( "Volume: " + Buleys.video.player.volume, 340, 290);
+					*/
+
+					context.restore();
+
+				}
 
 			}
 
 			var theCanvas = document.getElementById('video_canvas');
+			theCanvas.addEventListener( "mouseup", Buleys.video.mouse.up, false );	
+			theCanvas.addEventListener( "mousedown", Buleys.video.mouse.down, false);
+			theCanvas.addEventListener( "mousemove", Buleys.video.mouse.move, false );
+
+			Buleys.video.canvas = theCanvas;
+
 			var context = theCanvas.getContext('2d');
-			Buleys.video.player.play();
 
 			setInterval(drawScreen, 33);	
 
 		};
 
+
+		Buleys.video.draw = Buleys.video.draw || {};
+		Buleys.video.draw.progress = function( context, x, y, value, min, max, length, width, orientation, color, inverted ) {
+		
+			if( 'horizontal' === orientation ) {
+		
+				Buleys.video.boxes[ 'progress-' + orientation ] = {
+					x: x,
+					y: y,
+					width: length,
+					height: width
+				};
+		
+			} else if( 'vertical' === orientation ) {
+		
+				Buleys.video.boxes[ 'progress-' + orientation ] = {
+					x: x,
+					y: y,
+					width: width,
+					height: length
+				};
+		
+			}
+			
+			var ratio = value / max;
+
+			var wh = context.createPattern( Buleys.video.whiteDot, 'repeat' );
+			var gr = context.createPattern( Buleys.video.lightGrayDot, 'repeat' );
+			var bl = context.createPattern( Buleys.video.blackDot, 'repeat' );
+
+			context.save();
+
+			context.lineWidth = width;
+
+			if( 'black' === color ) {
+				context.strokeStyle = gr;
+			} else {
+				if( true === inverted ) {
+					context.strokeStyle = gr;
+				} else {
+					context.strokeStyle = wh;
+				}
+			}
+	
+			context.beginPath();
+			
+			if( 'horizontal' === orientation ) {
+				context.moveTo( x, y );
+				context.lineTo( x + length, y );
+			} else {
+				context.moveTo( x, y );
+				context.lineTo( x, y + length );
+			}
+
+			context.closePath();
+			
+			context.stroke();
+			context.fill();
+
+		
+			context.beginPath();
+
+			if( 'black' === color ) {
+				context.strokeStyle = bl;
+			} else {
+				if( true === inverted ) {
+					context.strokeStyle = wh;
+				} else {
+					context.strokeStyle = gr;
+				}
+			}
+
+			if( 'horizontal' === orientation ) {
+				context.moveTo( x, y );
+				context.lineTo( ( x + ( length * ratio ) ), y );
+			} else {
+				if( true === inverted ) {
+					context.moveTo( x, ( y + length ) );
+					context.lineTo( x, y + ( length * ratio ) );
+				} else {
+					context.moveTo( x, y + ( length * ratio ) );
+					context.lineTo( x, ( y + length ) );
+
+				}
+			}
+
+			context.stroke();
+			context.fill();
+			context.closePath();
+		
+			context.restore();
+
+		};
+
+		Buleys.video.draw = Buleys.video.draw || {};
+		Buleys.video.draw.third = function( context, x, y, length, width, orientation, color ) {
+			
+			var wh = context.createPattern( Buleys.video.whiteDot, 'repeat' );
+			var gr = context.createPattern( Buleys.video.lightGrayDot, 'repeat' );
+			var bl = context.createPattern( Buleys.video.blackDot, 'repeat' );
+
+			context.save();
+
+			context.lineWidth = width;
+
+			if( 'black' === color ) {
+				context.strokeStyle = bl;
+			} else if( 'gray' === color ) {
+				context.strokeStyle = gr;
+			} else {
+				context.strokeStyle = wh;
+			}
+
+			context.beginPath();
+			
+			if( 'horizontal' === orientation ) {
+				context.moveTo( x, y );
+				context.lineTo( x + length, y );
+			} else {
+				context.moveTo( x, y );
+				context.lineTo( x, y + length );	
+			}
+
+			context.closePath();
+			
+			context.stroke();
+			context.fill();
+
+	
+			context.restore();
+
+		};
+
+
+
 		Buleys.video.draw = Buleys.video.draw || {};
 		Buleys.video.draw.coords = Buleys.video.draw.coords || {};
 		Buleys.video.draw.coords.play = Buleys.video.draw.coords.play || {};
-		Buleys.video.draw.coords.play.x = 50;
+		Buleys.video.draw.coords.play.x = 70;
 		Buleys.video.draw.coords.play.y = 50;
 		Buleys.video.draw.coords.play.width = 50;
 		Buleys.video.draw.coords.play.height = 75;
 
-		Buleys.video.draw.play = function( context, x, y, color ) {
-			console.log('play button',x,y);
+		Buleys.video.boxes = Buleys.video.boxes || {};
+
+		Buleys.video.draw.play = function( context, x, y, color, scale ) {
+			Buleys.video.boxes[ 'play' ] = {
+				x: x,
+				y: y,
+				width: Buleys.video.draw.coords.play.width * scale,
+				height: Buleys.video.draw.coords.play.height * scale
+			};
 			if( 'white' === color ) {
-				context.drawImage( Buleys.video.whiteButtonSheet, Buleys.video.draw.coords.play.x, Buleys.video.draw.coords.play.y, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height, x, y, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height );
+				context.drawImage( Buleys.video.whiteButtonSheet, Buleys.video.draw.coords.play.x, Buleys.video.draw.coords.play.y, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height, x, y, Buleys.video.draw.coords.play.width * scale, Buleys.video.draw.coords.play.height * scale );
 			} else {
-				context.drawImage( Buleys.video.blackButtonSheet, Buleys.video.draw.coords.play.x, Buleys.video.draw.coords.pause.y, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height, x, y, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height );
+				context.drawImage( Buleys.video.blackButtonSheet, Buleys.video.draw.coords.play.x, Buleys.video.draw.coords.pause.y, Buleys.video.draw.coords.play.width, Buleys.video.draw.coords.play.height, x, y, Buleys.video.draw.coords.play.width * scale, Buleys.video.draw.coords.play.height * scale );
 			}
 		};
-
 
 		Buleys.video.draw.coords.pause = Buleys.video.draw.coords.pause || {};
 		Buleys.video.draw.coords.pause.x = 175;
@@ -91,7 +340,12 @@
 		Buleys.video.draw.coords.pause.height = 75;
 
 		Buleys.video.draw.pause = function( context, x, y, color ) {
-			console.log('pause button',x,y);
+			Buleys.video.boxes[ 'pause' ] = {
+				x: x,
+				y: y,
+				width: Buleys.video.draw.coords.pause.width * scale,
+				height: Buleys.video.draw.coords.pause.height * scale
+			};
 			if( 'white' === color ) {
 				context.drawImage( Buleys.video.whiteButtonSheet, Buleys.video.draw.coords.pause.x, Buleys.video.draw.coords.pause.y, Buleys.video.draw.coords.pause.width, Buleys.video.draw.coords.pause.height, x, y, Buleys.video.draw.coords.pause.width, Buleys.video.draw.coords.pause.height );
 			} else {
@@ -99,19 +353,58 @@
 			}
 		};
 
+		Buleys.video.draw.coords.stop = Buleys.video.draw.coords.stop || {};
+		Buleys.video.draw.coords.stop.x = 290;
+		Buleys.video.draw.coords.stop.y = 50;
+		Buleys.video.draw.coords.stop.width = 75;
+		Buleys.video.draw.coords.stop.height = 75;
+
+		Buleys.video.draw.stop = function( context, x, y, color, scale ) {
+			Buleys.video.boxes[ 'stop' ] = {
+				x: x,
+				y: y,
+				width: Buleys.video.draw.coords.stop.width * scale,
+				height: Buleys.video.draw.coords.stop.height * scale
+			};
+
+			if( 'white' === color ) {
+				context.drawImage( Buleys.video.whiteButtonSheet, Buleys.video.draw.coords.stop.x, Buleys.video.draw.coords.stop.y, Buleys.video.draw.coords.stop.width, Buleys.video.draw.coords.stop.height, x, y, Buleys.video.draw.coords.stop.width * scale, Buleys.video.draw.coords.stop.height * scale );
+			} else {
+				context.drawImage( Buleys.video.blackButtonSheet, Buleys.video.draw.coords.stop.x, Buleys.video.draw.coords.stop.y, Buleys.video.draw.coords.stop.width, Buleys.video.draw.coords.stop.height, x, y, Buleys.video.draw.coords.stop.width * scale, Buleys.video.draw.coords.stop.height * scale );
+			}
+		};
+
+
+
 		Buleys.video.draw.coords.sound = Buleys.video.draw.coords.sound || {};
 		Buleys.video.draw.coords.sound.x = 280;
 		Buleys.video.draw.coords.sound.y = 280;
 		Buleys.video.draw.coords.sound.width = 50;
 		Buleys.video.draw.coords.sound.height = 75;
 
-		Buleys.video.draw.sound = function( context, x, y, color ) {
-			console.log('sound button',x,y);
-			if( 'white' === color ) {
-				context.drawImage( Buleys.video.whiteButtonSheet, Buleys.video.draw.coords.sound.x, Buleys.video.draw.coords.sound.y, Buleys.video.draw.coords.sound.width, Buleys.video.draw.coords.sound.height, x, y, Buleys.video.draw.coords.sound.width, Buleys.video.draw.coords.sound.height );
-			} else {
-				context.drawImage( Buleys.video.blackButtonSheet, Buleys.video.draw.coords.sound.x, Buleys.video.draw.coords.sound.y, Buleys.video.draw.coords.sound.width, Buleys.video.draw.coords.sound.height, x, y, Buleys.video.draw.coords.sound.width, Buleys.video.draw.coords.sound.height );
+		Buleys.video.draw.sound = function( context, x, y, color, scale ) {
+
+			if( 'undefined' === typeof scale ) {
+				scale = 1;
 			}
+				
+			Buleys.video.boxes[ 'sound' ] = {
+				x: x,
+				y: y,
+				width: Buleys.video.draw.coords.sound.width * scale,
+				height: Buleys.video.draw.coords.sound.height * scale
+			};
+			var col;
+			if( 'gray' === color ) {
+				col = Buleys.video.grayButtonSheet;
+			} else if( 'black' === color ) {
+				col = Buleys.video.blackButtonSheet;
+			} else if( 'red' === color ) {
+				col = Buleys.video.redButtonSheet;
+			} else {
+				col = Buleys.video.whiteButtonSheet;
+			}
+			context.drawImage( col, Buleys.video.draw.coords.sound.x, Buleys.video.draw.coords.sound.y, Buleys.video.draw.coords.sound.width, Buleys.video.draw.coords.sound.height, x, y, Buleys.video.draw.coords.sound.width * scale, Buleys.video.draw.coords.sound.height * scale );
 		};
 
 
@@ -122,13 +415,18 @@
 		Buleys.video.draw.coords.twoBar.width = 40;
 		Buleys.video.draw.coords.twoBar.height = 75;
 
-		Buleys.video.draw.twoBar = function( context, x, y, color ) {
-			console.log('twoBar button',x,y);
-			if( 'white' === color ) {
-				context.drawImage( Buleys.video.whiteButtonSheet, Buleys.video.draw.coords.twoBar.x, Buleys.video.draw.coords.twoBar.y, Buleys.video.draw.coords.twoBar.width, Buleys.video.draw.coords.twoBar.height, x, y, Buleys.video.draw.coords.twoBar.width, Buleys.video.draw.coords.twoBar.height );
+		Buleys.video.draw.twoBar = function( context, x, y, color, scale ) {
+			var col;
+			if( 'gray' === color ) {
+				col = Buleys.video.grayButtonSheet;
+			} else if( 'black' === color ) {
+				col = Buleys.video.blackButtonSheet;
 			} else {
-				context.drawImage( Buleys.video.blackButtonSheet, Buleys.video.draw.coords.twoBar.x, Buleys.video.draw.coords.twoBar.y, Buleys.video.draw.coords.twoBar.width, Buleys.video.draw.coords.twoBar.height, x, y, Buleys.video.draw.coords.twoBar.width, Buleys.video.draw.coords.twoBar.height );
+				col = Buleys.video.whiteButtonSheet;
 			}
+
+			context.drawImage( col, Buleys.video.draw.coords.twoBar.x, Buleys.video.draw.coords.twoBar.y, Buleys.video.draw.coords.twoBar.width, Buleys.video.draw.coords.twoBar.height, x, y, Buleys.video.draw.coords.twoBar.width * scale, Buleys.video.draw.coords.twoBar.height * scale );
+			
 		};
 
 
@@ -138,16 +436,121 @@
 		Buleys.video.draw.coords.oneBar.width = 20;
 		Buleys.video.draw.coords.oneBar.height = 75;
 
-		Buleys.video.draw.oneBar = function( context, x, y, color ) {
-			console.log('oneBar button',x,y);
-			if( 'white' === color ) {
-				context.drawImage( Buleys.video.whiteButtonSheet, Buleys.video.draw.coords.oneBar.x, Buleys.video.draw.coords.oneBar.y, Buleys.video.draw.coords.oneBar.width, Buleys.video.draw.coords.oneBar.height, x, y, Buleys.video.draw.coords.oneBar.width, Buleys.video.draw.coords.oneBar.height );
+		Buleys.video.draw.oneBar = function( context, x, y, color, scale ) {
+			var col;
+			if( 'gray' === color ) {
+				col = Buleys.video.grayButtonSheet;
+			} else if( 'black' === color ) {
+				col = Buleys.video.blackButtonSheet;
 			} else {
-				context.drawImage( Buleys.video.blackButtonSheet, Buleys.video.draw.coords.oneBar.x, Buleys.video.draw.coords.oneBar.y, Buleys.video.draw.coords.oneBar.width, Buleys.video.draw.coords.oneBar.height, x, y, Buleys.video.draw.coords.oneBar.width, Buleys.video.draw.coords.oneBar.height );
+				col = Buleys.video.whiteButtonSheet;
 			}
+
+			context.drawImage( col, Buleys.video.draw.coords.oneBar.x, Buleys.video.draw.coords.oneBar.y, Buleys.video.draw.coords.oneBar.width, Buleys.video.draw.coords.oneBar.height, x, y, Buleys.video.draw.coords.oneBar.width * scale, Buleys.video.draw.coords.oneBar.height  * scale);
 		};
 
 
+	Buleys.video.mouse = Buleys.video.mouse || {};
+	Buleys.video.mouse.drag = Buleys.video.mouse.drag || {};
+
+	Buleys.video.mouse.up = function( event ) {
+
+		var collisions = Buleys.video.collisions( Buleys.video.boxes, { x: Buleys.video.mouse.x, y: Buleys.video.mouse.y } );
+		var player = Buleys.video.player;
+	
+		// Play/stop
+		if( -1 !== collisions.indexOf( 'play' ) && true === player.paused ) {
+			if( Buleys.video.player.currentTime === Buleys.video.player.duration )  {
+				Buleys.video.player.currentTime = 0;
+			}
+ 			Buleys.video.player.play();
+
+		} else if( -1 !== collisions.indexOf( 'stop' ) && true !== player.paused ) {
+ 			Buleys.video.player.pause();
+		}
+
+		// Mute
+		if( -1 !== collisions.indexOf( 'sound' ) && true === player.muted ) {
+			Buleys.video.player.muted = false;
+		} else if( -1 !== collisions.indexOf( 'sound' ) && true !== player.muted ) {
+			Buleys.video.player.muted = true;
+		}
+
+		// Volume
+		if (  -1 !== collisions.indexOf( 'progress-vertical' ) && !!Buleys.video.mouse.drag.volume ) {
+			var ratio = ( ( Buleys.video.mouse.y - Buleys.video.draw.audioProgressYOffset ) / ( Buleys.video.boxes[ 'progress-vertical' ][ 'y' ] + Buleys.video.boxes[ 'progress-vertical' ][ 'height' ]  - Buleys.video.draw.audioProgressYOffset ) );
+			Buleys.video.player.volume = ratio * 1;
+			Buleys.video.mouse.drag.volume = false;
+		}
+		
+		// Video
+		if (  -1 !== collisions.indexOf( 'progress-horizontal' ) && !!Buleys.video.mouse.drag.video ) {
+			var ratio = ( ( Buleys.video.mouse.x - Buleys.video.draw.videoProgressXOffset ) / ( Buleys.video.boxes[ 'progress-horizontal' ][ 'x' ] + Buleys.video.boxes[ 'progress-horizontal' ][ 'width' ]  - Buleys.video.draw.videoProgressXOffset ) );
+
+			Buleys.video.player.currentTime = Buleys.video.player.duration * ratio;
+			Buleys.video.mouse.drag.video = false;
+
+		}
+
+	}
+
+
+	Buleys.video.mouse.down = function( event ) {
+
+		var collisions = Buleys.video.collisions( Buleys.video.boxes, { x: Buleys.video.mouse.x, y: Buleys.video.mouse.y } );
+
+		// Volume
+
+		if (  -1 !== collisions.indexOf( 'progress-vertical' ) && !Buleys.video.mouse.drag.volume ) {
+			Buleys.video.mouse.drag.volume = true;
+		}
+		
+		// Video
+
+		if (  -1 !== collisions.indexOf( 'progress-horizontal' ) && !Buleys.video.mouse.drag.video ) {
+			Buleys.video.mouse.drag.video = true;
+		}
+
+
+
+	}
+
+	Buleys.video.mouse.move = function( event ) {
+	    if (event.layerX || event.layerX == 0) {
+	        Buleys.video.mouse.x = event.layerX;
+	        Buleys.video.mouse.y = event.layerY;
+	    } else if (event.offsetX || event.offsetX == 0) {
+	        Buleys.video.mouse.x = event.offsetX;
+	        Buleys.video.mouse.y = event.offsetY;
+	    }
+		if( Buleys.video.mouse.x > 0 && Buleys.video.mouse.x < Buleys.video.canvas.width && Buleys.video.mouse.y > 0 && Buleys.video.mouse.y < Buleys.video.canvas.height ) {
+			Buleys.video.hover = new Date().getTime();
+		} else {
+			Buleys.video.hover = false;
+		}
+	}
+
+	/* Box: x, y, height, width
+	   Mouse: x, y
+	   Returns true if overlap else false */
+	Buleys.video.boxCollision = function( box, mouse ) {
+		var res = false;
+		if ( ( mouse.y >= box.y ) && ( mouse.y <= box.y + box.height ) && ( mouse.x >= box.x ) && ( mouse.x <= box.x + box.width )) {
+			res = true;
+		}
+		return res;
+	};
+
+	Buleys.video.collisions = function( boxes, mouse ) {
+		var results = [];
+		for( id in boxes ) {
+			var box = Buleys.video.boxes[ id ];
+			if( Buleys.video.boxCollision( box, mouse ) ) {
+				results.push( id );	
+			}
+		}
+		return results;
+	};
 
 
 
@@ -155,13 +558,12 @@
 
 			/* */
 			var videoname = 'muirbeach';
-			var assetcount = 2;
+			var assetcount = 4;
 			var currentcount = 0;
 			var incLoaded = function() {
 				currentcount++;
 				if( currentcount === assetcount ) {
 					//Ready
-					console.log('images ready' );
 				}
 			};
 			Buleys.video.whiteButtonSheet = new Image();
@@ -171,6 +573,30 @@
 			Buleys.video.blackButtonSheet = new Image();
 			Buleys.video.blackButtonSheet.onload = incLoaded;
 			Buleys.video.blackButtonSheet.src = "dots2black.png";
+			
+			Buleys.video.grayButtonSheet = new Image();
+			Buleys.video.grayButtonSheet.onload = incLoaded;
+			Buleys.video.grayButtonSheet.src = "dots2gray.png";
+
+			Buleys.video.redButtonSheet = new Image();
+			Buleys.video.redButtonSheet.onload = incLoaded;
+			Buleys.video.redButtonSheet.src = "dots2red.png";
+
+
+
+			Buleys.video.whiteDot = new Image();
+			Buleys.video.whiteDot.onload = incLoaded;
+			Buleys.video.whiteDot.src = "whiteDot.png";
+
+			Buleys.video.blackDot = new Image();
+			Buleys.video.blackDot.onload = incLoaded;
+			Buleys.video.blackDot.src = "blackDot.png";
+
+			Buleys.video.lightGrayDot = new Image();
+			Buleys.video.lightGrayDot.onload = incLoaded;
+			Buleys.video.lightGrayDot.src = "dddDot.png";
+
+
 
 			Buleys.video.player = document.createElement( 'video' );
 			Buleys.video.container = document.createElement( 'div' );
@@ -182,6 +608,7 @@
 			Buleys.video.type = Buleys.video.extension( Buleys.video.player );
 
 			Buleys.video.player.setAttribute( 'src', videoname + '.' + Buleys.video.type );
+			Buleys.video.player.setAttribute( 'title', 'Lorem ipsum et dolorum neste.');
 			document.body.appendChild( Buleys.video.container );
 
 
@@ -213,94 +640,94 @@
 		};
 
 		Buleys.video.loadstart = function( event ) {
-			console.log( 'Buleys.video.loadstart()', event );
+			//console.log( 'Buleys.video.loadstart()', event );
 		};
 
 		Buleys.video.progress = function( event ) {
-			console.log( 'Buleys.video.progress()', event );
+			//console.log( 'Buleys.video.progress()', event );
 		};
 
 		Buleys.video.suspend = function( event ) {
-			console.log( 'Buleys.video.suspend()', event );
+			//console.log( 'Buleys.video.suspend()', event );
 		};
 
 		Buleys.video.abort = function( event ) {
-			console.log( 'Buleys.video.abort()', event );
+			//console.log( 'Buleys.video.abort()', event );
 		};
 
 		Buleys.video.error = function( event ) {
-			console.log( 'Buleys.video.error()', event );
+			//console.log( 'Buleys.video.error()', event );
 		};
 
 		Buleys.video.emptied = function( event ) {
-			console.log( 'Buleys.video.emptied()', event );
+			//console.log( 'Buleys.video.emptied()', event );
 		};
 
 		Buleys.video.stalled = function( event ) {
-			console.log( 'Buleys.video.stalled()', event );
+			//console.log( 'Buleys.video.stalled()', event );
 		};
 
 		Buleys.video.loadedmetadata = function( event ) {
-			console.log( 'Buleys.video.loadedmetadata()', event );
+			//console.log( 'Buleys.video.loadedmetadata()', event );
 		};
 
 		Buleys.video.loadeddata = function( event ) {
-			console.log( 'Buleys.video.loadeddata()', event );
+			//console.log( 'Buleys.video.loadeddata()', event );
 		};
 
 		Buleys.video.canplay = function( event ) {
-			console.log( 'Buleys.video.canplay()', event );
+			//console.log( 'Buleys.video.canplay()', event );
 		};
 
 		Buleys.video.canplaythrough = function( event ) {
 			Buleys.video.draw();
-			console.log( 'Buleys.video.canplaythrough()', event );
+			//console.log( 'Buleys.video.canplaythrough()', event );
 		};
 
 
 		Buleys.video.playing = function( event ) {
-			console.log( 'Buleys.video.playing()', event );
+			//console.log( 'Buleys.video.playing()', event );
 		};
 
 
 		Buleys.video.waiting = function( event ) {
-			console.log( 'Buleys.video.waiting()', event );
+			//console.log( 'Buleys.video.waiting()', event );
 		};
 
 		Buleys.video.seeking = function( event ) {
-			console.log( 'Buleys.video.seeking()', event );
+			//console.log( 'Buleys.video.seeking()', event );
 		};
 
 		Buleys.video.seeked = function( event ) {
-			console.log( 'Buleys.video.seeked()', event );
+			//console.log( 'Buleys.video.seeked()', event );
 		};
 
 		Buleys.video.ended = function( event ) {
-			console.log( 'Buleys.video.ended()', event );
+			//console.log( 'Buleys.video.ended()', event );
 		};
 
 		Buleys.video.durationchange = function( event ) {
-			console.log( 'Buleys.video.durationchange()', event );
+			//console.log( 'Buleys.video.durationchange()', event );
 		};
 
 		Buleys.video.timeupdate = function( event ) {
-			console.log( 'Buleys.video.timeupdate()', event );
+			//console.log( 'Buleys.video.timeupdate()', event );
 		};
 
 		Buleys.video.play = function( event ) {
-			console.log( 'Buleys.video.play()', event );
+			//console.log( 'Buleys.video.play()', event );
 		};
 
 		Buleys.video.pause = function( event ) {
-			console.log( 'Buleys.video.pause()', event );
+			//console.log( 'Buleys.video.pause()', event );
 		};
 
 		Buleys.video.ratechange = function( event ) {
-			console.log( 'Buleys.video.ratechange()', event );
+			//console.log( 'Buleys.video.ratechange()', event );
 		};
 
 		Buleys.video.ratechange = function( event ) {
-			console.log( 'Buleys.video.volumechange()', event );
+			//console.log( 'Buleys.video.volumechange()', event );
 		};
 
 		Buleys.video.percentLoaded = function() {
