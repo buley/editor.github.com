@@ -103,7 +103,7 @@
 					Buleys.video.draw.videoProgressYOffset = 25;
 					Buleys.video.draw.videoProgressWidth = 10;
 
-					Buleys.video.draw.progress( context, Buleys.video.draw.videoProgressXOffset, ( theCanvas.height - ( Buleys.video.draw.videoProgressXOffset / 2 ) ), complete_percent, 0, 1, ( theCanvas.width - Buleys.video.draw.videoProgressXOffset ), Buleys.video.draw.videoProgressWidth, 'horizontal', 'gray', false );
+					Buleys.video.draw.progress( context, Buleys.video.draw.videoProgressXOffset, ( theCanvas.height - ( Buleys.video.draw.videoProgressXOffset / 2 ) ), complete_percent, 0, 1, ( theCanvas.width - Buleys.video.draw.videoProgressXOffset ), Buleys.video.draw.videoProgressWidth, 'horizontal', 'white', false );
 
 					Buleys.video.draw =  Buleys.video.draw || {};
 					Buleys.video.draw.audioProgressXOffset = 20;
@@ -146,10 +146,10 @@
 						Buleys.video.draw.third.offsetX = ( theCanvas.width / 5 );
 						Buleys.video.draw.third.lineHeight = 40;
 						Buleys.video.draw.third.lineWidth =  theCanvas.width - Buleys.video.draw.third.offsetX;
-						Buleys.video.draw.third( context, 0, Buleys.video.draw.third.offsetY, theCanvas.width - Buleys.video.draw.third.offsetX, 20 + ( ( Buleys.video.draw.third.lineHeight + 50 ) * ctr ), 'horizontal', 'white');
+						Buleys.video.draw.third( context, 0, Buleys.video.draw.third.offsetY, theCanvas.width - Buleys.video.draw.third.offsetX, 20 + ( ( Buleys.video.draw.third.lineHeight + 50 ) * ctr ), 'horizontal', 'gray' );
 						context.shadowOffsetX=-1;
 						context.shadowOffsetY=3;
-						context.shadowColor='#ddd';
+						context.shadowColor='#eee';
 						context.shadowBlur=1;
 
 						for( var z = 0; z < lines.length; z += 1 ) {
