@@ -103,7 +103,7 @@
 					Buleys.video.draw.videoProgressYOffset = 25;
 					Buleys.video.draw.videoProgressWidth = 10;
 
-					Buleys.video.draw.progress( context, Buleys.video.draw.videoProgressXOffset, ( theCanvas.height - ( Buleys.video.draw.videoProgressXOffset / 2 ) ), complete_percent, 0, 1, ( theCanvas.width - Buleys.video.draw.videoProgressXOffset ), Buleys.video.draw.videoProgressWidth, 'horizontal', 'white', false );
+					Buleys.video.draw.progress( context, Buleys.video.draw.videoProgressXOffset, ( theCanvas.height - ( Buleys.video.draw.videoProgressXOffset / 2 ) ), complete_percent, 0, 1, ( theCanvas.width - Buleys.video.draw.videoProgressXOffset ), Buleys.video.draw.videoProgressWidth, 'horizontal', 'gray', false );
 
 					Buleys.video.draw =  Buleys.video.draw || {};
 					Buleys.video.draw.audioProgressXOffset = 20;
@@ -228,7 +228,7 @@
 				if( true === inverted ) {
 					context.strokeStyle = gr;
 				} else {
-					context.strokeStyle = wh;
+					context.strokeStyle = gr;
 				}
 			}
 	
@@ -256,7 +256,7 @@
 				if( true === inverted ) {
 					context.strokeStyle = wh;
 				} else {
-					context.strokeStyle = gr;
+					context.strokeStyle = wh;
 				}
 			}
 
