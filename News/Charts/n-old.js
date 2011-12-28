@@ -1,9 +1,4 @@
-/* Data Zip */
-/* Goal: 1) Transform semi-structured JS objects into CSV and the standard Google Data Table object format, making it usable w/the Google Chart API. 2) Use the ChartWrapper class to create standard chart types (http://code.google.com/apis/chart/interactive/docs/reference.html#chartwrapperobject)
-*/
-var Namespace = {};
-Namespace.cache = Namespace.cache || {};
-Namespace.utils = Namespace.utils || {};
+pace = {};
 Namespace.data = Namespace.data || {};
 Namespace.data.utils = Namespace.data.utils || {};
 Namespace.data.type = Namespace.data.type || {};
@@ -50,10 +45,7 @@ Namespace.data.types = {
 };
 
 Namespace.data.types.raw.transform.table = function(obj) {
-    var newobj = obj;
 
-    
-    return newobj;
 };
 
 Namespace.data.types.raw.transform.csv = function(obj) {
@@ -193,7 +185,7 @@ Namespace.data.type.validate = function(type, obj) {
 
 /* value utilities */
 
-/* values are composite data types made up of a type and value property. a value can also have an optional timestamp property. */
+/* values are composite data types made up of a type, id and value property. a value can also have an optional timestamp property, meta object. */
 
 /* returns true if an object's own types or one layer connections can convert to a type, else false */
 Namespace.data.value.transformsTo = function(obj, other_type) {
@@ -255,6 +247,7 @@ Namespace.data.value.validate = function(obj, type) {
 
 /* Element Types */
 
+//TODO: Possible? Necessary?
 Namespace.data.elements = {
     'table': {
         'validate': function() {}
@@ -295,6 +288,8 @@ Namespace.charts.types = {
 };
 
 
+
+
 /* Chart utilities */
 
 Namespace.charts.add = function(type, target) {
@@ -314,251 +309,21 @@ Namespace.charts.remove = function(id) {
 };
 
 //Create
-
-/* returns a well formatted data object for data type or null if there was some sort of error. columns and rows are arrays of column and row objects, respectively.  */
-Namespace.data.table.create = function( columns, rows, meta, timestamp ) {
-	//columns are rows are required
-	if( 'undefined' === typeof columns || 'undefined' === typeof rows ||  null === columns || null === rows ) {
-		return null;	
-	} else {
-		//columns and rows are formatted as arrays in raw
-		if( !Namespace.utils.isArray( columns ) || !Namespace.utils.isArray( rows ) {
-			//columns and rows must be arrays
-			return null;
-		}
-	}
-	//meta is optional
-	if( 'undefined' === typeof meta ) {
-		meta = null;
-	}
-	//timestamp can be faked
-	timestamp = ( 'number' !== typeof timestamp ) ? new Date().getTime() : timestamp;
-	return { 
-		'columns': columns
-		, 'rows': rows
-		, 'meta': meta
-		, 'timestamp': timestamp
-	};
-};
-Namespace.data.row.create = function( value, meta, timestamp ) {
-	//value is required
-	if( 'undefined' === typeof value || null === value ) {
-		return null;	
-	}
-	//meta is optional
-	if( 'undefined' === typeof meta ) {
-		meta = null;
-	}
-	//timestamp can be faked
-	timestamp = ( 'number' !== typeof timestamp ) ? new Date().getTime() : timestamp;
-    	return { 
-        	'value': value
-		, 'meta': meta
-       		, 'timestamp': timestamp
-	};
-};
-
-/* type is required */
-/* types: boolean, number, string, date, datetime */
-Namespace.data.column.types = [ 'boolean', 'number', 'string', 'date', 'datetime' ];
-Namespace.data.column.create = function( type, id, meta, timestamp ) {
-	//type is required
-	if( 'undefined' === typeof type ||  null === type ) {
-		//no type given
-		return null;
-	} else {
-		if( -1 === Namespace.data.column.types.indexOf( type ) ) {
-			//not a valid type
-			return null;
-		}
-	}
-	//id is optional
-	if( 'undefined' === typeof id || null === id ) {
-		id = null;
-	}
-	//meta is optional
-	if( 'undefined' === typeof meta || null === meta ) {
-		meta = {};
-	}
-	if( 'undefined' === typeof meta.label ) {
-		meta.label = null;
-	}
-	//timestamp can be faked
-	timestamp = ( 'number' !== typeof timestamp ) ? new Date().getTime() : timestamp;
-	return { 
-		'type': type
-		, 'id': id
-    		, 'meta': meta
-		, 'timestamp': timestamp
-	};
-};
-
-Namespace.data.cell.create = function( value, meta, id, timestamp) {
-	//value is required
-	if( 'undefined' === typeof value || null === value ) {
-		//no value given
-		return null;
-	}
-	//id is optional
-	if( 'undefined' === typeof id || null === id ) {
-		id = null;
-	}
-	//meta is optional
-	if( 'undefined' === typeof meta || null === meta ) {
-		meta = {};
-	}
-	if( 'undefined' === typeof meta.label ) {
-		meta.label = null;
-	}
-
-	//timestamp can be faked
-	timestamp = ( 'number' !== typeof timestamp ) ? new Date().getTime() : timestamp;
-
-	return { 
-		'value': value
-		, 'id': id
-    		, 'meta': meta
-		, 'timestamp': timestamp
-	};
-};
-    
-Namespace.data.table.add = function( table_id, table ) {
-	//TODO: validate table
-	if( 'undefined' === typeof Namespace.cache[ table_id ] ) {
-		Namespace.cache[ table_id ] = table;
-	} 
-};
-
-Namespace.data.row.add = function( table_id, row ) {
-	//TODO: validate row 
-	var table = Namespace.cache[ table_id ];
-	if( 'undefined' !== typeof table ) {
-		Namespace.cache[ table_id ].rows.push( row );
-	};
-};
-
-Namespace.data.column.add = function( table_id, column ) {
-	//TODO: validate column 
-	var table = Namespace.cache[ table_id ];
-	if( 'undefined' !== typeof table ) {
-		Namespace.cache[ table_id ].columns.push( columns );
-	};
-};
-
-//Can't update a cell without adding a row or column
-//Namespace.data.cell.add = function() {};
+Namespace.data.add = function() {};
+Namespace.data.table.add = function() {};
+Namespace.data.row.add = function() {};
+Namespace.data.column.add = function() {};
+Namespace.data.cell.add = function() {};
 
 //Read
-Namespace.data.table.get = function( table_id ) {
-	if( 'undefined' !== typeof Namespace.cache[ table_id ] ) {
-		return Namespace.cache[ table_id ];
-	} 
-	return null;
-};
-
-//allows for optional lookup by row_id, in which case row_index is ignored and can be set to null
-Namespace.data.row.get = function( table_id, row_index, row_id ) {
-	var table = Namespace.cache[ table_id ]
-	  , row;
-	if( 'undefined' !== typeof table ) {
-		if( 'undefined' !== typeof row_id ) {
-			var rowlen = table.rows.length;
-			for( var x = 0; x < rowlen; x += 1 ) {
-				var tmp = table.rows[ x ];
-				if( 'undefined' !== tmp.id ) {
-					if( tmp.id === row_id ) {
-						return;
-					}
-				}
-			}
-		} else {
-			row = table.rows[ row_index ];
-			if( 'undefined' !== typeof row ) {
-				return row;
-			}
-		}
-	} 
-	return null;
-};
-Namespace.data.column.get = function( table_id, column_index, column_id) {
-	var table = Namespace.cache[ table_id ]
-	  , column;
-	if( 'undefined' !== typeof table ) {
-		if( 'undefined' !== typeof column_id ) {
-			var collen = table.rows.length;
-			for( var x = 0; x < collen; x += 1 ) {
-				column = table.columns[ x ];
-				if( 'undefined' !== columm.id ) {
-					if( column.id === column_id ) {
-						return column;
-					}
-				}
-			}
-		} else {
-			column = table.columns[ column_index ];
-			if( 'undefined' !== typeof column ) {
-				return column;
-			}
-		}
-	} 
-	return null;
-};
-
-Namespace.data.cell.get = function( table_id, row_index, row_id, column_index, column_id ) {
-	var table = Namespace.cache[ table_id ]
-	  , column, row, value;
-	if( 'undefined' !== typeof table ) {
-		if( 'undefined' !== typeof row_id ) {
-			var rowlen = table.rows.length;
-			for( var x = 0; x < rowlen; x += 1 ) {
-				var tmp = table.rows[ x ];
-				if( 'undefined' !== tmp.id ) {
-					if( tmp.id === row_id ) {
-						row = tmp;
-					}
-				}
-			}
-		} else {
-			row = table.rows[ row_index ];
-		}
-	} 
-	if( 'undefined' !== typeof row ) {
-		if( 'undefined' !== typeof column_id ) {
-			var rowlen = table.rows.length;
-			for( var x = 0; x < rowlen; x += 1 ) {
-				var tmp = table.rows[ x ];
-				if( 'undefined' !== tmp.id ) {
-					if( tmp.id === column_id ) {
-						value = tmp;
-					}
-				}
-			}
-		} else {
-			value = row[ column_index ];
-		}
-	}
-	return null;
-};
-//TODO: Next up?
-//Destroy
-Namespace.data.remove = function() {};
-Namespace.data.table.remove = function() {};
-Namespace.data.row.remove = function() {};
-Namespace.data.column.remove = function() {};
-Namespace.data.cell.remove = function() {};
-
-//Replace
-Namespace.data.put = function() {};
-Namespace.data.table.put = function() {};
-Namespace.data.row.put = function() {};
-Namespace.data.column.put = function() {};
-Namespace.data.cell.put = function() {};
+Namespace.data.read = function() {};
+Namespace.data.table.get = function() {};
+Namespace.data.row.get = function() {};
+Namespace.data.column.get = function() {};
+Namespace.data.cell.get = function() {};
 
 //Update
-Namespace.data.update = function(data, id, type, format, meta,parents,children) {
-
-};
-
+Namespace.data.update = function() {};
 Namespace.data.table.update = function() {};
 Namespace.data.row.update = function() {};
 Namespace.data.column.update = function() {};
@@ -588,6 +353,20 @@ Namespace.data.row.update.timestamp = function() {};
 Namespace.data.column.update.timestamp = function() {};
 Namespace.data.cell.update.timestamp = function() {};
 
+//Destroy
+Namespace.data.remove = function() {};
+Namespace.data.table.remove = function() {};
+Namespace.data.row.remove = function() {};
+Namespace.data.column.remove = function() {};
+Namespace.data.cell.remove = function() {};
+
+//Replace
+Namespace.data.put = function() {};
+Namespace.data.table.put = function() {};
+Namespace.data.row.put = function() {};
+Namespace.data.column.put = function() {};
+Namespace.data.cell.put = function() {};
+
 //Draw
 Namespace.data.draw = function() {};
 Namespace.data.table.draw = function() {};
@@ -604,4 +383,4 @@ Namespace.utils.isArray = function(obj) {
         return obj.isArray();
     }
 }
-
+    
