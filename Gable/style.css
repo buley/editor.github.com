@@ -1,0 +1,143 @@
+body {
+	color: #000; /*586E75*/
+	background:#FDF6E3;
+}
+.exampleViz {
+	padding-right:20px;
+}
+.example {
+}
+#logo-icon {
+float:left;
+padding-top: 22px;
+}
+#logo-text {
+float:left;
+padding:20px;
+font-size:36px;
+}
+#logo-text a {
+color:#000;
+text-decoration:none;
+}
+#logo-text a:hover {
+color:#000;
+text-decoration:underline;
+}
+#container {
+width:800px;
+margin:auto;
+padding-bottom:30px;
+}
+code {
+color:#FDF6E3;
+line-height:38px;
+font-size:18px;
+}
+h1, h2, h3, h4, h5, h6 {
+	color:#000;
+	text-shadow: -0px -0px #ddd;
+}
+.subhead {
+font-size: 28px;
+margin-top: 15px;
+margin-bottom: 0px;
+clear: both;
+padding-top: 20px;
+}
+.desc {
+font-size:22px;
+margin-bottom:0px;
+}
+.subdesc {
+background:#FDF6E3;
+font-size:22px;
+margin-bottom:0px;
+}
+.inlinecode {
+color:#586E75;
+}
+.codedesc {
+background:#586E75;
+border-left:1px dashed #FDF6E3;
+border-right:1px dashed #FDF6E3;
+font-size:22px;
+margin-bottom:0px;
+padding:20px;
+}
+.promo {
+font-size:32px;
+}
+.promo a {
+color:#000;
+padding-left:20px;
+padding-top:14px;
+margin-bottom:-20px;
+float:right;
+}
+.promo a:hover {
+color:#000;
+padding-left:20px;
+padding-top:14px;
+float:right;
+margin-bottom:-20px;
+text-transform:none;
+}
+p {
+background: #EEE8D5;
+clear:both;
+padding: 0 20px 0 20px;
+line-height: 42px;
+text-shadow: -0px -0px black;
+margin:10px 0 10px 0;
+}
+h1 {
+
+	font-size: 64px;
+
+	padding: 0;
+	margin-top:0px;
+	margin-bottom:0px;;
+}
+h2 {
+	font-size: 56px;
+}
+h3 {
+	font-size: 48px;
+}
+h4 {
+	font-size: 36px;
+	margin-bottom:15px;
+	margin-top:15px;
+	clear:both;
+	padding-top: 20px;
+}
+h5 {
+	font-size: 32px;
+	margin-bottom: 0px;
+	clear:both;
+}
+
+h6 {
+	font-size: 24px;
+}
+
+
+/* grids container - wrap your grids within */
+.grids { overflow: hidden; }
+
+/* grids */
+
+.g1of2, .g1of3, .g1of4, .g1of5,
+.g2of3, .g2of5,
+.g3of4, .g3of5,
+.g4of5	{ float: left; }
+.g1of2	{ width: 50%; }
+.g1of3	{ width: 33.333333333%; }
+.g1of4	{ width: 25%; }
+.g1of5	{ width: 20%; }
+.g2of3	{ width: 66.666666666%; }
+.g2of5	{ width: 40%; }
+.g3of4	{ width: 75%; }
+.g3of5	{ width: 60%; }
+.g4of5	{ width: 80%; }
