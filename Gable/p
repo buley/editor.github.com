@@ -1,125 +1,73 @@
 //Update
-	Private.data.destroy = function(data, id, type, format, meta,parents,children) {
+	Private.data.remove = function(data, id, type, format, meta,parents,children) {
 
 	};
 
-	Private.data.table.destroy = function( val, table_id, meta, on_success, on_error ) {
-		//TODO: validate cell
-		meta = ( 'undefined' === typeof meta || 'object' !== typeof meta ) ? {} : meta;
+	Private.data.table.remove = function( val, table_id, meta, on_success, on_error ) {
 
-		var raw = {};
-		if( Private.data.type.tranformsTo( 'input', 'raw' ) ) {
-			raw = Private.data.types.input.transform.raw( Private.data.types.raw.transform.filter( val ) );
-		}
-
-		var newtable = Private.data.table.create( raw.columns, raw.rows, meta, table_id );
-
-		Private.cache[ table_id ] = newtable;
-
-		if( 'function' === typeof on_success ) {
-			on_success( { 'table': table_id, 'value': newtable } );
-		}
-		if( 'function' === typeof on_error ) {
-			on_error( { 'table': table_id, 'value': newtable } );
-		}
-
-	};
-
-	Private.data.row.destroy = function( val, table_id, row, row_id, row_meta, on_success, on_error ) {
-		//TODO: validate row 
 		var table = Private.cache[ table_id ];
-/*
-		var raw = {};
-		if( Private.data.type.tranformsTo( 'input', 'raw' ) ) {
-			raw = Private.data.types.input.transform.raw( Private.data.types.raw.transform.filter( val ) );
-		}
 
-		val = raw.rows[ 0 ];*/
-		var rw = table.rows[ row ];
-
-		if( null === rw || 'undefined' === typeof rw ) {
-			return null;
-		}
-		if( null === row_id || 'undefined' === typeof row_id ) {
-			row_id = rw.id;
-		}
-		if( null === row_meta || 'undefined' === typeof row_meta ) {
-			row_meta = rw.meta;
+		if( 'undefined' !== typeof table ) { 
+			delete Private.cache[ table_id ];
+			if( 'function' === typeof on_success ) {
+				on_success( { 'table': table_id } );
+			}
 		} else {
-			for( var attr in rw.meta ) {
-				if( rw.meta.hasOwnProperty( attr ) && 'undefined' !== typeof row_meta[ attr ] ) {
-					row_meta[ attr ] = rw.meta[ attr ];
-				}
+			if( 'function' === typeof on_error ) {
+				on_error( { 'table': table_id } );
 			}
 		}
 
-		val = Private.data.row.create( val, row_meta, row_id );
-		table.rows[ row ] = val;
-
-		if( 'function' === typeof on_success ) {
-			on_success( { 'table': table_id, 'value': val, 'row': row }  );	
-		}
-		if( 'function' === typeof on_error ) {
-			on_error( { 'table': table_id, 'value': val, 'row': row } );	
-		}
-
 	};
 
-	Private.data.column.destroy = function( val, table_id, column, column_id, column_meta, on_success, on_error ) {
+	Private.data.row.remove = function( table_id, row, on_success, on_error ) {
+		//TODO: validate row 
+		var table = Private.cache[ table_id ];
+		if( 'undefined' !== typeof table.rows[ row ] ) {
+
+			delete Private.cache[ table_id ].rows[ row ];
+
+			if( 'function' === typeof on_success ) {
+				on_success( { 'table': table_id, 'row': row }  );	
+			}
+		} else {
+			if( 'function' === typeof on_error ) {
+				on_error( { 'table': table_id, 'row': row } );	
+			}
+		}
+	};
+
+	Private.data.column.remove = function( val, table_id, column, column_id, column_meta, on_success, on_error ) {
 		//TODO: validate column 
 		var table = Private.cache[ table_id ];
 		var col = table.columns[ column ];
-		if( null === col || 'undefined' === typeof col ) {
-			return null;
-		}
-/*
-		var raw = {};
-		if( Private.data.type.tranformsTo( 'input', 'raw' ) ) {
-			raw = Private.data.types.input.transform.raw( Private.data.types.raw.transform.filter( val ) );
-		}
-		val = raw.columns[ 0 ];*/
+		if( 'undefined' !== typeof col ) {
 
-		console.log( "NEW", val, "COLUMN", table.columns[ column ] );
-		if( null === column_id || 'undefined' === typeof column_id ) {
-			column_id = col.id;
-		}
-		if( null === column_meta || 'undefined' === typeof column_meta ) {
-			column_meta = col.meta;
+			delete Private.cache[ table_id ].columns[ column ];
+
+			if( 'function' === typeof on_success ) {
+				on_success( { 'table': table_id, 'column': column }  );	
+			}
+
 		} else {
-			for( var attr in col.meta ) {
-				if( col.meta.hasOwnProperty( attr ) && 'undefined' !== typeof column_meta[ attr ] ) {
-					column_meta[ attr ] = col.meta[ attr ];
-				}
+			if( 'function' === typeof on_error ) {
+				on_error( { 'table': table_id, 'column': column } );	
 			}
 		}
 
-		var column_type = Private.data.column.type(val);
-		val = Private.data.column.create(column_type, column_id, column_meta);
-
-		table.columns[ column ]  = val;
-
-		if( 'function' === typeof on_success ) {
-			on_success( { 'table': table_id, 'value': val, 'column': column }  );	
-		}
-		if( 'function' === typeof on_error ) {
-			on_error( { 'table': table_id, 'value': val, 'column': column } );	
-		}
-
 	};
 
-	Private.data.cell.destroy = function( value, table_id, row, column, on_success, on_error ) {
-		//TODO: validate column 
+	Private.data.cell.remove = function( table_id, row, column, on_success, on_error ) {
+	
 		var table = Private.cache[ table_id ];
-		
-		table.rows[ row ].value[ column ] = value;
+		if( 'undefined' !=== typeof table.rows[ row ].value[ column ] ) {
+			if( 'function' === typeof on_success ) {
+				on_success( { 'table': table_id, 'row': row, 'column': column }  );	
+			}
 
-		if( 'function' === typeof on_success ) {
-			on_success( { 'table': table_id, 'row': row, 'column': column }  );	
-		}
-		if( 'function' === typeof on_error ) {
+		} if( 'function' === typeof on_error ) {
 			on_error( { 'table': table_id, 'row': row, 'column': column } );	
 		}
 	};
-
 
 
