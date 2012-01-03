@@ -169,8 +169,8 @@ var Gable = (function(){
 		var value = req.value;
 		var meta = req.meta || null;
 		var type = req.type;
-		var row = req.row;
-		var column = req.column;
+		var row = req.row - 1; //array indexed at zero
+		var column = req.column - 1;
 		var chs = charts[ id ];
 		var on_success = function( res ) {
 			Private.charts.redraw( table_id );
@@ -267,15 +267,16 @@ var Gable = (function(){
 	Public.prototype.commit = function() {
 		var id = current_table;
 		if( 'undefined' !== typeof tables[ id ] && true === tables[ id ].delay  ) {
-			var queuelen = tables[ id ].queue.length;
-			if( queuelen > 0 ) {
+			if( 'undefined' !== typeof tables[ id ].queue ) {
 				for( var attr in tables[ id ].queue ) {
 					Gable( id ).draw( tables[ id ].queue[ attr ] );
 				}
 				tables[ id ].queue = {};
 			}
+
+			tables[ id ].delay = false;
 		}
-		tables[ id ].delay = false;
+
 		return Public.prototype;
 	};
 
@@ -357,7 +358,7 @@ var Gable = (function(){
 			return obj.slice(0);
 		}
 		for( var x in obj ) {
-			if( "object" == typeof obj[ x ] ) {
+			if( "object" === typeof obj[ x ] ) {
 				clone[ x ] = Private.utils.clone( obj[ x ] );
 			} else {
 				clone[ x ] = obj[ x ];
@@ -612,7 +613,6 @@ var Gable = (function(){
 					var valuelen = value[ attr ].length;
 					var nonulls = true;
 					for( var x = 0; x < valuelen; x += 1 ) {
-
 						if( null !== value[ attr ][ x ] && 'object' === typeof value[ attr ][ x ]  && !Private.utils.isArray( value[ attr ][ x ] ) && !( value[ attr ][ x ] instanceof Date ) ) { 
 							valuelen = 0;
 							for( var attr2 in value[ attr ][ x ] ) {
@@ -732,9 +732,13 @@ var Gable = (function(){
 									tmp_val.push( val[attr2] );
 								}
 							}
-							val = tmp_val;
-							var rw = Private.data.row.create(val, row_meta, row_id);
-							rows.push(rw);
+							//if( tmp_val.length === 1 && tmpstack.length > 0 ) {
+							//	tmpstack.push( val[ 0 ] );
+							//} else {
+								val = tmp_val;
+								var rw = Private.data.row.create(val, row_meta, row_id);
+								rows.push(rw);
+							//}
 						} else {
 
 							wasarray = true;
@@ -744,7 +748,7 @@ var Gable = (function(){
 					}
 					if( true === wasarray ) {
 						var rw = Private.data.row.create( tmpstack, row_meta, row_id);
-						if( tmpstack > 0 ) {
+						if( tmpstack.length > 0 ) {
 							rows.push(rw);
 						}
 					}
@@ -846,8 +850,12 @@ var Gable = (function(){
 										colatters.push( val[y][zattr] );
 									}
 								}
-								var rw = Private.data.row.create( colatters, row_meta, row_id );
-								rows.push(rw);
+								if( colatters.length > 1 ) {
+									var rw = Private.data.row.create( colatters, row_meta, row_id );
+									rows.push(rw);
+								} else {
+									tmpstack.push( colatters[0] );
+								}
 
 							} else {
 								tmpstack.push( val[y] );
@@ -876,7 +884,7 @@ var Gable = (function(){
 							}
 
 							rw = Private.data.row.create( tmpstack, row_meta, row_id );
-							if( tmpstack > 0 ) {
+							if( tmpstack.length > 0 ) {
 								rows.push(rw);
 								tmpstack = [];
 							}
@@ -895,7 +903,7 @@ var Gable = (function(){
 
 			if( true === wasarray ) {
 				var rw = Private.data.row.create( tmpstack, row_meta, row_id);
-				if( tmpstack > 0 ) {
+				if( tmpstack.length > 0 ) {
 					rows.push(rw);
 					tmpstack = [];
 				}
@@ -1671,7 +1679,7 @@ var Gable = (function(){
 	Private.data.cell.update = function( value, table_id, row, column, on_success, on_error ) {
 		//TODO: validate column 
 		var table = Private.cache[ table_id ];
-		if( 'undefined' === typeof table.rows[ row ] || 'undefined' === table.rows[ row ].value[ column ] ) {
+		if( 'undefined' === typeof table ||  'undefined' === typeof table.rows[ row ] || 'undefined' === table.rows[ row ].value[ column ] ) {
 			if( 'function' === typeof on_error ) {
 				on_error( { 'table': table_id, 'row': row, 'column': column } );	
 			}
@@ -1706,15 +1714,29 @@ var Gable = (function(){
 
 	};
 
-	Private.data.row.remove = function( table_id, row, on_success, on_error ) {
+	Private.data.row.remove = function( table_id, row, on_success, on_error, soft ) {
 		//TODO: validate row 
 		var table = Private.cache[ table_id ];
 		if( 'undefined' !== typeof table.rows[ row ] ) {
-
 			delete Private.cache[ table_id ].rows[ row ];
-
-			if( 'function' === typeof on_success ) {
-				on_success( { 'table': table_id, 'row': row }  );	
+			var count = 0;
+			for( var attr in Private.cache[ table_id ].rows ) {
+				if( Private.cache[ table_id ].rows.hasOwnProperty( attr ) ) { 
+					count++;
+				}
+			}
+			if( Private.cache[ table_id ].rows.length < 1 && soft !== true ) {
+				Private.data.table.remove( table_id, on_success, on_error );
+				for( var attr in tables[ id ] ) {
+					var node = document.getElementById( attr );
+					node.parentNode.removeChild( node );
+				}
+				tables[ id ] = {};
+				delete tables[ id ];
+			} else {
+				if( 'function' === typeof on_success ) {
+					on_success( { 'table': table_id, 'row': row }  );	
+				}
 			}
 		} else {
 			if( 'function' === typeof on_error ) {
@@ -1723,17 +1745,30 @@ var Gable = (function(){
 		}
 	};
 
-	Private.data.column.remove = function( val, table_id, column, column_id, column_meta, on_success, on_error ) {
+	Private.data.column.remove = function( table_id, column, on_success, on_error, soft ) {
 		//TODO: validate column 
 
 		var table = Private.cache[ table_id ];
 		var col = table.columns[ column ];
-		if( 'undefined' !== typeof col ) {
+		if( 'undefined' !== typeof col && 'undefined' !== typeof Private.cache[ table_id ] ) {
 
-			delete Private.cache[ table_id ].columns[ column ];
+			Private.cache[ table_id ].columns.splice( column, 1 );
+			for( var z = 0; z < table.rows.length; z += 1 ) {
+				Private.cache[ table_id ].rows[ z ].value.splice( column, 1 );
+			}
+			if( Private.cache[ table_id ].columns.length < 1 && soft !== true ) {
+				Private.data.table.remove( table_id, on_success, on_error );
+				for( var attr in tables[ id ] ) {
+					var node = document.getElementById( attr );
+					node.parentNode.removeChild( node );
+				}
+				tables[ id ] = {};
+				delete tables[ id ];
+			} else {
 
-			if( 'function' === typeof on_success ) {
-				on_success( { 'table': table_id, 'column': column }  );	
+				if( 'function' === typeof on_success ) {
+					on_success( { 'table': table_id, 'column': column }  );	
+				}
 			}
 
 		} else {
@@ -1743,6 +1778,7 @@ var Gable = (function(){
 		}
 
 	};
+
 
 	Private.data.cell.remove = function( table_id, row, column, on_success, on_error ) {
 	
