@@ -38,9 +38,6 @@ body {
 #skills, #education {
 	margin-top:20px;
 }
-#skills-production, #skills-non-production {
-	margin-bottom: 20px;
-}
 #skills ul {
 	list-style-type: square;
 	margin: 0px;
@@ -52,7 +49,9 @@ body {
 #skills ul > li > strong {
 	color: #000;
 }
-
+#skills-production, #skills-non-production {
+	margin-bottom: 20px;
+}
 .experience-item {
     margin-bottom: 5px;
 	padding:15px;
