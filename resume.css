@@ -17,6 +17,9 @@ body {
 	box-sizing: border-box;
 	padding:5px 20px 5px 20px;
 }
+#skills, #education {
+	margin-top:20px;
+}
 #skills ul {
 	list-style-type: square;
 	margin: 0px;
