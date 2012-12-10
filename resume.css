@@ -21,8 +21,8 @@ body {
 }
 
 .experience-item {
-    margin-bottom: 10px;
-	padding:20px;
+    margin-bottom: 5px;
+	padding:15px;
 }
 .experience-item:nth-child(2n) {
     background: rgba(0,0,0,.1);
