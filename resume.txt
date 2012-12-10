@@ -1,0 +1,53 @@
+Taylor Buley
+#### taylor.buley@gmail.com
+#### 650-353-7653
+
+## Technical Skills
+Production-ready skills in PHP (WordPress), JavaScript (jQuery, node.js, Backbone, Require.js, CoffeeScript, Handlebars), “HTML5” (Video, IndexedDB, Web Workers, Web Sockets), databases (MongoDB, MySQL, Neo4J), caches (Varnish, memcached), APIs (REST, Facebook, Twitter), statistics (R, Bash, some Python), analytics (Google Analytics, Omniture) and non-production experience in cloud services (Amazon AWS, Heroku, CloudFoundry, Google App Engine), hardware (Arduino, Raspberry Pi) and many other programming environments (Ruby, Erlang, Google Docs, etc.).
+
+## Work Experience 
+
+#### July 2012 – Present
+### Developer
+### Buley LLC
+Web development contracting developing media technologies using JavaScript and HTML5.
+
+#### November 2010 – July 2012
+### Developer
+### Forbes Media
+Design and development of journalist tools.
+
+#### January 2010 – November 2010
+### Forbes Media
+### Staff Writer And Editorial Developer
+Technology reporting and editorial platform development.
+
+#### January 2009 – January 2010
+### Forbes Media
+### Reporter
+Reported on IT, infrastructure and Web companies.
+
+#### August 2008 – January 2009
+### Reporter
+### Forbes Magazine
+Fact-checked for the magazine and reported on IT, infrastructure and Web companies from Silicon Valley.
+
+#### May 2008 – August 2008
+### Forbes Magazine
+### Reporting Intern
+Fact-checking magazine content and writing small clips for the book.
+
+#### June 2007 – August 2007
+### Wall Street Journal
+### Robert Bartley Intern
+Filled in as Letters Editor for the Review & Editorial section, fielding comments and letters, editing them and laying out/proofing the WSJ's letter's to the editor page. Wrote dozens of clips for Political Diary, the WSJ editorial page's paid political newsletter. Wrote a few unsigned editorials for the Review & Outlook section.
+
+#### May 2006 – July 2006
+### Burton Gray Intern
+### Reason Magazine
+Blogging, writing and CMS-related web producing.
+
+#### January 2005 – May 2005
+### White House Council Of Economic Advisors
+### Intern
+Assisted staff economists with research and writing. Helped produce the President's annual economics report. Prepared and published monthly state-level growth reports.
