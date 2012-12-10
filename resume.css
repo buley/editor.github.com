@@ -4,9 +4,6 @@ body {
     color: #002B36;
     background: #FDF6E3;
 }
-#contact {
-	color: #000;
-}
 #left {
 	float: left;
 	box-sizing: border-box;
@@ -15,9 +12,21 @@ body {
 }
 #right {
 	float:right;
+	color: #000;
 	width: 20%;
 	box-sizing: border-box;
 	padding:5px 20px 5px 20px;
+}
+#skills ul {
+	list-style-type: square;
+	margin: 0px;
+	padding: 0px 0 0 20px;
+}
+#skills ul > li {
+    color: #002B36;
+}
+#skills ul > li > strong {
+	color: #000;
 }
 
 .experience-item {
