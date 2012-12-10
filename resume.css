@@ -51,8 +51,8 @@ body {
 #skills ul > li > strong {
 	color: #000;
 }
-#skills-production, #skills-non-production {
-	margin-bottom: 20px;
+#skills > ul {
+	margin-bottom: 20px !important;
 }
 .experience-item {
     margin-bottom: 5px;
