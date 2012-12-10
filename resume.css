@@ -1,5 +1,18 @@
 body {
 	width: 100%;
 	box-sizing: border-box;
-	padding:20%;
+	padding:5% 20% 5% 20%;
+}
+
+#left {
+	float: left;
+	box-sizing: border-box;
+	width: 80%;
+	padding:5% 20% 5% 20%;
+}
+#right {
+	float:left;
+	width: 20%;
+	box-sizing: border-box;
+	padding:5% 20% 5% 20%;
 }
