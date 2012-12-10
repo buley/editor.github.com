@@ -5,6 +5,8 @@ body {
     background: #FDF6E3;
 	max-width: 960px;
 	margin: auto;
+	padding: 20px 0 20px 0;
+	box-sizing: box-border;
 }
 #top {
 	width:100%;
