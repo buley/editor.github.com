@@ -1,8 +1,12 @@
 body {
 	width: 100%;
 	box-sizing: border-box;
+    color: #002B36;
+    background: #FDF6E3;
 }
-
+#contact {
+	color: #000;
+}
 #left {
 	float: left;
 	box-sizing: border-box;
@@ -14,6 +18,16 @@ body {
 	width: 20%;
 	box-sizing: border-box;
 	padding:5px 20px 5px 20px;
+}
+
+.experience-item {
+    margin-bottom: 20px;
+	padding:20px;
+    border-bottom: 1px dashed rgba(0,0,0,.4);
+}
+.experience-item:nth-child(2n) {
+    background: #002B36;
+	color: #FDF6E3;
 }
 
 html, .light {
